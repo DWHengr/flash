@@ -6,7 +6,8 @@
 use lazy_static::lazy_static;
 use std::sync::Mutex;
 use tauri::{
-    CustomMenuItem, Manager, SystemTray, SystemTrayEvent, SystemTrayMenu, SystemTrayMenuItem,
+    CustomMenuItem, GlobalShortcutManager, Manager, SystemTray, SystemTrayEvent, SystemTrayMenu,
+    SystemTrayMenuItem,
 };
 struct Status {
     pub is_show: bool,
@@ -38,6 +39,24 @@ fn main() {
         .add_item(show);
 
     tauri::Builder::default()
+        .setup(|app| {
+            let mut short_cut = app.global_shortcut_manager();
+            let app_handler = app.handle();
+            short_cut
+                .register("alt+space", move || {
+                    let window = app_handler.get_window("main").unwrap();
+                    window.set_focus().unwrap();
+                    let b = STATUS.lock().unwrap().is_show;
+                    if b {
+                        window.hide().unwrap();
+                    } else {
+                        window.show().unwrap();
+                    }
+                    STATUS.lock().unwrap().is_show = !b;
+                })
+                .unwrap();
+            Ok(())
+        })
         .invoke_handler(tauri::generate_handler![main_set_hide])
         .system_tray(SystemTray::new().with_menu(tray_menu))
         .on_system_tray_event(|app, event| match event {
