@@ -3,15 +3,78 @@
     windows_subsystem = "windows"
 )]
 
-// Learn more about Tauri commands at https://tauri.app/v1/guides/features/command
+use lazy_static::lazy_static;
+use std::sync::Mutex;
+use tauri::{
+    CustomMenuItem, Manager, SystemTray, SystemTrayEvent, SystemTrayMenu, SystemTrayMenuItem,
+};
+struct Status {
+    pub is_show: bool,
+}
+
+impl Default for Status {
+    fn default() -> Status {
+        Status { is_show: true }
+    }
+}
+
+lazy_static! {
+    static ref STATUS: Mutex<Status> = Mutex::new(Status::default());
+}
+
 #[tauri::command]
-fn greet(name: &str) -> String {
-    format!("Hello, {}! You've been greeted from Rust!", name)
+fn main_set_hide() {
+    STATUS.lock().unwrap().is_show = false;
 }
 
 fn main() {
+    let quit = CustomMenuItem::new("quit".to_string(), "Quit");
+    let hide = CustomMenuItem::new("hide".to_string(), "Hide");
+    let show = CustomMenuItem::new("show".to_string(), "Show");
+    let tray_menu = SystemTrayMenu::new()
+        .add_item(quit)
+        .add_native_item(SystemTrayMenuItem::Separator)
+        .add_item(hide)
+        .add_item(show);
+
     tauri::Builder::default()
-        .invoke_handler(tauri::generate_handler![greet])
+        .invoke_handler(tauri::generate_handler![main_set_hide])
+        .system_tray(SystemTray::new().with_menu(tray_menu))
+        .on_system_tray_event(|app, event| match event {
+            SystemTrayEvent::LeftClick {
+                position: _,
+                size: _,
+                ..
+            } => {
+                let window = app.get_window("main").unwrap();
+                window.set_focus().unwrap();
+                let b = STATUS.lock().unwrap().is_show;
+                if b {
+                    window.hide().unwrap();
+                } else {
+                    window.show().unwrap();
+                }
+                STATUS.lock().unwrap().is_show = !b;
+            }
+            SystemTrayEvent::MenuItemClick { id, .. } => match id.as_str() {
+                "quit" => {
+                    std::process::exit(0);
+                }
+                "hide" => {
+                    let window = app.get_window("main").unwrap();
+                    window.hide().unwrap();
+                    STATUS.lock().unwrap().is_show = false;
+                }
+                "show" => {
+                    let window = app.get_window("main").unwrap();
+                    window.set_focus().unwrap();
+                    window.show().unwrap();
+                    STATUS.lock().unwrap().is_show = true;
+                }
+                _ => {}
+            },
+            _ => {}
+        })
         .run(tauri::generate_context!())
         .expect("error while running tauri application");
 }

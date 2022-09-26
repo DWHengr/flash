@@ -8,9 +8,13 @@
   },
   "package": {
     "productName": "flash",
-    "version": "0.0.0"
+    "version": "0.0.1"
   },
   "tauri": {
+    "systemTray": {
+      "iconPath": "icons/icon.png",
+      "iconAsTemplate": true
+    },
     "allowlist": {
       "all": true
     },
@@ -29,7 +33,7 @@
         "icons/icon.icns",
         "icons/icon.ico"
       ],
-      "identifier": "com.tauri.dev",
+      "identifier": "com.dwh",
       "longDescription": "",
       "macOS": {
         "entitlements": null,

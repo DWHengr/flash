@@ -1,13 +1,22 @@
 import { useState } from "react";
 import { invoke } from "@tauri-apps/api/tauri";
 import "./App.css";
+import {
+  PhysicalSize,
+  appWindow,
+} from "@tauri-apps/api/window";
 
 function App() {
   const [greetMsg, setGreetMsg] = useState("");
   const [name, setName] = useState("");
 
   async function greet() {
-    setGreetMsg(await invoke("greet", { name }));
+    appWindow.setSize(new PhysicalSize(600, 400));
+  }
+
+  const  hide = async () =>{
+    appWindow.hide();
+    await invoke("main_set_hide");
   }
 
   return (
@@ -22,6 +31,9 @@ function App() {
           />
           <button type="button" onClick={() => greet()}>
             Greet
+          </button>
+          <button type="button" onClick={() => hide()}>
+            hide
           </button>
         </div>
       </div>
