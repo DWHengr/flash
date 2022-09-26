@@ -56,10 +56,11 @@
     "windows": [
       {
         "fullscreen": false,
-        "height": 600,
-        "resizable": true,
-        "title": "flash",
-        "width": 800
+        "height": 100,
+        "resizable": false,
+        "title": "nana",
+        "width": 600,
+        "decorations": false
       }
     ]
   }
