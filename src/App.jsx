@@ -21,8 +21,8 @@ function App() {
 
   return (
     <div className="container">
-      <div className="bar" data-tauri-drag-region></div>{" "}
       <div className="row">
+      <img data-tauri-drag-region src="/icon.png" className="logo" />
         <div>
           <input
             id="greet-input"
@@ -37,7 +37,6 @@ function App() {
           </button>
         </div>
       </div>
-      <p>{greetMsg}</p>
     </div>
   );
 }
