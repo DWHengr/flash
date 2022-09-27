@@ -3,97 +3,108 @@
     windows_subsystem = "windows"
 )]
 
-use lazy_static::lazy_static;
-use std::sync::Mutex;
 use tauri::{
-    CustomMenuItem, GlobalShortcutManager, Manager, SystemTray, SystemTrayEvent, SystemTrayMenu,
-    SystemTrayMenuItem,
+    App, AppHandle, CustomMenuItem, GlobalShortcutManager, GlobalWindowEvent, Manager, RunEvent,
+    SystemTray, SystemTrayEvent, SystemTrayMenu, SystemTrayMenuItem, Wry,
 };
-struct Status {
-    pub is_show: bool,
+
+fn main() {
+    let app = tauri::Builder::default()
+        .invoke_handler(tauri::generate_handler![])
+        .system_tray(SystemTray::new().with_menu(tray_menu()))
+        .on_system_tray_event(system_tray_event)
+        .on_window_event(window_event)
+        .build(tauri::generate_context!())
+        .expect("error while running tauri application");
+    register_shortcut(&app);
+    app.run(handle_run_events);
 }
 
-impl Default for Status {
-    fn default() -> Status {
-        Status { is_show: true }
+fn window_event(e: GlobalWindowEvent) {
+    match e.event() {
+        tauri::WindowEvent::Focused(focused) => {
+            if !focused {
+                e.window().hide().unwrap();
+            }
+        }
+        _ => {}
     }
 }
 
-lazy_static! {
-    static ref STATUS: Mutex<Status> = Mutex::new(Status::default());
+fn handle_run_events(_app_handle: &AppHandle<Wry>, e: RunEvent) {
+    match e {
+        RunEvent::Exit => {}
+        RunEvent::ExitRequested { .. } => {}
+        RunEvent::WindowEvent {
+            label: _, event: _, ..
+        } => {}
+        RunEvent::Ready => {}
+        RunEvent::Resumed => {}
+        RunEvent::MainEventsCleared => {}
+        _ => {}
+    }
 }
 
-#[tauri::command]
-fn main_set_hide() {
-    STATUS.lock().unwrap().is_show = false;
+// register shortcut
+fn register_shortcut(app: &App<Wry>) {
+    let mut short_cut = app.global_shortcut_manager();
+    let app_handler = app.handle();
+    let result = short_cut.register("alt+space", move || {
+        let window = app_handler.get_window("main").unwrap();
+        if window.is_visible().unwrap() {
+            window.hide().unwrap();
+        } else {
+            window.show().unwrap();
+            window.set_focus().unwrap();
+        }
+    });
+    if let Err(err) = result {
+        println!("{}", err);
+    }
 }
 
-fn main() {
+// tray menu
+fn tray_menu() -> SystemTrayMenu {
     let quit = CustomMenuItem::new("quit".to_string(), "Quit");
     let hide = CustomMenuItem::new("hide".to_string(), "Hide");
     let show = CustomMenuItem::new("show".to_string(), "Show");
     let tray_menu = SystemTrayMenu::new()
-        .add_item(quit)
-        .add_native_item(SystemTrayMenuItem::Separator)
         .add_item(hide)
-        .add_item(show);
+        .add_item(show)
+        .add_native_item(SystemTrayMenuItem::Separator)
+        .add_item(quit);
+    tray_menu
+}
 
-    tauri::Builder::default()
-        .setup(|app| {
-            let mut short_cut = app.global_shortcut_manager();
-            let app_handler = app.handle();
-            short_cut
-                .register("alt+space", move || {
-                    let window = app_handler.get_window("main").unwrap();
-                    window.set_focus().unwrap();
-                    let b = STATUS.lock().unwrap().is_show;
-                    if b {
-                        window.hide().unwrap();
-                    } else {
-                        window.show().unwrap();
-                    }
-                    STATUS.lock().unwrap().is_show = !b;
-                })
-                .unwrap();
-            Ok(())
-        })
-        .invoke_handler(tauri::generate_handler![main_set_hide])
-        .system_tray(SystemTray::new().with_menu(tray_menu))
-        .on_system_tray_event(|app, event| match event {
-            SystemTrayEvent::LeftClick {
-                position: _,
-                size: _,
-                ..
-            } => {
-                let window = app.get_window("main").unwrap();
+// system tray event fn
+fn system_tray_event(app: &AppHandle<Wry>, e: SystemTrayEvent) {
+    match e {
+        SystemTrayEvent::LeftClick {
+            position: _,
+            size: _,
+            ..
+        } => {
+            let window = app.get_window("main").unwrap();
+            if !window.is_visible().unwrap() {
+                window.show().unwrap();
                 window.set_focus().unwrap();
-                let b = STATUS.lock().unwrap().is_show;
-                if b {
-                    window.hide().unwrap();
-                } else {
-                    window.show().unwrap();
-                }
-                STATUS.lock().unwrap().is_show = !b;
             }
-            SystemTrayEvent::MenuItemClick { id, .. } => match id.as_str() {
-                "quit" => {
-                    std::process::exit(0);
-                }
-                "hide" => {
-                    let window = app.get_window("main").unwrap();
-                    window.hide().unwrap();
-                    STATUS.lock().unwrap().is_show = false;
-                }
-                "show" => {
-                    let window = app.get_window("main").unwrap();
-                    window.set_focus().unwrap();
-                    window.show().unwrap();
-                    STATUS.lock().unwrap().is_show = true;
-                }
-                _ => {}
-            },
+        }
+        SystemTrayEvent::MenuItemClick { id, .. } => match id.as_str() {
+            "quit" => {
+                std::process::exit(0);
+            }
+            "hide" => {
+                let window = app.get_window("main").unwrap();
+                window.hide().unwrap();
+            }
+            "show" => {
+                let window = app.get_window("main").unwrap();
+                window.show().unwrap();
+                window.set_focus().unwrap();
+            }
             _ => {}
-        })
-        .run(tauri::generate_context!())
-        .expect("error while running tauri application");
+        },
+        _ => {}
+    }
 }
