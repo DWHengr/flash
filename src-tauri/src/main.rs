@@ -8,9 +8,11 @@ use tauri::{
     SystemTray, SystemTrayEvent, SystemTrayMenu, SystemTrayMenuItem, Wry,
 };
 
+mod cmd;
+
 fn main() {
     let app = tauri::Builder::default()
-        .invoke_handler(tauri::generate_handler![])
+        .invoke_handler(tauri::generate_handler![cmd::open_app])
         .system_tray(SystemTray::new().with_menu(tray_menu()))
         .on_system_tray_event(system_tray_event)
         .on_window_event(window_event)

@@ -10,13 +10,17 @@ function App() {
     appWindow.setSize(new PhysicalSize(600, 400));
   }
 
-  const onDoubleClick = (e) => {
-  };
+  const onDoubleClick = (e) => {};
 
-  function onKeyDown() {
+  const onKeyDown = async () => {
     if (window.event.keyCode === 13) {
+      await invoke("open_app", { content: content }).then((res) => {
+        if (res == 0) {
+          setContent("");
+        }
+      });
     }
-  }
+  };
 
   return (
     <div className="container">
@@ -24,6 +28,7 @@ function App() {
         <div>
           <input
             className="seek-input"
+            value={content}
             onKeyDown={onKeyDown}
             onChange={(e) => {
               setContent(e.currentTarget.value);

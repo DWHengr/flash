@@ -7,8 +7,8 @@
     "withGlobalTauri": false
   },
   "package": {
-    "productName": "flash",
-    "version": "0.0.1"
+    "productName": "Flash",
+    "version": "1.0.1"
   },
   "tauri": {
     "systemTray": {
@@ -62,10 +62,11 @@
         "fullscreen": false,
         "height": 60,
         "resizable": false,
-        "title": "nana",
+        "title": "flash",
         "width": 600,
         "decorations": false,
-        "transparent": true
+        "transparent": true,
+        "center": true
       }
     ]
   }
