@@ -1,41 +1,42 @@
 import { useState } from "react";
 import { invoke } from "@tauri-apps/api/tauri";
 import "./App.css";
-import {
-  PhysicalSize,
-  appWindow,
-} from "@tauri-apps/api/window";
+import { PhysicalSize, appWindow } from "@tauri-apps/api/window";
 
 function App() {
-  const [greetMsg, setGreetMsg] = useState("");
-  const [name, setName] = useState("");
+  const [content, setContent] = useState("");
 
   async function greet() {
     appWindow.setSize(new PhysicalSize(600, 400));
   }
 
-  const  hide = async () =>{
-    appWindow.hide();
-    await invoke("main_set_hide");
+  const onDoubleClick = (e) => {
+  };
+
+  function onKeyDown() {
+    if (window.event.keyCode === 13) {
+    }
   }
 
   return (
     <div className="container">
       <div className="row">
-      <img data-tauri-drag-region src="/icon.png" className="logo" />
         <div>
           <input
-            id="greet-input"
-            onChange={(e) => setName(e.currentTarget.value)}
-            placeholder="Enter a name..."
+            className="seek-input"
+            onKeyDown={onKeyDown}
+            onChange={(e) => {
+              setContent(e.currentTarget.value);
+            }}
+            placeholder="Enter to open the world..."
           />
-          <button type="button" onClick={() => greet()}>
-            Greet
-          </button>
-          <button type="button" onClick={() => hide()}>
-            hide
-          </button>
         </div>
+        <img
+          data-tauri-drag-region
+          onDoubleClick={onDoubleClick}
+          src="/icon.png"
+          className="logo"
+        />
       </div>
     </div>
   );
