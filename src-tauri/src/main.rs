@@ -12,6 +12,11 @@ mod cmd;
 
 fn main() {
     let app = tauri::Builder::default()
+        .plugin(tauri_plugin_single_instance::init(|app, _argv, _cwd| {
+            let window = app.get_window("main").unwrap();
+            window.show().unwrap();
+            window.set_focus().unwrap();
+        }))
         .invoke_handler(tauri::generate_handler![cmd::open_app])
         .system_tray(SystemTray::new().with_menu(tray_menu()))
         .on_system_tray_event(system_tray_event)
