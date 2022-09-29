@@ -3,7 +3,8 @@
   border: 2px solid gray;
   border-radius: 12px;
   align-items: center;
-  height: 100%;
+  height: 56px;
+  max-height: 65px;
   backdrop-filter: blur(15px);
 }
 
@@ -20,8 +21,6 @@
 .container {
   margin: 0;
   padding-top: 0;
-  display: flex;
-  flex-direction: column;
   text-align: center;
   background: linear-gradient(
     rgba(27, 27, 27, 0.7),
@@ -30,6 +29,7 @@
   );
   height: 100vh;
   border-radius: 12px;
+   overflow: hidden;
 }
 
 .seek-input {
@@ -45,3 +45,4 @@
   color: rgb(235, 235, 235);
   outline: none;
 }
+
