@@ -1,12 +1,21 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { invoke } from "@tauri-apps/api/tauri";
 import "./App.css";
 import { PhysicalSize, appWindow } from "@tauri-apps/api/window";
+import AppSlection from "./components/AppSlection";
 
 function App() {
   const [content, setContent] = useState("");
 
-  async function greet() {
+  useEffect(() => {
+    if (content && content != "") {
+      appWindow.setSize(new PhysicalSize(600, 400));
+    } else {
+      appWindow.setSize(new PhysicalSize(600, 60));
+    }
+  }, [content]);
+
+  async function change() {
     appWindow.setSize(new PhysicalSize(600, 400));
   }
 
@@ -42,6 +51,11 @@ function App() {
           src="/icon.png"
           className="logo"
         />
+      </div>
+      <div>
+        {content && content != "" && (
+          <AppSlection></AppSlection>
+        )}
       </div>
     </div>
   );

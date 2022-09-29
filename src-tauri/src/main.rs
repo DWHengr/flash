@@ -17,10 +17,10 @@ fn main() {
             window.show().unwrap();
             window.set_focus().unwrap();
         }))
-        .invoke_handler(tauri::generate_handler![cmd::open_app])
+        .invoke_handler(tauri::generate_handler![cmd::open_app,cmd::load_config])
         .system_tray(SystemTray::new().with_menu(tray_menu()))
         .on_system_tray_event(system_tray_event)
-        .on_window_event(window_event)
+        // .on_window_event(window_event)
         .build(tauri::generate_context!())
         .expect("error while running tauri application");
     register_shortcut(&app);

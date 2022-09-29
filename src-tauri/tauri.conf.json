@@ -16,6 +16,9 @@
       "iconAsTemplate": true
     },
     "allowlist": {
+      "fs": {
+        "scope": ["$RESOURCE/config/*"]
+      },
       "all": true
     },
     "bundle": {
@@ -42,7 +45,9 @@
         "providerShortName": null,
         "signingIdentity": null
       },
-      "resources": [],
+      "resources": [
+        "config/*"
+      ],
       "shortDescription": "",
       "targets": "all",
       "windows": {
