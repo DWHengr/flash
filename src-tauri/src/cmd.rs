@@ -11,6 +11,7 @@ pub struct App {
     app_type: String,
     open_in: String,
     path: String,
+    describe: String,
 }
 #[derive(Debug, Serialize, Deserialize)]
 pub struct FlashConfig {
@@ -22,21 +23,21 @@ lazy_static! {
 }
 
 #[tauri::command]
-pub fn open_app(_name: String, app_type: String, open_in: String, path: String) -> i8 {
+pub fn open_app(app_type: String, open_in: String, path: String) -> i8 {
     if app_type == "file" {
-        let cmd_str = "start ".to_string() + &path;
         Command::new("cmd")
             .arg("/c")
-            .arg(cmd_str)
-            .output()
+            .arg("start")
+            .arg(&path)
+            .spawn()
             .expect("cmd exec error!");
     }
     if app_type == "project" {
-        let cmd_str = open_in + " " + &path;
         Command::new("cmd")
             .arg("/c")
-            .arg(cmd_str)
-            .output()
+            .arg(&open_in)
+            .arg(&path)
+            .spawn()
             .expect("cmd exec error!");
     }
     0

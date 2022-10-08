@@ -23,9 +23,9 @@
   padding-top: 0;
   text-align: center;
   background: linear-gradient(
-    rgba(27, 27, 27, 0.95),
-    rgba(39, 39, 39, 0.95),
-    rgba(39, 39, 39, 0.95)
+    rgba(27, 27, 27, 0.9),
+    rgba(39, 39, 39, 0.9),
+    rgba(39, 39, 39, 0.9)
   );
   height: 100vh;
   border-radius: 12px;

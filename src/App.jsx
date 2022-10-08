@@ -2,12 +2,22 @@ import { useState, useEffect, useRef } from "react";
 import { invoke } from "@tauri-apps/api/tauri";
 import "./App.css";
 import { PhysicalSize, appWindow } from "@tauri-apps/api/window";
-import AppSlection from "./components/AppSlection";
 
 function App() {
   const [content, setContent] = useState("");
   const [optionIndex, setOptionIndex] = useState(0);
+  const [option, setOption] = useState([]);
   const seekOptionContain = useRef(null);
+  const [allOption, setAllOption] = useState([]);
+
+  useEffect(() => {
+    invoke("load_config").then(async (res) => {
+      if (res) {
+        setAllOption(res.app);
+        await setOption(allOption);
+      }
+    });
+  }, []);
 
   useEffect(() => {
     if (content && content != "") {
@@ -15,17 +25,25 @@ function App() {
     } else {
       appWindow.setSize(new PhysicalSize(600, 60));
     }
+    console.log(allOption);
+    let currentOption = allOption.filter(
+      (item) => item.name?.indexOf(content) != -1
+    );
+    setOption(currentOption);
   }, [content]);
 
   const onDoubleClick = (e) => {};
 
   const onKeyDown = async (e) => {
-    console.log(e);
     if (e.keyCode === 40 || e.keyCode === 38 || e.keyCode === 9) {
       e.preventDefault();
     }
     if (e.keyCode === 13) {
-      await invoke("open_app", { content: content }).then((res) => {
+      await invoke("open_app", {
+        "appType": option[optionIndex].app_type,
+        "openIn": option[optionIndex].open_in,
+        path: option[optionIndex].path,
+      }).then((res) => {
         if (res == 0) {
           setContent("");
         }
@@ -53,64 +71,6 @@ function App() {
       }
     }
   };
-  useEffect(() => {
-    console.log(optionIndex);
-  }, [optionIndex]);
-
-  const option = [
-    {
-      name: "应用1",
-      describe: "应用描述",
-    },
-    {
-      name: "应用2",
-      describe: "应用描述",
-    },
-    {
-      name: "应用3",
-      describe: "应用描述",
-    },
-    {
-      name: "应用4",
-      describe: "应用描述",
-    },
-    {
-      name: "应用5",
-      describe: "应用描述",
-    },
-    {
-      name: "应用6",
-      describe: "应用描述",
-    },
-    {
-      name: "应用7",
-      describe: "应用描述",
-    },
-    {
-      name: "应用8",
-      describe: "应用描述",
-    },
-    {
-      name: "应用9",
-      describe: "应用描述",
-    },
-    {
-      name: "应用10",
-      describe: "应用描述",
-    },
-    {
-      name: "应用11",
-      describe: "应用描述1",
-    },
-    {
-      name: "应用12",
-      describe: "应用描述1",
-    },
-    {
-      name: "应用13",
-      describe: "应用描述1",
-    },
-  ];
 
   return (
     <div className="container" onKeyDown={onGlobalKeyDown}>
@@ -137,7 +97,7 @@ function App() {
         <div className="seek-option-contain" ref={seekOptionContain}>
           {content &&
             content != "" &&
-            option.map((item, index) => {
+            option?.map((item, index) => {
               return (
                 <div
                   key={index}
