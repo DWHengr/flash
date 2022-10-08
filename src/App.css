@@ -58,7 +58,7 @@
 }
 
 .seek-option:hover {
-  background-color: rgb(90, 90, 90);
+  background-color: rgb(78, 78, 78);
 }
 
 .seek-option-icon {
@@ -78,6 +78,10 @@
   font-size: 14px;
 }
 
+.seek-option-keyword{
+  color: rgb(255, 76, 11);
+}
+
 ::-webkit-scrollbar {
   width: 5px;
 }
@@ -86,5 +90,5 @@
 }
 ::-webkit-scrollbar-thumb {
   border-radius: 10px;
-  background: rgba(226, 226, 226, 0.5);
+  background: rgba(216, 216, 216, 0.5);
 }

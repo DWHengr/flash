@@ -40,8 +40,8 @@ function App() {
     }
     if (e.keyCode === 13) {
       await invoke("open_app", {
-        "appType": option[optionIndex].app_type,
-        "openIn": option[optionIndex].open_in,
+        appType: option[optionIndex].app_type,
+        openIn: option[optionIndex].open_in,
         path: option[optionIndex].path,
       }).then((res) => {
         if (res == 0) {
@@ -73,7 +73,11 @@ function App() {
   };
 
   return (
-    <div className="container" onKeyDown={onGlobalKeyDown} onContextMenu={e=>e.preventDefault()}>
+    <div
+      className="container"
+      onKeyDown={onGlobalKeyDown}
+      onContextMenu={(e) => e.preventDefault()}
+    >
       <div className="row">
         <div>
           <input
@@ -104,12 +108,20 @@ function App() {
                   className="seek-option"
                   style={{
                     "background-color":
-                      index == optionIndex ? "rgb(90, 90, 90)" : "",
+                      index == optionIndex ? "rgb(78, 78, 78)" : "",
                   }}
                 >
                   <img src="/icon.png" className="seek-option-icon"></img>
                   <div style={{ display: "inline-block" }}>
-                    <div className="seek-option-name">{item.name}</div>
+                    <div
+                      className="seek-option-name"
+                      dangerouslySetInnerHTML={{
+                        __html: item.name?.replace(
+                          content,
+                          `<span class="seek-option-keyword">${content}</span>`
+                        ),
+                      }}
+                    ></div>
                     <div className="seek-option-describe">{item.describe}</div>
                   </div>
                 </div>
