@@ -17,7 +17,7 @@ fn main() {
             window.show().unwrap();
             window.set_focus().unwrap();
         }))
-        .invoke_handler(tauri::generate_handler![cmd::open_app,cmd::load_config])
+        .invoke_handler(tauri::generate_handler![cmd::open_app, cmd::load_config])
         .system_tray(SystemTray::new().with_menu(tray_menu()))
         .on_system_tray_event(system_tray_event)
         // .on_window_event(window_event)
@@ -92,10 +92,8 @@ fn system_tray_event(app: &AppHandle<Wry>, e: SystemTrayEvent) {
             ..
         } => {
             let window = app.get_window("main").unwrap();
-            if !window.is_visible().unwrap() {
-                window.show().unwrap();
-                window.set_focus().unwrap();
-            }
+            window.set_focus().unwrap();
+            window.show().unwrap();
         }
         SystemTrayEvent::MenuItemClick { id, .. } => match id.as_str() {
             "quit" => {
@@ -107,8 +105,8 @@ fn system_tray_event(app: &AppHandle<Wry>, e: SystemTrayEvent) {
             }
             "show" => {
                 let window = app.get_window("main").unwrap();
-                window.show().unwrap();
                 window.set_focus().unwrap();
+                window.show().unwrap();
             }
             _ => {}
         },
