@@ -73,7 +73,7 @@ function App() {
   };
 
   return (
-    <div className="container" onKeyDown={onGlobalKeyDown}>
+    <div className="container" onKeyDown={onGlobalKeyDown} onContextMenu={e=>e.preventDefault()}>
       <div className="row">
         <div>
           <input
