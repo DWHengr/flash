@@ -25,9 +25,14 @@ function App() {
     } else {
       appWindow.setSize(new PhysicalSize(600, 60));
     }
-    console.log(allOption);
+    const kv = content?.split(/:|：/);
     let currentOption = allOption.filter(
-      (item) => item.name?.indexOf(content) != -1
+      (item) => kv?.length == 1 || item.app_type?.indexOf(kv[0]) != -1
+    );
+    currentOption = currentOption.filter(
+      (item) =>
+        (kv?.length == 2 && !kv[1]) ||
+        item.name?.indexOf(kv[1] ? kv[1] : kv[0]) != -1
     );
     setOption(currentOption);
   }, [content]);
@@ -38,7 +43,7 @@ function App() {
     if (e.keyCode === 40 || e.keyCode === 38 || e.keyCode === 9) {
       e.preventDefault();
     }
-    if (e.keyCode === 13) {
+    if (e.keyCode === 13 && content) {
       await invoke("open_app", {
         appType: option[optionIndex].app_type,
         openIn: option[optionIndex].open_in,
@@ -49,6 +54,18 @@ function App() {
         }
       });
     }
+  };
+
+  const onOptionClick = (index) => {
+    invoke("open_app", {
+      appType: option[index].app_type,
+      openIn: option[index].open_in,
+      path: option[index].path,
+    }).then((res) => {
+      if (res == 0) {
+        setContent("");
+      }
+    });
   };
 
   const onGlobalKeyDown = async (e) => {
@@ -102,10 +119,13 @@ function App() {
           {content &&
             content != "" &&
             option?.map((item, index) => {
+              let kv = content?.split(/:|：/);
+              let vlaue = kv[1] ? kv[1] : kv[0];
               return (
                 <div
                   key={index}
                   className="seek-option"
+                  onClick={() => onOptionClick(index)}
                   style={{
                     "background-color":
                       index == optionIndex ? "rgb(78, 78, 78)" : "",
@@ -117,8 +137,8 @@ function App() {
                       className="seek-option-name"
                       dangerouslySetInnerHTML={{
                         __html: item.name?.replace(
-                          content,
-                          `<span class="seek-option-keyword">${content}</span>`
+                          vlaue,
+                          `<span class="seek-option-keyword">${vlaue}</span>`
                         ),
                       }}
                     ></div>
