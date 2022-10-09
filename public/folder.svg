@@ -1,0 +1,30 @@
+<svg width="1024.000000" height="1024.000000" viewBox="0 0 1024 1024" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+	<desc>
+			Created with Pixso.
+	</desc>
+	<g clip-path="url(#clip6_73)">
+		<ellipse cx="511.777893" cy="545.777466" rx="466.666199" ry="466.666382" fill="url(#paint_linear_6_68_0)"/>
+		<g filter="url(#filter_6_71_dd)">
+			<rect x="358.398926" y="384.416138" rx="20.000000" width="390.173401" height="350.289032" fill="#38E274"/>
+			<path d="M231 348L398.708 348C404.992 348 410.91 350.953 414.689 355.974L465.982 424.13C469.76 429.151 475.679 432.104 481.962 432.104L791 432.104C802.046 432.104 811 441.058 811 452.104L811 723.376C811 734.421 802.046 743.376 791 743.376L231 743.376C219.954 743.376 211 734.421 211 723.376L211 368C211 356.954 219.954 348 231 348Z" fill-rule="evenodd" fill="#FCDA01"/>
+		</g>
+	</g>
+	<defs>
+		<filter id="filter_6_71_dd" x="191.000031" y="348.000000" width="640.000000" height="435.375732" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+			<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+			<feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"/>
+			<feOffset dx="0" dy="20"/>
+			<feGaussianBlur stdDeviation="6.66667"/>
+			<feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0"/>
+			<feBlend mode="normal" in2="BackgroundImageFix" result="effect_dropShadow_1"/>
+			<feBlend mode="normal" in="SourceGraphic" in2="effect_dropShadow_1" result="shape"/>
+		</filter>
+		<clipPath id="clip6_73">
+			<rect width="1024.000000" height="1024.000000" fill="white"/>
+		</clipPath>
+		<linearGradient id="paint_linear_6_68_0" x1="861.777588" y1="883.554932" x2="141.778381" y2="241.333344" gradientUnits="userSpaceOnUse">
+			<stop stop-color="#0082E0"/>
+			<stop offset="0.992366" stop-color="#5AB9FF"/>
+		</linearGradient>
+	</defs>
+</svg>

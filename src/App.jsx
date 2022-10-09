@@ -89,6 +89,18 @@ function App() {
     }
   };
 
+  const renderOptionIcon = (type) => {
+    if (type == "project")
+      return <img src="/project.svg" className="seek-option-icon" />;
+    if (type == "file")
+      return <img src="/file.svg" className="seek-option-icon" />;
+    if (type == "app")
+      return <img src="/app.svg" className="seek-option-icon" />;
+    if (type == "folder")
+      return <img src="/folder.svg" className="seek-option-icon" />;
+    return <img src="/icon.png" className="seek-option-icon" />;
+  };
+
   return (
     <div
       className="container"
@@ -131,7 +143,7 @@ function App() {
                       index == optionIndex ? "rgb(78, 78, 78)" : "",
                   }}
                 >
-                  <img src="/icon.png" className="seek-option-icon"></img>
+                  {renderOptionIcon(item.app_type)}
                   <div style={{ display: "inline-block" }}>
                     <div
                       className="seek-option-name"
