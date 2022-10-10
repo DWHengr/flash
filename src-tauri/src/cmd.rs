@@ -23,16 +23,31 @@ lazy_static! {
 }
 
 #[tauri::command]
-pub fn open_app(app_type: String, open_in: String, path: String) -> i8 {
+pub fn open_app(app_type: String, open_in: String, path: String) -> &'static str {
+    //verify app_type and path
+    if app_type.is_empty() {
+        return "app type is empty";
+    }
+    if path.is_empty() {
+        return "path is empty";
+    }
+
     if app_type == "file" {
+        let mut open_type = "start";
+        if !open_in.is_empty() {
+            open_type = &open_in;
+        }
         Command::new("cmd")
             .arg("/c")
-            .arg("start")
+            .arg(open_type)
             .arg(&path)
             .spawn()
             .expect("cmd exec error!");
     }
     if app_type == "project" {
+        if open_in.is_empty() {
+            return "open in is empty";
+        }
         Command::new("cmd")
             .arg("/c")
             .arg(&open_in)
@@ -40,7 +55,7 @@ pub fn open_app(app_type: String, open_in: String, path: String) -> i8 {
             .spawn()
             .expect("cmd exec error!");
     }
-    0
+    ""
 }
 
 #[tauri::command]

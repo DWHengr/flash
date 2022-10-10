@@ -49,7 +49,7 @@ function App() {
         openIn: option[optionIndex].open_in,
         path: option[optionIndex].path,
       }).then((res) => {
-        if (res == 0) {
+        if (res) {
           setContent("");
         }
       });
