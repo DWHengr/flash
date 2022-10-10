@@ -15,7 +15,7 @@ function App() {
     seekInput.current.focus();
     invoke("load_config").then(async (res) => {
       if (res) {
-        setAllOption(res.app);
+        setAllOption(res.option);
         await setOption(allOption);
       }
     });
@@ -29,7 +29,7 @@ function App() {
     }
     const kv = content?.split(/:|：/);
     let currentOption = allOption.filter(
-      (item) => kv?.length == 1 || item.app_type?.indexOf(kv[0]) != -1
+      (item) => kv?.length == 1 || item.option_type?.indexOf(kv[0]) != -1
     );
     currentOption = currentOption.filter(
       (item) =>
@@ -47,7 +47,7 @@ function App() {
     }
     if (e.keyCode === 13 && content) {
       await invoke("open_app", {
-        appType: option[optionIndex].app_type,
+        appType: option[optionIndex].option_type,
         openIn: option[optionIndex].open_in,
         path: option[optionIndex].path,
       }).then((res) => {
@@ -60,7 +60,7 @@ function App() {
 
   const onOptionClick = (index) => {
     invoke("open_app", {
-      appType: option[index].app_type,
+      appType: option[index].option_type,
       openIn: option[index].open_in,
       path: option[index].path,
     }).then((res) => {
@@ -146,7 +146,7 @@ function App() {
                       index == optionIndex ? "rgb(78, 78, 78)" : "",
                   }}
                 >
-                  {renderOptionIcon(item.app_type)}
+                  {renderOptionIcon(item.option_type)}
                   <div style={{ display: "inline-block" }}>
                     <div
                       className="seek-option-name"

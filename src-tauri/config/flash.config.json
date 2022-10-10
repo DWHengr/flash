@@ -1,18 +1,18 @@
 {
-  "app":[
+  "option":[
     {
       "name":"host",
-      "app_type":"file",
+      "option_type":"file",
       "open_in":"",
       "path":"C:\\Windows\\System32\\drivers\\etc\\hosts",
-      "describe":"host文件"
+      "describe":"host file"
     },
     {
       "name":"flash",
-      "app_type":"project",
-      "open_in":"D:/Users/duwei/AppData/Local/Programs/Microsoft VS Code/Code.exe",
-      "path":"C:/Users/duwei/Desktop/flash/flash",
-      "describe":"flash项目"
+      "option_type":"project",
+      "open_in":"D:/Microsoft VS Code/Code.exe",
+      "path":"C:/flash/flash",
+      "describe":"flash project"
     }
   ]
 }

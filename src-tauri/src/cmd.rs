@@ -8,31 +8,31 @@ use std::sync::Mutex;
 #[derive(Debug, Serialize, Deserialize, Clone)]
 pub struct App {
     name: String,
-    app_type: String,
+    option_type: String,
     open_in: String,
     path: String,
     describe: String,
 }
 #[derive(Debug, Serialize, Deserialize)]
 pub struct FlashConfig {
-    app: Vec<App>,
+    option: Vec<App>,
 }
 
 lazy_static! {
-    static ref CONFIG: Mutex<FlashConfig> = Mutex::new(FlashConfig { app: vec![] });
+    static ref CONFIG: Mutex<FlashConfig> = Mutex::new(FlashConfig { option: vec![] });
 }
 
 #[tauri::command]
-pub fn open_app(app_type: String, open_in: String, path: String) -> &'static str {
-    //verify app_type and path
-    if app_type.is_empty() {
+pub fn open_app(option_type: String, open_in: String, path: String) -> &'static str {
+    //verify option_type and path
+    if option_type.is_empty() {
         return "app type is empty";
     }
     if path.is_empty() {
         return "path is empty";
     }
 
-    if app_type == "file" {
+    if option_type == "file" {
         let mut open_type = "start";
         if !open_in.is_empty() {
             open_type = &open_in;
@@ -44,7 +44,7 @@ pub fn open_app(app_type: String, open_in: String, path: String) -> &'static str
             .spawn()
             .expect("cmd exec error!");
     }
-    if app_type == "project" {
+    if option_type == "project" {
         if open_in.is_empty() {
             return "open in is empty";
         }
@@ -69,7 +69,7 @@ pub fn load_config(handle: tauri::AppHandle) -> FlashConfig {
     let res = serde_json::from_reader(f);
     if let Err(e) = res {
         println!("{}", e.to_string());
-        return FlashConfig { app: vec![] };
+        return FlashConfig { option: vec![] };
     }
     let config: FlashConfig = res.unwrap();
     config
