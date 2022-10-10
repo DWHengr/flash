@@ -3,20 +3,20 @@
 			Created with Pixso.
 	</desc>
 	<g clip-path="url(#clip6_52)">
-		<ellipse cx="511.777893" cy="545.777466" rx="466.666199" ry="466.666382" fill="url(#paint_linear_6_47_0)"/>
+		<ellipse cx="512.666016" cy="545.666382" rx="466.666199" ry="466.666382" fill="url(#paint_linear_6_47_0)"/>
 		<g filter="url(#filter_6_64_dd)">
-			<path d="M743 240L282 240C270.954 240 262 248.954 262 260L262 832C262 843.046 270.954 852 282 852L659.523 852L763 748.523L763 260C763 248.954 754.046 240 743 240Z" fill-rule="evenodd" fill="#38E274" fill-opacity="1.000000"/>
+			<path d="M743 240L282 240C270.954 240 262 248.954 262 260L262 832C262 843.046 270.954 852 282 852L659.523 852L763 748.523L763 260C763 248.954 754.046 240 743 240Z" fill-rule="evenodd" fill="#FCDA01" fill-opacity="1.000000"/>
 			<g filter="url(#filter_6_56_dd)">
-				<rect x="298.000000" y="450.999756" rx="27.500000" width="383.000000" height="55.000000" fill="#FCDA01"/>
+				<rect x="298.000000" y="450.999756" rx="27.500000" width="383.000000" height="55.000000" fill="#38E274"/>
 			</g>
 			<g filter="url(#filter_6_58_dd)">
-				<rect x="301.000000" y="575.999756" rx="27.500000" width="349.000000" height="55.000000" fill="#FCDA01"/>
+				<rect x="301.000000" y="575.999756" rx="27.500000" width="349.000000" height="55.000000" fill="#38E274"/>
 			</g>
 			<g filter="url(#filter_6_59_dd)">
-				<rect x="301.000000" y="700.999756" rx="27.500000" width="309.000000" height="55.000000" fill="#FCDA01"/>
+				<rect x="301.000000" y="700.999756" rx="27.500000" width="309.000000" height="55.000000" fill="#38E274"/>
 			</g>
 			<g filter="url(#filter_6_57_dd)">
-				<rect x="298.000000" y="325.999756" rx="27.500000" width="420.000000" height="55.000000" fill="#FCDA01"/>
+				<rect x="298.000000" y="325.999756" rx="27.500000" width="420.000000" height="55.000000" fill="#38E274"/>
 			</g>
 		</g>
 	</g>
@@ -78,7 +78,7 @@
 		<clipPath id="clip6_52">
 			<rect width="1024.000000" height="1024.000000" fill="white"/>
 		</clipPath>
-		<linearGradient id="paint_linear_6_47_0" x1="861.777588" y1="883.554932" x2="141.778381" y2="241.333344" gradientUnits="userSpaceOnUse">
+		<linearGradient id="paint_linear_6_47_0" x1="862.665894" y1="883.443848" x2="142.666687" y2="241.222260" gradientUnits="userSpaceOnUse">
 			<stop stop-color="#0082E0"/>
 			<stop offset="0.992366" stop-color="#5AB9FF"/>
 		</linearGradient>
