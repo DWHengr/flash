@@ -8,9 +8,11 @@ function App() {
   const [optionIndex, setOptionIndex] = useState(0);
   const [option, setOption] = useState([]);
   const seekOptionContain = useRef(null);
+  const seekInput = useRef(null);
   const [allOption, setAllOption] = useState([]);
 
   useEffect(() => {
+    seekInput.current.focus();
     invoke("load_config").then(async (res) => {
       if (res) {
         setAllOption(res.app);
@@ -111,6 +113,7 @@ function App() {
         <div>
           <input
             className="seek-input"
+            ref={seekInput}
             value={content}
             onKeyDown={onKeyDown}
             onChange={(e) => {
@@ -121,7 +124,7 @@ function App() {
         </div>
         <img
           data-tauri-drag-region
-          onDoubleClick={onDoubleClick}
+          // onDoubleClick={onDoubleClick}
           src="/icon.png"
           className="logo"
         />
