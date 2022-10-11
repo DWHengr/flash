@@ -56,12 +56,20 @@ pub fn open_app(option_type: String, open_in: String, path: String) -> &'static 
             .expect("cmd exec error!");
     }
     if option_type == "app" {
-      Command::new("cmd")
-          .arg("/c")
-          .arg(&path)
-          .spawn()
-          .expect("cmd exec error!");
-  }
+        Command::new("cmd")
+            .arg("/c")
+            .arg(&path)
+            .spawn()
+            .expect("cmd exec error!");
+    }
+    if option_type == "folder" {
+        Command::new("cmd")
+            .arg("/c")
+            .arg("start")
+            .arg(&path)
+            .spawn()
+            .expect("cmd exec error!");
+    }
     ""
 }
 
