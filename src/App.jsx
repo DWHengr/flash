@@ -22,6 +22,7 @@ function App() {
   }, []);
 
   useEffect(() => {
+    setOptionIndex(0);
     if (content && content != "") {
       appWindow.setSize(new PhysicalSize(600, 410));
     } else {
