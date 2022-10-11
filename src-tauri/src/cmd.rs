@@ -1,4 +1,4 @@
-use std::{fs::File, process::Command};
+use std::{fs::File, process::Command, os::windows::process::CommandExt};
 
 use serde::{Deserialize, Serialize};
 
@@ -32,13 +32,14 @@ pub fn open_app(option_type: String, open_in: String, path: String) -> &'static 
         return "path is empty";
     }
 
+    let mut cmd = Command::new("cmd");
+    cmd.creation_flags(0x08000000);
     if option_type == "file" {
         let mut open_type = "start";
         if !open_in.is_empty() {
             open_type = &open_in;
         }
-        Command::new("cmd")
-            .arg("/c")
+        cmd.arg("/c")
             .arg(open_type)
             .arg(&path)
             .spawn()
@@ -48,23 +49,17 @@ pub fn open_app(option_type: String, open_in: String, path: String) -> &'static 
         if open_in.is_empty() {
             return "open in is empty";
         }
-        Command::new("cmd")
-            .arg("/c")
+        cmd.arg("/c")
             .arg(&open_in)
             .arg(&path)
             .spawn()
             .expect("cmd exec error!");
     }
     if option_type == "app" {
-        Command::new("cmd")
-            .arg("/c")
-            .arg(&path)
-            .spawn()
-            .expect("cmd exec error!");
+        cmd.arg("/c").arg(&path).spawn().expect("cmd exec error!");
     }
     if option_type == "folder" {
-        Command::new("cmd")
-            .arg("/c")
+        cmd.arg("/c")
             .arg("start")
             .arg(&path)
             .spawn()
@@ -75,8 +70,7 @@ pub fn open_app(option_type: String, open_in: String, path: String) -> &'static 
         if !open_in.is_empty() {
             open_type = &open_in;
         }
-        Command::new("cmd")
-            .arg("/c")
+        cmd.arg("/c")
             .arg(open_type)
             .arg(&path)
             .spawn()
