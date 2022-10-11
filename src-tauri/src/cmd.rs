@@ -70,6 +70,18 @@ pub fn open_app(option_type: String, open_in: String, path: String) -> &'static 
             .spawn()
             .expect("cmd exec error!");
     }
+    if option_type == "link" {
+        let mut open_type = "start";
+        if !open_in.is_empty() {
+            open_type = &open_in;
+        }
+        Command::new("cmd")
+            .arg("/c")
+            .arg(open_type)
+            .arg(&path)
+            .spawn()
+            .expect("cmd exec error!");
+    }
     ""
 }
 
