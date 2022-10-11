@@ -47,7 +47,7 @@ function App() {
     }
     if (e.keyCode === 13 && content) {
       await invoke("open_app", {
-        appType: option[optionIndex].option_type,
+        optionType: option[optionIndex].option_type,
         openIn: option[optionIndex].open_in,
         path: option[optionIndex].path,
       }).then((res) => {
@@ -60,7 +60,7 @@ function App() {
 
   const onOptionClick = (index) => {
     invoke("open_app", {
-      appType: option[index].option_type,
+      optionType: option[index].option_type,
       openIn: option[index].open_in,
       path: option[index].path,
     }).then((res) => {
