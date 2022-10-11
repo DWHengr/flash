@@ -2,9 +2,6 @@ use std::{fs::File, process::Command, os::windows::process::CommandExt};
 
 use serde::{Deserialize, Serialize};
 
-use lazy_static::lazy_static;
-use std::sync::Mutex;
-
 #[derive(Debug, Serialize, Deserialize, Clone)]
 pub struct App {
     name: String,
@@ -16,10 +13,6 @@ pub struct App {
 #[derive(Debug, Serialize, Deserialize)]
 pub struct FlashConfig {
     option: Vec<App>,
-}
-
-lazy_static! {
-    static ref CONFIG: Mutex<FlashConfig> = Mutex::new(FlashConfig { option: vec![] });
 }
 
 #[tauri::command]
