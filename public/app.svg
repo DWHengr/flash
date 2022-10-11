@@ -3,16 +3,16 @@
 			Created with Pixso.
 	</desc>
 	<g clip-path="url(#clip6_13)">
-		<ellipse cx="511.777283" cy="545.777466" rx="466.666199" ry="466.666382" fill="url(#paint_linear_6_8_0)"/>
+		<ellipse cx="511.777161" cy="512.777344" rx="466.666199" ry="466.666382" fill="url(#paint_linear_6_8_0)"/>
 		<g filter="url(#filter_6_39_dd)">
-			<rect x="255.000153" y="291.442902" rx="27.000000" width="248.127090" height="248.127075" fill="#38E274"/>
-			<rect x="255.000122" y="579.815674" rx="27.000000" width="248.127090" height="248.127075" fill="#38E274"/>
-			<rect x="543.481628" y="580.815674" rx="27.000000" width="248.127075" height="248.127075" fill="#38E274"/>
-			<rect x="666.500610" y="258.359253" rx="27.000000" width="220.557373" height="220.557404" transform="rotate(44.0584 666.500610 258.359253)" fill="#FCDA01"/>
+			<rect x="255.000153" y="258.442871" rx="27.000000" width="248.127090" height="248.127075" fill="#38E274"/>
+			<rect x="255.000122" y="546.815674" rx="27.000000" width="248.127090" height="248.127075" fill="#38E274"/>
+			<rect x="543.481628" y="547.815674" rx="27.000000" width="248.127075" height="248.127075" fill="#38E274"/>
+			<rect x="666.500610" y="225.359222" rx="27.000000" width="220.557373" height="220.557404" transform="rotate(44.0584 666.500610 225.359222)" fill="#FCDA01"/>
 		</g>
 	</g>
 	<defs>
-		<filter id="filter_6_39_dd" x="-208.000000" y="-172.000000" width="1440.000122" height="1406.717773" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+		<filter id="filter_6_39_dd" x="-208.000000" y="-205.000000" width="1440.000122" height="1406.717773" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
 			<feFlood flood-opacity="0" result="BackgroundImageFix"/>
 			<feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"/>
 			<feOffset dx="0" dy="20"/>
@@ -24,7 +24,7 @@
 		<clipPath id="clip6_13">
 			<rect width="1024.000000" height="1024.000000" fill="white"/>
 		</clipPath>
-		<linearGradient id="paint_linear_6_8_0" x1="861.776978" y1="883.554932" x2="141.777771" y2="241.333344" gradientUnits="userSpaceOnUse">
+		<linearGradient id="paint_linear_6_8_0" x1="861.776855" y1="850.554810" x2="141.777649" y2="208.333191" gradientUnits="userSpaceOnUse">
 			<stop stop-color="#0082E0"/>
 			<stop offset="0.992366" stop-color="#5AB9FF"/>
 		</linearGradient>

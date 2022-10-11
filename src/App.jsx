@@ -100,6 +100,8 @@ function App() {
       return <img src="/app.svg" className="seek-option-icon" />;
     if (type == "folder")
       return <img src="/folder.svg" className="seek-option-icon" />;
+    if (type == "link")
+      return <img src="/link.svg" className="seek-option-icon" />;
     return <img src="/icon.png" className="seek-option-icon" />;
   };
 

@@ -3,25 +3,25 @@
 			Created with Pixso.
 	</desc>
 	<g clip-path="url(#clip6_52)">
-		<ellipse cx="512.666016" cy="545.666382" rx="466.666199" ry="466.666382" fill="url(#paint_linear_6_47_0)"/>
+		<ellipse cx="511.666016" cy="511.666382" rx="466.666199" ry="466.666382" fill="url(#paint_linear_6_47_0)"/>
 		<g filter="url(#filter_6_64_dd)">
-			<path d="M743 240L282 240C270.954 240 262 248.954 262 260L262 832C262 843.046 270.954 852 282 852L659.523 852L763 748.523L763 260C763 248.954 754.046 240 743 240Z" fill-rule="evenodd" fill="#FCDA01" fill-opacity="1.000000"/>
+			<path d="M742 206L281 206C269.954 206 261 214.954 261 226L261 798C261 809.046 269.954 818 281 818L658.523 818L762 714.523L762 226C762 214.954 753.046 206 742 206Z" fill-rule="evenodd" fill="#FCDA01" fill-opacity="1.000000"/>
 			<g filter="url(#filter_6_56_dd)">
-				<rect x="298.000000" y="450.999756" rx="27.500000" width="383.000000" height="55.000000" fill="#38E274"/>
+				<rect x="297.000000" y="416.999756" rx="27.500000" width="383.000000" height="55.000000" fill="#38E274"/>
 			</g>
 			<g filter="url(#filter_6_58_dd)">
-				<rect x="301.000000" y="575.999756" rx="27.500000" width="349.000000" height="55.000000" fill="#38E274"/>
+				<rect x="300.000000" y="541.999756" rx="27.500000" width="349.000000" height="55.000000" fill="#38E274"/>
 			</g>
 			<g filter="url(#filter_6_59_dd)">
-				<rect x="301.000000" y="700.999756" rx="27.500000" width="309.000000" height="55.000000" fill="#38E274"/>
+				<rect x="300.000000" y="666.999756" rx="27.500000" width="309.000000" height="55.000000" fill="#38E274"/>
 			</g>
 			<g filter="url(#filter_6_57_dd)">
-				<rect x="298.000000" y="325.999756" rx="27.500000" width="420.000000" height="55.000000" fill="#38E274"/>
+				<rect x="297.000000" y="291.999756" rx="27.500000" width="420.000000" height="55.000000" fill="#38E274"/>
 			</g>
 		</g>
 	</g>
 	<defs>
-		<filter id="filter_6_64_dd" x="242.000000" y="240.000000" width="541.000000" height="652.000000" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+		<filter id="filter_6_64_dd" x="241.000000" y="206.000000" width="541.000000" height="652.000000" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
 			<feFlood flood-opacity="0" result="BackgroundImageFix"/>
 			<feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"/>
 			<feOffset dx="0" dy="20"/>
@@ -30,7 +30,7 @@
 			<feBlend mode="normal" in2="BackgroundImageFix" result="effect_dropShadow_1"/>
 			<feBlend mode="normal" in="SourceGraphic" in2="effect_dropShadow_1" result="shape"/>
 		</filter>
-		<filter id="filter_6_50_dd" x="242.000000" y="240.000000" width="541.000000" height="652.000000" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+		<filter id="filter_6_50_dd" x="241.000000" y="206.000000" width="541.000000" height="652.000000" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
 			<feFlood flood-opacity="0" result="BackgroundImageFix"/>
 			<feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"/>
 			<feOffset dx="0" dy="20"/>
@@ -39,7 +39,7 @@
 			<feBlend mode="normal" in2="BackgroundImageFix" result="effect_dropShadow_1"/>
 			<feBlend mode="normal" in="SourceGraphic" in2="effect_dropShadow_1" result="shape"/>
 		</filter>
-		<filter id="filter_6_56_dd" x="294.000000" y="450.999756" width="391.000000" height="63.000000" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+		<filter id="filter_6_56_dd" x="293.000000" y="416.999756" width="391.000000" height="63.000000" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
 			<feFlood flood-opacity="0" result="BackgroundImageFix"/>
 			<feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"/>
 			<feOffset dx="0" dy="4"/>
@@ -48,7 +48,7 @@
 			<feBlend mode="normal" in2="BackgroundImageFix" result="effect_dropShadow_1"/>
 			<feBlend mode="normal" in="SourceGraphic" in2="effect_dropShadow_1" result="shape"/>
 		</filter>
-		<filter id="filter_6_58_dd" x="297.000000" y="575.999756" width="357.000000" height="63.000000" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+		<filter id="filter_6_58_dd" x="296.000000" y="541.999756" width="357.000000" height="63.000000" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
 			<feFlood flood-opacity="0" result="BackgroundImageFix"/>
 			<feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"/>
 			<feOffset dx="0" dy="4"/>
@@ -57,7 +57,7 @@
 			<feBlend mode="normal" in2="BackgroundImageFix" result="effect_dropShadow_1"/>
 			<feBlend mode="normal" in="SourceGraphic" in2="effect_dropShadow_1" result="shape"/>
 		</filter>
-		<filter id="filter_6_59_dd" x="297.000000" y="700.999756" width="317.000000" height="63.000000" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+		<filter id="filter_6_59_dd" x="296.000000" y="666.999756" width="317.000000" height="63.000000" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
 			<feFlood flood-opacity="0" result="BackgroundImageFix"/>
 			<feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"/>
 			<feOffset dx="0" dy="4"/>
@@ -66,7 +66,7 @@
 			<feBlend mode="normal" in2="BackgroundImageFix" result="effect_dropShadow_1"/>
 			<feBlend mode="normal" in="SourceGraphic" in2="effect_dropShadow_1" result="shape"/>
 		</filter>
-		<filter id="filter_6_57_dd" x="294.000000" y="325.999756" width="428.000000" height="63.000000" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+		<filter id="filter_6_57_dd" x="293.000000" y="291.999756" width="428.000000" height="63.000000" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
 			<feFlood flood-opacity="0" result="BackgroundImageFix"/>
 			<feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"/>
 			<feOffset dx="0" dy="4"/>
@@ -78,7 +78,7 @@
 		<clipPath id="clip6_52">
 			<rect width="1024.000000" height="1024.000000" fill="white"/>
 		</clipPath>
-		<linearGradient id="paint_linear_6_47_0" x1="862.665894" y1="883.443848" x2="142.666687" y2="241.222260" gradientUnits="userSpaceOnUse">
+		<linearGradient id="paint_linear_6_47_0" x1="861.665894" y1="849.443848" x2="141.666687" y2="207.222260" gradientUnits="userSpaceOnUse">
 			<stop stop-color="#0082E0"/>
 			<stop offset="0.992366" stop-color="#5AB9FF"/>
 		</linearGradient>
