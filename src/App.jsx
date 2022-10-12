@@ -72,6 +72,9 @@ function App() {
   };
 
   const onGlobalKeyDown = async (e) => {
+    if (e.keyCode === 27){
+      appWindow.hide();
+    }
     if (e.keyCode === 40 || e.keyCode === 9)
       if (optionIndex < option.length - 1) {
         if (optionIndex >= 6) seekOptionContain.current.scrollTop += 50;
