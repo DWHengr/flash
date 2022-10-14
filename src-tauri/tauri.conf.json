@@ -16,6 +16,11 @@
       "iconAsTemplate": true
     },
     "allowlist": {
+      "http": {
+        "all": true, 
+        "request": true,
+        "scope": ["https://*/*"]
+      },
       "fs": {
         "scope": ["$RESOURCE/config/*"]
       },

@@ -2,6 +2,8 @@ import { useState, useEffect, useRef } from "react";
 import { invoke } from "@tauri-apps/api/tauri";
 import "./App.css";
 import { PhysicalSize, appWindow } from "@tauri-apps/api/window";
+import { getClient, ResponseType } from "@tauri-apps/api/http";
+import Axios from "axios";
 
 function App() {
   const [content, setContent] = useState("");
@@ -15,11 +17,48 @@ function App() {
     seekInput.current.focus();
     invoke("load_config").then(async (res) => {
       if (res) {
-        setAllOption(res.option);
+        await optionIcon(res.option);
+        console.log(res.option);
+        await setAllOption(res.option);
         await setOption(allOption);
       }
     });
   }, []);
+
+  const optionIcon = async (options) => {
+    const client = await getClient();
+    for (let index = 0; index < options?.length; index++) {
+      let o = options[index];
+      o.icon = "/icon.svg";
+
+      if (o.option_type == "project") o.icon = "/project.svg";
+      if (o.option_type == "file") o.icon = "/file.svg";
+      if (o.option_type == "app") o.icon = "/app.svg";
+      if (o.option_type == "folder") o.icon = "/folder.svg";
+      if (o.option_type == "link") {
+        let response = null;
+        try {
+          response = await client.get(o.path+'/favicon.ico', {
+            timeout: 5,
+            responseType: ResponseType.Binary,
+          });
+        } catch {}
+
+        if (response?.status == 200) {
+          o.icon =
+            "data:image/png;base64," +
+            btoa(
+              new Uint8Array(response.data).reduce(
+                (data, byte) => data + String.fromCharCode(byte),
+                ""
+              )
+            );
+        } else {
+          o.icon = "/link.svg";
+        }
+      }
+    }
+  };
 
   useEffect(() => {
     setOptionIndex(0);
@@ -152,7 +191,8 @@ function App() {
                       index == optionIndex ? "rgb(78, 78, 78)" : "",
                   }}
                 >
-                  {renderOptionIcon(item.option_type)}
+                  <img src={item.icon} className="seek-option-icon" />
+
                   <div style={{ display: "inline-block" }}>
                     <div
                       className="seek-option-name"
