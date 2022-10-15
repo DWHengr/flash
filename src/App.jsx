@@ -3,7 +3,6 @@ import { invoke } from "@tauri-apps/api/tauri";
 import "./App.css";
 import { PhysicalSize, appWindow } from "@tauri-apps/api/window";
 import { getClient, ResponseType } from "@tauri-apps/api/http";
-import Axios from "axios";
 
 function App() {
   const [content, setContent] = useState("");
@@ -18,7 +17,6 @@ function App() {
     invoke("load_config").then(async (res) => {
       if (res) {
         await optionIcon(res.option);
-        console.log(res.option);
         await setAllOption(res.option);
         await setOption(allOption);
       }
@@ -36,26 +34,29 @@ function App() {
       if (o.option_type == "app") o.icon = "/app.svg";
       if (o.option_type == "folder") o.icon = "/folder.svg";
       if (o.option_type == "link") {
-        let response = null;
+        o.icon = "/link.svg";
         try {
-          response = await client.get(o.path+'/favicon.ico', {
-            timeout: 5,
-            responseType: ResponseType.Binary,
-          });
+          let pattern = new RegExp("^https?://[^/]*", "i");
+          let domain = pattern.exec(o.path);
+          if (domain)
+            client
+              .get(domain[0] + "/favicon.ico", {
+                timeout: 5,
+                responseType: ResponseType.Binary,
+              })
+              .then((res) => {
+                if (res?.status == 200) {
+                  o.icon =
+                    "data:image/png;base64," +
+                    btoa(
+                      new Uint8Array(res.data).reduce(
+                        (data, byte) => data + String.fromCharCode(byte),
+                        ""
+                      )
+                    );
+                }
+              });
         } catch {}
-
-        if (response?.status == 200) {
-          o.icon =
-            "data:image/png;base64," +
-            btoa(
-              new Uint8Array(response.data).reduce(
-                (data, byte) => data + String.fromCharCode(byte),
-                ""
-              )
-            );
-        } else {
-          o.icon = "/link.svg";
-        }
       }
     }
   };
@@ -111,7 +112,7 @@ function App() {
   };
 
   const onGlobalKeyDown = async (e) => {
-    if (e.keyCode === 27){
+    if (e.keyCode === 27) {
       appWindow.hide();
     }
     if (e.keyCode === 40 || e.keyCode === 9)
@@ -187,7 +188,7 @@ function App() {
                   className="seek-option"
                   onClick={() => onOptionClick(index)}
                   style={{
-                    "background-color":
+                    backgroundColor:
                       index == optionIndex ? "rgb(78, 78, 78)" : "",
                   }}
                 >
