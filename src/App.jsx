@@ -3,6 +3,7 @@ import { invoke } from "@tauri-apps/api/tauri";
 import "./App.css";
 import { PhysicalSize, appWindow } from "@tauri-apps/api/window";
 import { getClient, ResponseType } from "@tauri-apps/api/http";
+import AutosizeInput from "react-input-autosize";
 
 function App() {
   const [content, setContent] = useState("");
@@ -157,16 +158,34 @@ function App() {
     >
       <div className="row">
         <div>
-          <input
-            className="seek-input"
+          <AutosizeInput
+            autoFocus
             ref={seekInput}
+            inputStyle={{
+              fontSize: "30px",
+              marginLeft: "2px",
+              border: "1px solid transparent",
+              maxWidth: 525,
+              fontFamily: "inherit",
+              backgroundColor: "transparent",
+              color: "rgb(235, 235, 235)",
+              outline: "none",
+            }}
             value={content}
             onKeyDown={onKeyDown}
             onChange={(e) => {
               setContent(e.currentTarget.value);
             }}
-            placeholder="Enter to open the world..."
           />
+        </div>
+        <div
+          className="seek-placeholder"
+          data-tauri-drag-region
+          onMouseDown={() => {
+            seekInput.current.focus();
+          }}
+        >
+          {!content && "Enter to open the world..."}
         </div>
         <img
           data-tauri-drag-region
