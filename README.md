@@ -14,7 +14,7 @@ Modifying a Configuration File `config/flash.config.json`:
   "option":[
     {
       "name":"host",  //option name
-      "option_type":"file",  //option type: file,app,folder,project
+      "option_type":"file",  //option type: file,app,folder,project,link
       "open_in":"", //notepad opens by default 
       "path":"C:\\Windows\\System32\\drivers\\etc\\hosts",  //open paht
       "describe":"host file"
@@ -26,6 +26,13 @@ Modifying a Configuration File `config/flash.config.json`:
       "path":"D:/flash/flash",
       "describe":"flash project"
     },
+    {
+      "name":"github",
+      "option_type":"link",
+      "open_in":"",
+      "path":"https://github.com/DWHengr/flash",
+      "describe":"github link"
+    }
     ...
   ]
 }
