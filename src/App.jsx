@@ -4,6 +4,7 @@ import "./App.css";
 import { PhysicalSize, appWindow } from "@tauri-apps/api/window";
 import { getClient, ResponseType } from "@tauri-apps/api/http";
 import AutosizeInput from "react-input-autosize";
+import testapi from "./api/test"
 
 function App() {
   const [content, setContent] = useState("");
@@ -14,6 +15,11 @@ function App() {
   const [allOption, setAllOption] = useState([]);
 
   useEffect(() => {
+    testapi.get().then(res=>{
+      console.log(res)
+    }).catch(err=>{
+      console.log(err)
+    })
     seekInput.current.focus();
     invoke("load_config").then(async (res) => {
       if (res) {
