@@ -4,7 +4,7 @@ import "./App.css";
 import { PhysicalSize, appWindow } from "@tauri-apps/api/window";
 import { getClient, ResponseType } from "@tauri-apps/api/http";
 import AutosizeInput from "react-input-autosize";
-import testapi from "./api/test"
+import testapi from "./api/test";
 
 function App() {
   const [content, setContent] = useState("");
@@ -13,13 +13,17 @@ function App() {
   const seekOptionContain = useRef(null);
   const seekInput = useRef(null);
   const [allOption, setAllOption] = useState([]);
+  const [isLoginPage, setIsLoginPage] = useState(false);
 
   useEffect(() => {
-    testapi.get().then(res=>{
-      console.log(res)
-    }).catch(err=>{
-      console.log(err)
-    })
+    testapi
+      .get()
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
     seekInput.current.focus();
     invoke("load_config").then(async (res) => {
       if (res) {
@@ -70,6 +74,7 @@ function App() {
 
   useEffect(() => {
     setOptionIndex(0);
+    setIsLoginPage(false);
     if (content && content != "") {
       appWindow.setSize(new PhysicalSize(600, 410));
     } else {
@@ -87,7 +92,11 @@ function App() {
     setOption(currentOption);
   }, [content]);
 
-  const onDoubleClick = (e) => {};
+  const onDoubleClick = (e) => {
+    setIsLoginPage(!isLoginPage);
+    if (!isLoginPage) appWindow.setSize(new PhysicalSize(600, 410));
+    else appWindow.setSize(new PhysicalSize(600, 60));
+  };
 
   const onKeyDown = async (e) => {
     if (e.keyCode === 40 || e.keyCode === 38 || e.keyCode === 9) {
@@ -195,14 +204,62 @@ function App() {
         </div>
         <img
           data-tauri-drag-region
-          // onDoubleClick={onDoubleClick}
+          onDoubleClick={onDoubleClick}
           src="/icon.png"
           className="logo"
         />
       </div>
       <div>
         <div className="seek-option-contain" ref={seekOptionContain}>
-          {content &&
+          {isLoginPage && (
+            <div style={{ height: "100%", display: "flex",userSelect:"none" }}>
+              <div
+                style={{
+                  width: 300,
+                  backgroundColor: "rgba(16, 16, 16, 0.1)",
+                }}
+              >
+                <img className="head-portrait" src="/icon.png" />
+                <div className="user-name">用户名</div>
+                <button style={{ marginTop: 10 }} className="primary-button">
+                  登录
+                </button>
+                <button style={{ marginTop: 10 }} className="primary-button">
+                  注册
+                </button>
+              </div>
+              <div
+                style={{
+                  width: "100%",
+                }}
+                className={"login"}
+              >
+                <label
+                  style={{ fontSize: 20, color: "rgb(155, 155, 155)", marginBottom: 10 }}
+                >
+                  登录
+                </label>
+                <div class="login_box">
+                  <input type="text" v-model="username" required />
+                  <label>用户名</label>
+                </div>
+                <div class="login_box">
+                  <input type="text" v-model="username" required />
+                  <label>密码</label>
+                </div>
+                <button
+                  style={{
+                    marginTop: 5,
+                  }}
+                  className="minor-button"
+                >
+                  登录 Flash
+                </button>
+              </div>
+            </div>
+          )}
+          {!isLoginPage &&
+            content &&
             content != "" &&
             option?.map((item, index) => {
               let kv = content?.split(/:|：/);
