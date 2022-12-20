@@ -5,6 +5,8 @@ import { PhysicalSize, appWindow } from "@tauri-apps/api/window";
 import { getClient, ResponseType } from "@tauri-apps/api/http";
 import AutosizeInput from "react-input-autosize";
 import testapi from "./api/test";
+import { BrowserRouter as Router } from "react-router-dom";
+import PersonalSetting from "./pages/PersonalSetting";
 
 function App() {
   const [content, setContent] = useState("");
@@ -13,7 +15,7 @@ function App() {
   const seekOptionContain = useRef(null);
   const seekInput = useRef(null);
   const [allOption, setAllOption] = useState([]);
-  const [isLoginPage, setIsLoginPage] = useState(false);
+  const [isPersonalSetting, setIsPersonalSetting] = useState(false);
 
   useEffect(() => {
     testapi
@@ -74,7 +76,7 @@ function App() {
 
   useEffect(() => {
     setOptionIndex(0);
-    setIsLoginPage(false);
+    setIsPersonalSetting(false);
     if (content && content != "") {
       appWindow.setSize(new PhysicalSize(600, 410));
     } else {
@@ -93,8 +95,8 @@ function App() {
   }, [content]);
 
   const onDoubleClick = (e) => {
-    setIsLoginPage(!isLoginPage);
-    if (!isLoginPage) appWindow.setSize(new PhysicalSize(600, 410));
+    setIsPersonalSetting(!isPersonalSetting);
+    if (!isPersonalSetting) appWindow.setSize(new PhysicalSize(600, 410));
     else appWindow.setSize(new PhysicalSize(600, 60));
   };
 
@@ -211,54 +213,12 @@ function App() {
       </div>
       <div>
         <div className="seek-option-contain" ref={seekOptionContain}>
-          {isLoginPage && (
-            <div style={{ height: "100%", display: "flex",userSelect:"none" }}>
-              <div
-                style={{
-                  width: 300,
-                  backgroundColor: "rgba(16, 16, 16, 0.1)",
-                }}
-              >
-                <img className="head-portrait" src="/icon.png" />
-                <div className="user-name">用户名</div>
-                <button style={{ marginTop: 10 }} className="primary-button">
-                  登录
-                </button>
-                <button style={{ marginTop: 10 }} className="primary-button">
-                  注册
-                </button>
-              </div>
-              <div
-                style={{
-                  width: "100%",
-                }}
-                className={"login"}
-              >
-                <label
-                  style={{ fontSize: 20, color: "rgb(155, 155, 155)", marginBottom: 10 }}
-                >
-                  登录
-                </label>
-                <div class="login_box">
-                  <input type="text" v-model="username" required />
-                  <label>用户名</label>
-                </div>
-                <div class="login_box">
-                  <input type="text" v-model="username" required />
-                  <label>密码</label>
-                </div>
-                <button
-                  style={{
-                    marginTop: 5,
-                  }}
-                  className="minor-button"
-                >
-                  登录 Flash
-                </button>
-              </div>
-            </div>
+          {isPersonalSetting && (
+            <Router>
+              <PersonalSetting></PersonalSetting>
+            </Router>
           )}
-          {!isLoginPage &&
+          {!isPersonalSetting &&
             content &&
             content != "" &&
             option?.map((item, index) => {

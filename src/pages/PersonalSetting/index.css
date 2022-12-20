@@ -1,0 +1,19 @@
+.login-register-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  padding: 55px;
+}
+
+.head-portrait {
+  margin-top: 55px;
+  width: 52px;
+  height: 52px;
+}
+
+.user-name {
+  margin-top: 4px;
+  color: rgb(155, 155, 155);
+  font-size: 16px;
+}
