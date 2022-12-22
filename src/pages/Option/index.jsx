@@ -1,4 +1,5 @@
-import { useSelector, useDispatch } from 'react-redux'
+import "./index.css";
+import { useSelector, useDispatch } from "react-redux";
 import { openAppByIndex } from "../../store/option/action";
 
 export default function Option() {

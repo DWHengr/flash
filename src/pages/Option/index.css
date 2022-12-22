@@ -1,0 +1,36 @@
+.seek-option-contain {
+  height: 350px;
+  overflow-y: scroll;
+}
+
+.seek-option {
+  height: 50px;
+  display: flex;
+  align-items: center;
+  user-select: none;
+}
+
+.seek-option:hover {
+  background-color: rgb(78, 78, 78);
+}
+
+.seek-option-icon {
+  height: 40px;
+  width: 40px;
+  margin: 8px;
+}
+
+.seek-option-name {
+  text-align: left;
+  color: rgb(226, 226, 226);
+  font-size: 18px;
+}
+.seek-option-describe {
+  text-align: left;
+  color: rgb(165, 165, 165);
+  font-size: 14px;
+}
+
+.seek-option-keyword {
+  color: rgb(255, 76, 11);
+}
