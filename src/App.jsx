@@ -13,6 +13,7 @@ import {
 import PersonalSetting from "./pages/PersonalSetting";
 import Option from "./pages/Option";
 import { useSelector, useDispatch } from "react-redux";
+import { Route, Switch, useHistory } from "react-router-dom";
 
 function App() {
   const [content, setContent] = useState("");
@@ -22,6 +23,7 @@ function App() {
 
   const optionData = useSelector((state) => state.optionData);
   const dispatch = useDispatch();
+  const h = useHistory();
 
   useEffect(() => {
     seekInput.current.focus();
@@ -76,6 +78,7 @@ function App() {
     setIsPersonalSetting(false);
     if (content && content != "") {
       appWindow.setSize(new PhysicalSize(600, 410));
+      h.push("/option");
     } else {
       appWindow.setSize(new PhysicalSize(600, 60));
     }
@@ -84,8 +87,10 @@ function App() {
 
   const onDoubleClick = (e) => {
     setIsPersonalSetting(!isPersonalSetting);
-    if (!isPersonalSetting) appWindow.setSize(new PhysicalSize(600, 410));
-    else appWindow.setSize(new PhysicalSize(600, 60));
+    if (!isPersonalSetting) {
+      appWindow.setSize(new PhysicalSize(600, 410));
+      h.push("/personal");
+    } else appWindow.setSize(new PhysicalSize(600, 60));
   };
 
   const onKeyDown = async (e) => {
@@ -184,8 +189,10 @@ function App() {
       </div>
       <div>
         <div className="seek-option-contain" ref={seekOptionContain}>
-          {isPersonalSetting && <PersonalSetting></PersonalSetting>}
-          {!isPersonalSetting && content && content != "" && <Option></Option>}
+          <Switch>
+            <Route path="/personal" component={PersonalSetting}></Route>
+            <Route path="/option" component={Option}></Route>
+          </Switch>
         </div>
       </div>
     </div>
