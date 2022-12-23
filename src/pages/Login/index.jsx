@@ -1,5 +1,6 @@
 import "./index.css";
 import { useState } from "react";
+import FlahsInput from "../../components/FlashInput";
 export default function Login() {
   const [userinfo, setUserinfo] = useState({ username: "", password: "" });
   const [loginMsg, setLoginMsg] = useState("");
@@ -10,14 +11,16 @@ export default function Login() {
   };
 
   const onLogin = () => {
-    if(!userinfo.username){
-      setLoginMsg("用户名不能为空")
-      return
+    console.log(userinfo);
+    if (!userinfo.username) {
+      setLoginMsg("用户名不能为空");
+      return;
     }
-    if(!userinfo.password){
-      setLoginMsg("密码不能为空")
-      return
+    if (!userinfo.password) {
+      setLoginMsg("密码不能为空");
+      return;
     }
+    setLoginMsg("")
   };
   return (
     <div>
@@ -26,26 +29,23 @@ export default function Login() {
       >
         登录
       </label>
-      <div className="custom-input-box">
-        <input
-          type="text"
-          name="username"
-          value={userinfo.username}
-          onChange={userinfoHandleChange}
-          required
-        />
-        <label>用户名</label>
-      </div>
-      <div className="custom-input-box">
-        <input
-          type="text"
-          name="password"
-          value={userinfo.password}
-          onChange={userinfoHandleChange}
-          required
-        />
-        <label>密码</label>
-      </div>
+      <FlahsInput
+        name="username"
+        value={userinfo.username}
+        onChange={userinfoHandleChange}
+        required
+      >
+        用户名
+      </FlahsInput>
+      <FlahsInput
+        type="password"
+        name="password"
+        value={userinfo.password}
+        onChange={userinfoHandleChange}
+        required
+      >
+        密码
+      </FlahsInput>
       <button
         style={{
           marginTop: 5,
@@ -55,9 +55,7 @@ export default function Login() {
       >
         登录 Flash
       </button>
-      <div style={{color:'red',marginTop:5}}>
-        {loginMsg}
-      </div>
+      <div style={{ color: "red", marginTop: 5 }}>{loginMsg}</div>
     </div>
   );
 }

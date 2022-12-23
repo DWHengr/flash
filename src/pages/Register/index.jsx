@@ -1,4 +1,5 @@
 import { useState } from "react";
+import FlahsInput from "../../components/FlashInput";
 export default function Register() {
   const [userinfo, setUserinfo] = useState({
     username: "",
@@ -39,36 +40,30 @@ export default function Register() {
       >
         注册
       </label>
-      <div className="custom-input-box">
-        <input
-          type="text"
-          name="username"
-          value={userinfo.username}
-          onChange={userinfoHandleChange}
-          required
-        />
-        <label>用户名</label>
-      </div>
-      <div className="custom-input-box">
-        <input
-          type="password"
-          name="password"
-          value={userinfo.password}
-          onChange={userinfoHandleChange}
-          required
-        />
-        <label>密码</label>
-      </div>
-      <div className="custom-input-box">
-        <input
-          type="password"
-          name="confirmPassword"
-          value={userinfo.confirmPassword}
-          onChange={userinfoHandleChange}
-          required
-        />
-        <label>确认密码</label>
-      </div>
+      <FlahsInput
+        type="text"
+        name="username"
+        value={userinfo.username}
+        onChange={userinfoHandleChange}
+      >
+        用户名
+      </FlahsInput>
+      <FlahsInput
+        type="password"
+        name="password"
+        value={userinfo.password}
+        onChange={userinfoHandleChange}
+      >
+        密码
+      </FlahsInput>
+      <FlahsInput
+        type="password"
+        name="confirmPassword"
+        value={userinfo.confirmPassword}
+        onChange={userinfoHandleChange}
+      >
+        确认密码
+      </FlahsInput>
       <button
         style={{
           marginTop: 5,
