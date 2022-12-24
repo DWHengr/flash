@@ -6,8 +6,8 @@ import {
   Redirect,
   useHistory
 } from "react-router-dom";
-import Login from "../Login";
-import Register from "../Register";
+import Login from "./Login";
+import Register from "./Register";
 
 export default function PersonalSetting() {
   const h = useHistory();

@@ -1,6 +1,6 @@
 import "./index.css";
 import { useState } from "react";
-import FlahsInput from "../../components/FlashInput";
+import FlahsInput from "../../../components/FlashInput";
 export default function Login() {
   const [userinfo, setUserinfo] = useState({ username: "", password: "" });
   const [loginMsg, setLoginMsg] = useState("");

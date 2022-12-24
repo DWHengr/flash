@@ -1,5 +1,5 @@
 import { useState } from "react";
-import FlahsInput from "../../components/FlashInput";
+import FlahsInput from "../../../components/FlashInput";
 export default function Register() {
   const [userinfo, setUserinfo] = useState({
     username: "",
