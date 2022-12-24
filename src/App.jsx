@@ -145,7 +145,7 @@ function App() {
 
   return (
     <div
-      className="container"
+      className="mian-container"
       onKeyDown={onGlobalKeyDown}
       onContextMenu={(e) => e.preventDefault()}
     >

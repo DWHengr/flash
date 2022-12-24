@@ -2,8 +2,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 100%;
-  padding: 55px;
+  margin-top: 55px;
 }
 
 .head-portrait {
@@ -14,6 +13,16 @@
 
 .user-name {
   margin-top: 4px;
-  color: rgb(155, 155, 155);
   font-size: 16px;
+}
+
+.setting{
+  font-size: 16px;
+  position: absolute;
+  right: 25px;
+  bottom: 10px;
+}
+
+.setting:hover{
+  color: rgb(205, 205, 205);
 }

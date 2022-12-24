@@ -34,7 +34,7 @@ export default function Register() {
   };
 
   return (
-    <div>
+    <div  className={"login-register-box"}>
       <label
         style={{ fontSize: 20, color: "rgb(155, 155, 155)", marginBottom: 10 }}
       >

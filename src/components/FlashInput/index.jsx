@@ -1,3 +1,4 @@
+import "./index.css"
 import { useState } from "react";
 function FlahsInput(props) {
   const [value, setValue] = useState(props.value);

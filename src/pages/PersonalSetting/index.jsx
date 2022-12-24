@@ -1,22 +1,25 @@
-import "./index.css"
-import {
-  Link,
-  Route,
-  Switch,
-  Redirect,
-  useHistory
-} from "react-router-dom";
+import "./index.css";
+import { Link, Route, Switch, Redirect, useHistory } from "react-router-dom";
 import Login from "./Login";
 import Register from "./Register";
+import Setting from "./Setting";
 
 export default function PersonalSetting() {
   const h = useHistory();
   return (
-    <div style={{ height: "100%", display: "flex", userSelect: "none" }}>
+    <div
+      style={{
+        height: "100%",
+        display: "flex",
+        userSelect: "none",
+        color: "rgb(155, 155, 155)",
+      }}
+    >
       <div
         style={{
-          width: 300,
+          width: 150,
           backgroundColor: "rgba(16, 16, 16, 0.1)",
+          position: "relative",
         }}
       >
         <img className="head-portrait" src="/headPortrait.svg" />
@@ -31,16 +34,20 @@ export default function PersonalSetting() {
             注册
           </button>
         </Link>
+        <div
+          className="setting"
+          onClick={() => {
+            h.push("/personal/setting");
+          }}
+        >
+          设置
+        </div>
       </div>
-      <div
-        style={{
-          width: "100%",
-        }}
-        className={"login-register-box"}
-      >
+      <div style={{ width: 450 }}>
         <Switch>
           <Route exact path="/personal/login" component={Login}></Route>
           <Route exact path="/personal/register" component={Register}></Route>
+          <Route exact path="/personal/setting" component={Setting}></Route>
           <Redirect to="/personal/login" />
         </Switch>
       </div>
