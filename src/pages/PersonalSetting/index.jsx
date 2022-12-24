@@ -19,7 +19,7 @@ export default function PersonalSetting() {
           backgroundColor: "rgba(16, 16, 16, 0.1)",
         }}
       >
-        <img className="head-portrait" src="/icon.png" />
+        <img className="head-portrait" src="/headPortrait.svg" />
         <div className="user-name">用户名</div>
         <Link to="/personal/login">
           <button style={{ marginTop: 10 }} className="primary-button">

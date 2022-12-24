@@ -1,0 +1,19 @@
+<svg width="1024.000000" height="1024.000000" viewBox="0 0 1024 1024" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+	<desc>
+			Created with Pixso.
+	</desc>
+	<g clip-path="url(#clip12_10)">
+		<ellipse cx="511.665833" cy="511.666382" rx="466.666199" ry="466.666382" fill="url(#paint_linear_12_13_0)"/>
+		<path d="M379.677 549.447C233.539 624.606 214.526 764.941 211 804.545C211.866 804.61 810.129 805.384 811 804.541C807.425 763.175 789.708 623.823 642.939 548.981C606.597 577.724 560.817 595.028 511.001 595.028C461.455 595.028 415.922 577.898 379.677 549.447Z" fill-rule="evenodd" fill="#38E274"/>
+		<path d="M511 218C420.679 218 347.21 291.47 347.21 381.79C347.21 472.115 420.679 545.576 511 545.576C601.32 545.576 674.79 472.115 674.79 381.79C674.79 291.469 601.32 218 511 218Z" fill-rule="evenodd" fill="#FCDA01"/>
+	</g>
+	<defs>
+		<clipPath id="clip12_10">
+			<rect width="1024.000000" height="1024.000000" fill="white"/>
+		</clipPath>
+		<linearGradient id="paint_linear_12_13_0" x1="861.665527" y1="849.443848" x2="141.666321" y2="207.222260" gradientUnits="userSpaceOnUse">
+			<stop stop-color="#0082E0"/>
+			<stop offset="0.992366" stop-color="#5AB9FF"/>
+		</linearGradient>
+	</defs>
+</svg>
