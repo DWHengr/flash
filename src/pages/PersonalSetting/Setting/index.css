@@ -1,4 +1,31 @@
 .setting-box {
   text-align: start;
-  margin: 10px;
+  margin: 15px;
+}
+
+.setting-option {
+  display: flex;
+  width: 100%;
+  margin-top: 10px;
+}
+
+.setting-option-key {
+  margin-left: 40px;
+}
+
+.setting-option-value {
+  margin-right: 30px;
+}
+.shortcut-input-box {
+  margin-left: auto;
+}
+.shortcut-input-box input {
+  outline: none;
+  border: none;
+  width: 70px;
+  margin-bottom: 20px;
+  color: rgb(155, 155, 155);
+  font-size: 16px;
+  border-bottom: 1px solid #fff;
+  background-color: transparent;
 }
