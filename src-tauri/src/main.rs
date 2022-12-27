@@ -23,7 +23,7 @@ fn main() {
         .on_window_event(window_event)
         .build(tauri::generate_context!())
         .expect("error while running tauri application");
-    register_shortcut(&app);
+    // register_shortcut(&app);
     app.run(handle_run_events);
 }
 
@@ -53,22 +53,22 @@ fn handle_run_events(_app_handle: &AppHandle<Wry>, e: RunEvent) {
 }
 
 // register shortcut
-fn register_shortcut(app: &App<Wry>) {
-    let mut short_cut = app.global_shortcut_manager();
-    let app_handler = app.handle();
-    let result = short_cut.register("alt+space", move || {
-        let window = app_handler.get_window("main").unwrap();
-        if window.is_visible().unwrap() {
-            window.hide().unwrap();
-        } else {
-            window.show().unwrap();
-            window.set_focus().unwrap();
-        }
-    });
-    if let Err(err) = result {
-        println!("{}", err);
-    }
-}
+// fn register_shortcut(app: &App<Wry>) {
+//     let mut short_cut = app.global_shortcut_manager();
+//     let app_handler = app.handle();
+//     let result = short_cut.register("alt+space", move || {
+//         let window = app_handler.get_window("main").unwrap();
+//         if window.is_visible().unwrap() {
+//             window.hide().unwrap();
+//         } else {
+//             window.show().unwrap();
+//             window.set_focus().unwrap();
+//         }
+//     });
+//     if let Err(err) = result {
+//         println!("{}", err);
+//     }
+// }
 
 // tray menu
 fn tray_menu() -> SystemTrayMenu {

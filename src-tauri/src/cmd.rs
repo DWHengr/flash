@@ -1,4 +1,4 @@
-use std::{fs::File, process::Command, os::windows::process::CommandExt};
+use std::{fs::File, os::windows::process::CommandExt, process::Command};
 
 use serde::{Deserialize, Serialize};
 
@@ -10,8 +10,15 @@ pub struct App {
     path: String,
     describe: String,
 }
+
+#[derive(Debug, Serialize, Deserialize, Clone)]
+pub struct Setiing {
+    shortcut: String,
+}
+
 #[derive(Debug, Serialize, Deserialize)]
 pub struct FlashConfig {
+    setting: Setiing,
     option: Vec<App>,
 }
 
@@ -83,7 +90,12 @@ pub fn load_config(handle: tauri::AppHandle) -> FlashConfig {
     let res = serde_json::from_reader(f);
     if let Err(e) = res {
         println!("{}", e.to_string());
-        return FlashConfig { option: vec![] };
+        return FlashConfig {
+            setting: Setiing {
+                shortcut: "".to_string(),
+            },
+            option: vec![],
+        };
     }
     let config: FlashConfig = res.unwrap();
     config
