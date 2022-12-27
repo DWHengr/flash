@@ -10,6 +10,7 @@ import {
   setCurrentOptionIndex,
   openAppByIndex,
 } from "./store/option/action";
+import { initSettingData } from "./store/setting/action";
 import PersonalSetting from "./pages/PersonalSetting";
 import Option from "./pages/Option";
 import { useSelector, useDispatch } from "react-redux";
@@ -31,6 +32,7 @@ function App() {
       if (res) {
         await optionIcon(res.option);
         dispatch(initOptionData(res.option));
+        dispatch(initSettingData(res.setting));
       }
     });
   }, []);
