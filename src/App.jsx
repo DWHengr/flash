@@ -102,7 +102,12 @@ function App() {
     }
   };
 
+  const ignoreKey = ["v", "a", "c"];
+
   const onGlobalKeyDown = async (e) => {
+    if ((e.ctrlKey || e.altKey) && ignoreKey.indexOf(e.key) < 0) {
+      e.preventDefault();
+    }
     if (e.keyCode === 27) {
       appWindow.hide();
     }
