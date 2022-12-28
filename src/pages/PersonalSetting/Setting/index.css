@@ -7,25 +7,32 @@
   display: flex;
   width: 100%;
   margin-top: 10px;
+  height: 25px;
 }
 
 .setting-option-key {
-  margin-left: 40px;
+  margin-left: 20px;
 }
 
 .setting-option-value {
   margin-right: 30px;
+  width: 185px;
 }
 .shortcut-input-box {
   margin-left: auto;
 }
+
 .shortcut-input-box input {
   outline: none;
   border: none;
-  width: 70px;
+  width: 100%;
   margin-bottom: 20px;
   color: rgb(155, 155, 155);
   font-size: 16px;
   border-bottom: 1px solid #fff;
   background-color: transparent;
+}
+
+.shortcut-input-box input:hover,input:focus {
+  border-bottom: 1px solid rgb(155, 155, 155);
 }

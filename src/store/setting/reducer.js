@@ -3,10 +3,11 @@ import { register, unregisterAll } from "@tauri-apps/api/globalShortcut";
 import { appWindow } from "@tauri-apps/api/window";
 let defaultState = {
   shortcut: "",
+  search_text: "",
 };
 
-const registerShortCut = async (shortcut) => {
-  await register(shortcut, async () => {
+const registerShortCut = (shortcut) => {
+  register(shortcut, async () => {
     let isVisible = await appWindow.isVisible();
     if (isVisible) {
       appWindow.hide();
@@ -17,12 +18,14 @@ const registerShortCut = async (shortcut) => {
   });
 };
 
-export const settingData = async (state = defaultState, action) => {
+export const settingData = (state = defaultState, action) => {
   switch (action.type) {
     case type.Init_Setting:
-      await unregisterAll();
-      await registerShortCut(action.shortcut);
+      unregisterAll();
+      registerShortCut(action.shortcut);
       return { ...state, ...action };
+    case type.Set_Search_Txt:
+      return { ...state, ...{ search_text: action.search_text } };
     default:
       return state;
   }

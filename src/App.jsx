@@ -23,6 +23,7 @@ function App() {
   const [isPersonalSetting, setIsPersonalSetting] = useState(false);
 
   const optionData = useSelector((state) => state.optionData);
+  const settingData = useSelector((state) => state.settingData);
   const dispatch = useDispatch();
   const h = useHistory();
 
@@ -185,7 +186,7 @@ function App() {
             seekInput.current.focus();
           }}
         >
-          {!content && "Enter to open the world..."}
+          {!content && settingData.search_text}
         </div>
         <img
           data-tauri-drag-region
