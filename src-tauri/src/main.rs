@@ -72,9 +72,9 @@ fn handle_run_events(_app_handle: &AppHandle<Wry>, e: RunEvent) {
 
 // tray menu
 fn tray_menu() -> SystemTrayMenu {
-    let quit = CustomMenuItem::new("quit".to_string(), "Quit");
-    let hide = CustomMenuItem::new("hide".to_string(), "Hide");
-    let show = CustomMenuItem::new("show".to_string(), "Show");
+    let quit = CustomMenuItem::new("quit".to_string(), "退出");
+    let hide = CustomMenuItem::new("hide".to_string(), "隐藏");
+    let show = CustomMenuItem::new("show".to_string(), "显示");
     let tray_menu = SystemTrayMenu::new()
         .add_item(hide)
         .add_item(show)
