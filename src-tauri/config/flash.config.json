@@ -1,4 +1,8 @@
 {
+  "setting":{
+    "shortcut": "alt+space",
+    "search_text": "Enter to open the world..."
+  },
   "option":[
     {
       "name":"host",
