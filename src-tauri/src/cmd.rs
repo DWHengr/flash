@@ -1,4 +1,4 @@
-use std::{fs::File, os::windows::process::CommandExt, process::Command};
+use std::{fs::File, io::Write, os::windows::process::CommandExt, process::Command};
 
 use serde::{Deserialize, Serialize};
 
@@ -101,4 +101,20 @@ pub fn load_config(handle: tauri::AppHandle) -> FlashConfig {
     }
     let config: FlashConfig = res.unwrap();
     config
+}
+
+#[tauri::command]
+pub fn update_config(handle: tauri::AppHandle, config: FlashConfig) -> i32 {
+    let resource_path = handle
+        .path_resolver()
+        .resolve_resource("config/flash.config.json")
+        .expect("failed to resolve resource");
+    let mut f = File::create(&resource_path).unwrap();
+    let json_string = serde_json::to_string_pretty(&config).unwrap();
+    let res = f.write(json_string.as_bytes());
+    if let Err(e) = res {
+        println!("{}", e.to_string());
+        return 1;
+    }
+    0
 }

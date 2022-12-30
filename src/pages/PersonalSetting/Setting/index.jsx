@@ -1,8 +1,10 @@
 import "./index.css";
 import { useState } from "react";
+import { invoke } from "@tauri-apps/api/tauri";
 import { useSelector, useDispatch } from "react-redux";
 import { setSearchTxt } from "../../../store/setting/action";
 export default function Setting() {
+  const optionData = useSelector((state) => state.optionData);
   const settingData = useSelector((state) => state.settingData);
   const [shortcut, setShortcut] = useState(settingData.shortcut);
   const [searchText, setSearchText] = useState(settingData.search_text);
@@ -31,6 +33,22 @@ export default function Setting() {
     }
   };
 
+  let onBlur = () => {
+    invoke("update_config", {
+      config: {
+        setting: {
+          shortcut: settingData.shortcut,
+          search_text: settingData.search_text,
+        },
+        option: optionData.allDataList,
+      },
+    }).then(async (res) => {
+      if (res) {
+        console.log(res);
+      }
+    });
+  };
+
   return (
     <div className="setting-box">
       系统设置
@@ -53,6 +71,7 @@ export default function Setting() {
               setSearchText(e.target.value);
               dispatch(setSearchTxt(e.target.value));
             }}
+            onBlur={onBlur}
             value={searchText}
           />
         </div>
