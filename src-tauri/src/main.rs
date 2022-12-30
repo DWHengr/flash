@@ -17,7 +17,11 @@ fn main() {
             window.set_focus().unwrap();
             window.show().unwrap();
         }))
-        .invoke_handler(tauri::generate_handler![cmd::open_app, cmd::load_config])
+        .invoke_handler(tauri::generate_handler![
+            cmd::open_app,
+            cmd::load_config,
+            cmd::update_config
+        ])
         .system_tray(SystemTray::new().with_menu(tray_menu()))
         .on_system_tray_event(system_tray_event)
         .on_window_event(window_event)
