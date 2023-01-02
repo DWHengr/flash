@@ -14,3 +14,10 @@ export const setSearchTxt = (txt) => {
     search_text: txt,
   };
 };
+
+export const setShortcutCmd = (txt) => {
+  return {
+    type: type.Set_Shortcut,
+    shortcut: txt,
+  };
+};

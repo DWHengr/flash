@@ -26,6 +26,11 @@ export const settingData = (state = defaultState, action) => {
       return { ...state, ...action };
     case type.Set_Search_Txt:
       return { ...state, ...{ search_text: action.search_text } };
+    case type.Set_Shortcut:
+      console.log(action.shortcut)
+      unregisterAll();
+      registerShortCut(action.shortcut);
+      return { ...state, ...{ shortcut: action.shortcut } };
     default:
       return state;
   }

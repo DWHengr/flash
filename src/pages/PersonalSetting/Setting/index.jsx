@@ -1,7 +1,7 @@
 import "./index.css";
 import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { setSearchTxt } from "../../../store/setting/action";
+import { setSearchTxt, setShortcutCmd } from "../../../store/setting/action";
 import { updateConfig } from "../../../utils/command";
 export default function Setting() {
   const optionData = useSelector((state) => state.optionData);
@@ -12,22 +12,30 @@ export default function Setting() {
 
   const onKeyDown = (event) => {
     let shortcut = event.key;
-    console.log(event.code);
     if (event.ctrlKey && event.altKey) {
       if (shortcut == "Control" || shortcut == "Alt") shortcut = "Alt+Ctrl+";
-      else shortcut = `Alt+Ctrl+${shortcut}`;
+      else {
+        shortcut = `Alt+Ctrl+${shortcut}`;
+        dispatch(setShortcutCmd(shortcut));
+      }
       setShortcut(shortcut);
       return;
     }
     if (event.ctrlKey) {
       if (shortcut == "Control") shortcut = "Ctrl+";
-      else shortcut = `Ctrl+${shortcut}`;
+      else {
+        shortcut = `Ctrl+${shortcut}`;
+        dispatch(setShortcutCmd(shortcut));
+      }
       setShortcut(shortcut);
       return;
     }
     if (event.altKey) {
       if (shortcut == "Alt") shortcut = "Alt+";
-      else shortcut = `Alt+${shortcut}`;
+      else {
+        shortcut = `Alt+${shortcut}`;
+        dispatch(setShortcutCmd(shortcut));
+      }
       setShortcut(shortcut);
       return;
     }
@@ -51,6 +59,7 @@ export default function Setting() {
             style={{ caretColor: "transparent" }}
             onKeyDown={onKeyDown}
             value={shortcut}
+            onBlur={onBlur}
             readOnly
           />
         </div>
