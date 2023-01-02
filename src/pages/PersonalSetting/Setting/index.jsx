@@ -1,8 +1,8 @@
 import "./index.css";
 import { useState } from "react";
-import { invoke } from "@tauri-apps/api/tauri";
 import { useSelector, useDispatch } from "react-redux";
 import { setSearchTxt } from "../../../store/setting/action";
+import { updateConfig } from "../../../utils/command";
 export default function Setting() {
   const optionData = useSelector((state) => state.optionData);
   const settingData = useSelector((state) => state.settingData);
@@ -34,15 +34,7 @@ export default function Setting() {
   };
 
   let onBlur = () => {
-    invoke("update_config", {
-      config: {
-        setting: {
-          shortcut: settingData.shortcut,
-          search_text: settingData.search_text,
-        },
-        option: optionData.allDataList,
-      },
-    }).then(async (res) => {
+    updateConfig(optionData, settingData).then(async (res) => {
       if (res) {
         console.log(res);
       }
