@@ -3,6 +3,7 @@ import { Link, Route, Switch, Redirect, useHistory } from "react-router-dom";
 import Login from "./Login";
 import Register from "./Register";
 import Setting from "./Setting";
+import Option from "./Option";
 
 export default function PersonalSetting() {
   const h = useHistory();
@@ -34,6 +35,11 @@ export default function PersonalSetting() {
             注册
           </button>
         </Link>
+        <Link to="/personal/option">
+          <button style={{ marginTop: 10 }} className="primary-button">
+            选项设置
+          </button>
+        </Link>
         <div
           className="setting"
           onClick={() => {
@@ -48,6 +54,7 @@ export default function PersonalSetting() {
           <Route exact path="/personal/login" component={Login}></Route>
           <Route exact path="/personal/register" component={Register}></Route>
           <Route exact path="/personal/setting" component={Setting}></Route>
+          <Route exact path="/personal/option" component={Option}></Route>
           <Redirect to="/personal/login" />
         </Switch>
       </div>
