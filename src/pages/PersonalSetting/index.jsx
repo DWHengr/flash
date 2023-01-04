@@ -40,6 +40,9 @@ export default function PersonalSetting() {
             选项设置
           </button>
         </Link>
+        <button style={{ marginTop: 10 }} className="primary-button">
+          数据同步
+        </button>
         <div
           className="setting"
           onClick={() => {
