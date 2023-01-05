@@ -4,9 +4,11 @@ import Login from "./Login";
 import Register from "./Register";
 import Setting from "./Setting";
 import Option from "./Option";
+import { useLoading } from "../../components/Loading";
 
 export default function PersonalSetting() {
   const h = useHistory();
+  let loading = useLoading();
   return (
     <div
       style={{
@@ -40,7 +42,16 @@ export default function PersonalSetting() {
             选项设置
           </button>
         </Link>
-        <button style={{ marginTop: 10 }} className="primary-button">
+        <button
+          onClick={() => {
+            loading.showLoading();
+            setTimeout(() => {
+              loading.hideLoading();
+            }, 3000);
+          }}
+          style={{ marginTop: 10 }}
+          className="primary-button"
+        >
           数据同步
         </button>
         <div
