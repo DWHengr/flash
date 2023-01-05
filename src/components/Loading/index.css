@@ -1,12 +1,13 @@
 .loading-box {
-  background-color: rgba(94, 94, 94, 0.95);
+  background-color: rgba(51, 51, 51, 0.9);
   width: 100%;
   height: 100%;
   z-index: 999;
   position: fixed;
   border-radius: 12px;
-  color: rgb(155, 155, 155);
+  color: rgb(131, 131, 131);
   user-select: none;
+  backdrop-filter: blur(15px);
 }
 
 .loading-icon {
