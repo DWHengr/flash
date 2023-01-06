@@ -8,6 +8,8 @@ export default function Setting() {
   const settingData = useSelector((state) => state.settingData);
   const [shortcut, setShortcut] = useState(settingData.shortcut);
   const [searchText, setSearchText] = useState(settingData.search_text);
+  const [oldShortcut, setOldShortcut] = useState(settingData.shortcut);
+  const [oldSearchText, setOldSearchText] = useState(settingData.search_text);
   const dispatch = useDispatch();
 
   const onKeyDown = (event) => {
@@ -59,7 +61,17 @@ export default function Setting() {
             style={{ caretColor: "transparent" }}
             onKeyDown={onKeyDown}
             value={shortcut}
-            onBlur={onBlur}
+            onBlur={() => {
+              if (
+                shortcut != oldShortcut &&
+                shortcut != "Alt+Ctrl+" &&
+                shortcut != "Alt+" &&
+                shortcut != "Ctrl+"
+              ) {
+                onBlur();
+                setOldShortcut(shortcut);
+              }
+            }}
             readOnly
           />
         </div>
@@ -72,7 +84,12 @@ export default function Setting() {
               setSearchText(e.target.value);
               dispatch(setSearchTxt(e.target.value));
             }}
-            onBlur={onBlur}
+            onBlur={() => {
+              if (searchText != oldSearchText) {
+                onBlur();
+                setOldSearchText(searchText);
+              }
+            }}
             value={searchText}
           />
         </div>
