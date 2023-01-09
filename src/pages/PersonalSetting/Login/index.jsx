@@ -55,7 +55,7 @@ export default function Login() {
       >
         登录 Flash
       </button>
-      <div style={{ color: "red", marginTop: 5 }}>{loginMsg}</div>
+      <div style={{ color: "#FCDA01", marginTop: 5 }}>{loginMsg}</div>
     </div>
   );
 }

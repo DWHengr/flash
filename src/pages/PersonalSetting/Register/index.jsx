@@ -73,7 +73,7 @@ export default function Register() {
       >
         注册 Flash
       </button>
-      <div style={{ color: "red", marginTop: 5 }}>{registerMsg}</div>
+      <div style={{ color: "#FCDA01", marginTop: 5 }}>{registerMsg}</div>
     </div>
   );
 }
