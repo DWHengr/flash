@@ -19,8 +19,11 @@
   justify-content: center;
 }
 
-.loading-icon-content {
+.loading-icon-box {
   width: 60px;
+}
+
+.loading-icon-content {
   animation: 1.5s spin ease infinite;
 }
 
