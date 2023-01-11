@@ -1,0 +1,18 @@
+.option-add-bar {
+  width: 100%;
+  height: 38px;
+  border-radius: 0 0 25px 25px;
+  background: rgba(27, 27, 27, 0.9);
+}
+
+.option-add-bar-button {
+  position: absolute;
+  width: 100%;
+  height: 30px;
+  bottom: 0px;
+}
+
+.option-add-bar-button-icon:hover {
+  color: rgb(45, 157, 239);
+  cursor: pointer;
+}
