@@ -196,10 +196,17 @@ function App() {
         />
       </div>
       <div>
-        <div className="seek-option-contain" ref={seekOptionContain}>
+        <div style={{ height: 350 }}>
           <Switch>
             <Route path="/personal" component={PersonalSetting}></Route>
-            <Route path="/option" component={Option}></Route>
+            <Route
+              path="/option"
+              render={() => (
+                <div className="option-contain" ref={seekOptionContain}>
+                  <Option />
+                </div>
+              )}
+            ></Route>
           </Switch>
         </div>
       </div>

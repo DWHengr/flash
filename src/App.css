@@ -84,3 +84,8 @@
 .minor-button:hover {
   background-color: rgba(27, 27, 27, 1);
 }
+
+.option-contain {
+  height: 350px;
+  overflow-y: scroll;
+}
