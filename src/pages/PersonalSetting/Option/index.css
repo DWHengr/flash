@@ -16,3 +16,7 @@
   color: rgb(45, 157, 239);
   cursor: pointer;
 }
+
+.create-box {
+  position: relative;
+}
