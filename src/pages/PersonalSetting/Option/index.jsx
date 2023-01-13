@@ -13,6 +13,11 @@ export default function Option() {
         {isCreateOption && (
           <div style={{ height: 140, background: "rgba(27, 27, 27, 0.9)" }}>
             新增Option
+            <div>名称</div>
+            <div>打开方式</div>
+            <div>类型</div>
+            <div>路径</div>
+            <div>描述</div>
           </div>
         )}
         <div className="option-add-bar">
@@ -31,7 +36,7 @@ export default function Option() {
                 onClick={() => {
                   setIsCreateOption(false);
                 }}
-                style={{ fontSize: 30 }}
+                style={{ fontSize: 30 }}  
                 className="option-add-bar-button-icon iconfont icon-shouqi"
               />
             )}
