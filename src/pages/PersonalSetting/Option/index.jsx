@@ -11,13 +11,38 @@ export default function Option() {
     <div style={{ height: 350 }}>
       <div className="create-box">
         {isCreateOption && (
-          <div style={{ height: 140, background: "rgba(27, 27, 27, 0.9)" }}>
-            新增Option
-            <div>名称</div>
-            <div>打开方式</div>
-            <div>类型</div>
-            <div>路径</div>
-            <div>描述</div>
+          <div style={{ height: 160, background: "rgba(27, 27, 27, 0.9)" }}>
+            选项设置
+            <div className="option">
+              <div className="option-key">名称：</div>
+              <div className="option-value input-box">
+                <input />
+              </div>
+            </div>
+            <div className="option">
+              <div className="option-key">打开方式：</div>
+              <div className="option-value input-box">
+                <input />
+              </div>
+            </div>
+            <div className="option">
+              <div className="option-key">类型：</div>
+              <div className="option-value input-box">
+                <input />
+              </div>
+            </div>
+            <div className="option">
+              <div className="option-key">路径：</div>
+              <div className="option-value input-box">
+                <input />
+              </div>
+            </div>
+            <div className="option">
+              <div className="option-key">描述：</div>
+              <div className="option-value input-box">
+                <input />
+              </div>
+            </div>
           </div>
         )}
         <div className="option-add-bar">
@@ -32,18 +57,36 @@ export default function Option() {
               />
             )}
             {isCreateOption && (
-              <i
-                onClick={() => {
-                  setIsCreateOption(false);
-                }}
-                style={{ fontSize: 30 }}  
-                className="option-add-bar-button-icon iconfont icon-shouqi"
-              />
+              <div style={{ weith: "100%", position: "relative" }}>
+                <i
+                  onClick={() => {
+                    setIsCreateOption(false);
+                  }}
+                  style={{ fontSize: 30 }}
+                  className="option-add-bar-button-icon iconfont icon-shouqi"
+                />
+                <div
+                  style={{
+                    position: "absolute",
+                    right: "85px",
+                    display: "inline-block",
+                  }}
+                >
+                  <i
+                    style={{ fontSize: 20, marginRight: 5 }}
+                    className="option-add-bar-button-icon iconfont icon-bohui"
+                  />
+                  <i
+                    style={{ fontSize: 20 }}
+                    className="option-add-bar-button-icon iconfont icon-chuli"
+                  />
+                </div>
+              </div>
             )}
             <div
               style={{
                 overflowY: "scroll",
-                height: isCreateOption ? 170 : 310,
+                height: isCreateOption ? 150 : 310,
               }}
             >
               {optionData?.currentDataList?.map((item, index) => {

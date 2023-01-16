@@ -20,3 +20,35 @@
 .create-box {
   position: relative;
 }
+
+.option {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.option-key {
+  width: 80px;
+}
+
+.option-value {
+  margin-right: 30px;
+  width: 185px;
+}
+
+.input-box input {
+  display: inline-block;
+  outline: none;
+  border: none;
+  width: 200px;
+  margin-bottom: 5px;
+  color: rgb(155, 155, 155);
+  font-size: 16px;
+  border-bottom: 1px solid #fff;
+  background-color: transparent;
+}
+
+.input-box input:hover,input:focus {
+  border-bottom: 1px solid rgb(155, 155, 155);
+}
