@@ -1,11 +1,25 @@
 import "./index.css";
 import "./iconfont.css";
 import { useState } from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { addOption } from "../../../store/option/action";
 export default function Option() {
   const [isCreateOption, setIsCreateOption] = useState(false);
   const optionData = useSelector((state) => state.optionData);
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [optionInfo, setOptionInfo] = useState({
+    name: "",
+    option_type: "",
+    open_in: "",
+    path: "",
+    describe: "",
+  });
+  const dispatch = useDispatch();
+
+  const optionInfoHandleChange = (event) => {
+    const { name, value } = event.target;
+    setOptionInfo({ ...optionInfo, [name]: value });
+  };
 
   return (
     <div style={{ height: 350 }}>
@@ -16,31 +30,51 @@ export default function Option() {
             <div className="option">
               <div className="option-key">名称：</div>
               <div className="option-value input-box">
-                <input />
-              </div>
-            </div>
-            <div className="option">
-              <div className="option-key">打开方式：</div>
-              <div className="option-value input-box">
-                <input />
+                <input
+                  name="name"
+                  onChange={optionInfoHandleChange}
+                  value={optionInfo.name}
+                />
               </div>
             </div>
             <div className="option">
               <div className="option-key">类型：</div>
               <div className="option-value input-box">
-                <input />
+                <input
+                  name="option_type"
+                  onChange={optionInfoHandleChange}
+                  value={optionInfo.option_type}
+                />
+              </div>
+            </div>
+            <div className="option">
+              <div className="option-key">打开方式：</div>
+              <div className="option-value input-box">
+                <input
+                  name="open_in"
+                  onChange={optionInfoHandleChange}
+                  value={optionInfo.open_in}
+                />
               </div>
             </div>
             <div className="option">
               <div className="option-key">路径：</div>
               <div className="option-value input-box">
-                <input />
+                <input
+                  name="path"
+                  onChange={optionInfoHandleChange}
+                  value={optionInfo.path}
+                />
               </div>
             </div>
             <div className="option">
               <div className="option-key">描述：</div>
               <div className="option-value input-box">
-                <input />
+                <input
+                  name="describe"
+                  onChange={optionInfoHandleChange}
+                  value={optionInfo.describe}
+                />
               </div>
             </div>
           </div>
@@ -78,6 +112,9 @@ export default function Option() {
                   />
                   <i
                     style={{ fontSize: 20 }}
+                    onClick={() => {
+                      dispatch(addOption(optionInfo));
+                    }}
                     className="option-add-bar-button-icon iconfont icon-chuli"
                   />
                 </div>

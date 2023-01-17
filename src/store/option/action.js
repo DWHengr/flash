@@ -29,3 +29,10 @@ export const openAppByIndex = (index) => {
     index: index,
   };
 };
+
+export const addOption = (optionInfo) => {
+  return {
+    type: type.Add_Option,
+    optionInfo: optionInfo,
+  };
+};

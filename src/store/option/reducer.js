@@ -1,5 +1,6 @@
 import * as type from "./type";
 import { invoke } from "@tauri-apps/api/tauri";
+import Immutable from "immutable";
 let defaultState = {
   optionIndex: 0, //当前选中的index
   content: "", //input内容
@@ -29,6 +30,13 @@ export const optionData = (state = defaultState, action) => {
       };
     case type.Set_Current_Option_index:
       return { ...state, ...action };
+    case type.Add_Option:
+      let imuDataList = Immutable.List(state.allDataList);
+      imuDataList = imuDataList.unshift(action.optionInfo);
+      return {
+        ...state,
+        ...{ allDataList: imuDataList.toJS() },
+      };
     case type.Open_App_By_Index:
       const index = action.index;
       invoke("open_app", {
