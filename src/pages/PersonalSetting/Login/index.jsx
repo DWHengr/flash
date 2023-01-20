@@ -11,7 +11,6 @@ export default function Login() {
   };
 
   const onLogin = () => {
-    console.log(userinfo);
     if (!userinfo.username) {
       setLoginMsg("用户名不能为空");
       return;
