@@ -132,13 +132,14 @@ export default function Option() {
                 return (
                   <div
                     key={index}
-                    className="seek-option"
+                    className="seek-option "
                     onClick={() => {
                       setCurrentIndex(index);
                     }}
                     style={{
                       backgroundColor:
                         index == currentIndex ? "rgb(78, 78, 78)" : "",
+                      position: "relative",
                     }}
                   >
                     <img src={item.icon} className="seek-option-icon" />
@@ -147,6 +148,12 @@ export default function Option() {
                       <div className="seek-option-describe">
                         {item.describe}
                       </div>
+                    </div>
+                    <div className="option-operate-icon">
+                      <i
+                        style={{ fontSize: 20, marginRight: 5 }}
+                        className="option-add-bar-button-icon iconfont icon-shanchu"
+                      />
                     </div>
                   </div>
                 );

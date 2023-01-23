@@ -49,6 +49,12 @@
   background-color: transparent;
 }
 
-.input-box input:hover,input:focus {
+.input-box input:hover,
+input:focus {
   border-bottom: 1px solid rgb(155, 155, 155);
+}
+
+.option-operate-icon {
+  position: absolute;
+  right: 1px;
 }
