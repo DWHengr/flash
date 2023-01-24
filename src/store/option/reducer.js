@@ -44,6 +44,13 @@ export const optionData = (state = defaultState, action) => {
         openIn: state.currentDataList[index].open_in,
         path: state.currentDataList[index].path,
       }).then((res) => {});
+    case type.Delete_Option:
+      let DeleteDataList = Immutable.List(state.allDataList);
+      DeleteDataList = DeleteDataList.delete(action.optionIndex);
+      return {
+        ...state,
+        ...{ allDataList: DeleteDataList.toJS() },
+      };
     default:
       return state;
   }

@@ -36,3 +36,10 @@ export const addOption = (optionInfo) => {
     optionInfo: optionInfo,
   };
 };
+
+export const deleteOption = (optionIndex) => {
+  return {
+    type: type.Delete_Option,
+    optionIndex: optionIndex,
+  };
+};

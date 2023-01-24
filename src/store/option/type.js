@@ -8,3 +8,5 @@ export const Set_Current_Option_index = "set_current_option_index";
 export const Open_App_By_Index = "open_app_by_index";
 // 添加option
 export const Add_Option = "add_option";
+// 删除option
+export const Delete_Option = "delte_option"

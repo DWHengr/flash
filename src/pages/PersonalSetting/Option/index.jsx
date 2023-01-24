@@ -2,7 +2,7 @@ import "./index.css";
 import "./iconfont.css";
 import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { addOption } from "../../../store/option/action";
+import { addOption, deleteOption } from "../../../store/option/action";
 import { setOptionIcon } from "../../../utils/flash";
 export default function Option() {
   const [isCreateOption, setIsCreateOption] = useState(false);
@@ -151,6 +151,9 @@ export default function Option() {
                     </div>
                     <div className="option-operate-icon">
                       <i
+                        onClick={() => {
+                          dispatch(deleteOption(index));
+                        }}
                         style={{ fontSize: 20, marginRight: 5 }}
                         className="option-add-bar-button-icon iconfont icon-shanchu"
                       />
