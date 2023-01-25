@@ -151,6 +151,10 @@ export default function Option() {
                     </div>
                     <div className="option-operate-icon">
                       <i
+                        style={{ fontSize: 20, marginRight: 5 }}
+                        className="option-add-bar-button-icon iconfont icon-wenbenshuru"
+                      />
+                      <i
                         onClick={() => {
                           dispatch(deleteOption(index));
                         }}
