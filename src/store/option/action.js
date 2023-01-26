@@ -43,3 +43,11 @@ export const deleteOption = (optionIndex) => {
     optionIndex: optionIndex,
   };
 };
+
+export const editOption = (optionIndex, optionInfo) => {
+  return {
+    type: type.Edit_Option,
+    optionIndex: optionIndex,
+    optionInfo: optionInfo,
+  };
+};

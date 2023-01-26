@@ -2,10 +2,15 @@ import "./index.css";
 import "./iconfont.css";
 import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { addOption, deleteOption } from "../../../store/option/action";
+import {
+  addOption,
+  deleteOption,
+  editOption,
+} from "../../../store/option/action";
 import { setOptionIcon } from "../../../utils/flash";
 export default function Option() {
   const [isCreateOption, setIsCreateOption] = useState(false);
+  const [isEditOption, setIsEditOption] = useState(false);
   const optionData = useSelector((state) => state.optionData);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [optionInfo, setOptionInfo] = useState({
@@ -86,6 +91,14 @@ export default function Option() {
               <i
                 onClick={() => {
                   setIsCreateOption(true);
+                  setIsEditOption(false);
+                  setOptionInfo({
+                    name: "",
+                    option_type: "",
+                    open_in: "",
+                    path: "",
+                    describe: "",
+                  });
                 }}
                 style={{ fontSize: 30 }}
                 className="option-add-bar-button-icon iconfont icon-zhankai"
@@ -96,6 +109,7 @@ export default function Option() {
                 <i
                   onClick={() => {
                     setIsCreateOption(false);
+                    setIsEditOption(false);
                   }}
                   style={{ fontSize: 30 }}
                   className="option-add-bar-button-icon iconfont icon-shouqi"
@@ -115,7 +129,9 @@ export default function Option() {
                     style={{ fontSize: 20 }}
                     onClick={() => {
                       setOptionIcon(optionInfo);
-                      dispatch(addOption(optionInfo));
+                      if (isEditOption)
+                        dispatch(editOption(currentIndex, optionInfo));
+                      else dispatch(addOption(optionInfo));
                     }}
                     className="option-add-bar-button-icon iconfont icon-chuli"
                   />
@@ -135,6 +151,9 @@ export default function Option() {
                     className="seek-option "
                     onClick={() => {
                       setCurrentIndex(index);
+                      if (isEditOption) {
+                        setOptionInfo({ ...item });
+                      }
                     }}
                     style={{
                       backgroundColor:
@@ -151,6 +170,11 @@ export default function Option() {
                     </div>
                     <div className="option-operate-icon">
                       <i
+                        onClick={() => {
+                          setIsCreateOption(true);
+                          setIsEditOption(true);
+                          setOptionInfo({ ...item });
+                        }}
                         style={{ fontSize: 20, marginRight: 5 }}
                         className="option-add-bar-button-icon iconfont icon-wenbenshuru"
                       />
