@@ -1,6 +1,6 @@
 import "./index.css";
 import "./iconfont.css";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import {
   addOption,
@@ -8,10 +8,13 @@ import {
   editOption,
 } from "../../../store/option/action";
 import { setOptionIcon } from "../../../utils/flash";
+import { updateConfig } from "../../../utils/command";
 export default function Option() {
   const [isCreateOption, setIsCreateOption] = useState(false);
   const [isEditOption, setIsEditOption] = useState(false);
   const optionData = useSelector((state) => state.optionData);
+  const settingData = useSelector((state) => state.settingData);
+  const allDataList = useSelector((state) => state.optionData.allDataList);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [optionInfo, setOptionInfo] = useState({
     name: "",
@@ -26,6 +29,14 @@ export default function Option() {
     const { name, value } = event.target;
     setOptionInfo({ ...optionInfo, [name]: value });
   };
+
+  useEffect(() => {
+    updateConfig(optionData, settingData).then(async (res) => {
+      if (res) {
+        console.log(res);
+      }
+    });
+  }, [allDataList]);
 
   return (
     <div style={{ height: 350 }}>
