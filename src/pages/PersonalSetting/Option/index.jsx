@@ -38,6 +38,16 @@ export default function Option() {
     });
   }, [allDataList]);
 
+  const onOptionInfoReset = () => {
+    setOptionInfo({
+      name: "",
+      option_type: "",
+      open_in: "",
+      path: "",
+      describe: "",
+    });
+  };
+
   return (
     <div style={{ height: 350 }}>
       <div className="create-box">
@@ -103,13 +113,7 @@ export default function Option() {
                 onClick={() => {
                   setIsCreateOption(true);
                   setIsEditOption(false);
-                  setOptionInfo({
-                    name: "",
-                    option_type: "",
-                    open_in: "",
-                    path: "",
-                    describe: "",
-                  });
+                  onOptionInfoReset();
                 }}
                 style={{ fontSize: 30 }}
                 className="option-add-bar-button-icon iconfont icon-zhankai"
@@ -133,6 +137,9 @@ export default function Option() {
                   }}
                 >
                   <i
+                    onClick={() => {
+                      onOptionInfoReset();
+                    }}
                     style={{ fontSize: 20, marginRight: 5 }}
                     className="option-add-bar-button-icon iconfont icon-bohui"
                   />
