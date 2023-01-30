@@ -1,6 +1,7 @@
 import "./index.css";
 import { useState } from "react";
 import FlahsInput from "../../../components/FlashInput";
+import user from "../../../api/user";
 export default function Login() {
   const [userinfo, setUserinfo] = useState({ username: "", password: "" });
   const [loginMsg, setLoginMsg] = useState("");
@@ -20,6 +21,11 @@ export default function Login() {
       return;
     }
     setLoginMsg("");
+    user.login(userinfo).then((res) => {
+      if (res.code == 0) {
+        localStorage.setItem("token", res.data.token);
+      }
+    });
   };
   return (
     <div className={"login-register-box"}>
