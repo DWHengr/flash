@@ -1,5 +1,6 @@
 import { useState } from "react";
 import FlahsInput from "../../../components/FlashInput";
+import user from "../../../api/user";
 export default function Register() {
   const [userinfo, setUserinfo] = useState({
     username: "",
@@ -31,6 +32,9 @@ export default function Register() {
       return;
     }
     setRegisterMsg("");
+    user.register(userinfo).then(res=>{
+      console.log(res);
+    })
   };
 
   return (
