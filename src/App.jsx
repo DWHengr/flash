@@ -2,7 +2,7 @@ import { useState, useEffect, useRef } from "react";
 import { invoke } from "@tauri-apps/api/tauri";
 import "./App.css";
 import { PhysicalSize, appWindow } from "@tauri-apps/api/window";
-import { getClient, ResponseType } from "@tauri-apps/api/http";
+import { getClient } from "@tauri-apps/api/http";
 import AutosizeInput from "react-input-autosize";
 import {
   initOptionData,
@@ -10,6 +10,7 @@ import {
   setCurrentOptionIndex,
   openAppByIndex,
 } from "./store/option/action";
+import { initUser } from "./store/user/action";
 import { initSettingData } from "./store/setting/action";
 import PersonalSetting from "./pages/PersonalSetting";
 import Option from "./pages/Option";
@@ -37,6 +38,7 @@ function App() {
         dispatch(initSettingData(res.setting));
       }
     });
+    dispatch(initUser());
   }, []);
 
   const optionIcon = async (options) => {

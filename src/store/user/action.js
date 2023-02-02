@@ -6,8 +6,8 @@ export const setToken = (token) => {
   };
 };
 
-export const InitUser = () => {
+export const initUser = () => {
   return {
-    type: type.Set_Token,
+    type: type.Init_User,
   };
 };

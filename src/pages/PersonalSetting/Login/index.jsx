@@ -2,15 +2,19 @@ import "./index.css";
 import { useState } from "react";
 import FlahsInput from "../../../components/FlashInput";
 import user from "../../../api/user";
+import { useDispatch } from "react-redux";
+import { setToken } from "../../../store/user/action";
+import { useHistory } from "react-router";
 export default function Login() {
   const [userinfo, setUserinfo] = useState({ username: "", password: "" });
   const [loginMsg, setLoginMsg] = useState("");
+  const h = useHistory();
 
   const userinfoHandleChange = (event) => {
     const { name, value } = event.target;
     setUserinfo({ ...userinfo, [name]: value });
   };
-
+  const dispatch = useDispatch();
   const onLogin = () => {
     if (!userinfo.username) {
       setLoginMsg("用户名不能为空");
@@ -23,7 +27,8 @@ export default function Login() {
     setLoginMsg("");
     user.login(userinfo).then((res) => {
       if (res.code == 0) {
-        localStorage.setItem("token", res.data.token);
+        h.push("/personal/option");
+        dispatch(setToken(res.data.token));
       }
     });
   };
