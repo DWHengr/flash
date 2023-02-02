@@ -69,20 +69,27 @@ function App() {
     } else appWindow.setSize(new PhysicalSize(600, 60));
   };
 
-  const onKeyDown = async (e) => {
+  const ignoreKey = ["v", "a", "c"];
+
+  const onGlobalKeyDown = (e) =>{
+    if ((e.ctrlKey || e.altKey) && ignoreKey.indexOf(e.key) < 0) {
+      e.preventDefault();
+    }
+  }
+
+  useEffect(() => {
+    window.addEventListener('keydown', onGlobalKeyDown);
+    return () => {
+      window.removeEventListener('keydown', onGlobalKeyDown);
+    };
+  }, []);
+
+  const onKeyDown = (e) => {
     if (e.keyCode === 40 || e.keyCode === 38 || e.keyCode === 9) {
       e.preventDefault();
     }
     if (e.keyCode === 13 && content) {
       dispatch(openAppByIndex(optionData.optionIndex));
-    }
-  };
-
-  const ignoreKey = ["v", "a", "c"];
-
-  const onGlobalKeyDown = async (e) => {
-    if ((e.ctrlKey || e.altKey) && ignoreKey.indexOf(e.key) < 0) {
-      e.preventDefault();
     }
     if (e.keyCode === 27) {
       appWindow.hide();
@@ -127,7 +134,6 @@ function App() {
   return (
     <div
       className="mian-container"
-      onKeyDown={onGlobalKeyDown}
       onContextMenu={(e) => e.preventDefault()}
     >
       <div className="row">
