@@ -5,11 +5,13 @@ import Register from "./Register";
 import Setting from "./Setting";
 import Option from "./Option";
 import { useLoading } from "../../components/Loading";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { clearUser } from "../../store/user/action";
 
 export default function PersonalSetting() {
   const userDate = useSelector((state) => state.userData);
   const h = useHistory();
+  const dispatch = useDispatch();
   let loading = useLoading();
   return (
     <div
@@ -49,18 +51,30 @@ export default function PersonalSetting() {
           </button>
         </Link>
         {userDate?.isLogin && (
-          <button
-            onClick={() => {
-              loading.showLoading();
-              setTimeout(() => {
-                loading.hideLoading();
-              }, 3000);
-            }}
-            style={{ marginTop: 10 }}
-            className="primary-button"
-          >
-            数据同步
-          </button>
+          <div>
+            <button
+              onClick={() => {
+                loading.showLoading();
+                setTimeout(() => {
+                  loading.hideLoading();
+                }, 3000);
+              }}
+              style={{ marginTop: 10 }}
+              className="primary-button"
+            >
+              数据同步
+            </button>
+            <button
+              onClick={() => {
+                dispatch(clearUser());
+                h.push("/personal/login");
+              }}
+              style={{ marginTop: 10 }}
+              className="primary-button"
+            >
+              注销
+            </button>
+          </div>
         )}
         <div
           className="setting"
