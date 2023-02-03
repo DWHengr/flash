@@ -11,3 +11,9 @@ export const initUser = () => {
     type: type.Init_User,
   };
 };
+
+export const clearUser = () => {
+  return {
+    type: type.Clear_User,
+  };
+};

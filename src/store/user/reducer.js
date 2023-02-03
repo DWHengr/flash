@@ -15,6 +15,9 @@ export const userData = (state = defaultState, action) => {
     case type.Set_Token:
       localStorage.setItem("token", action.token);
       return { ...state, ...action, ...{ isLogin: true } };
+    case type.Clear_User:
+      localStorage.removeItem("token");
+      return { ...state, ...{ token: "", isLogin: false } };
     default:
       return state;
   }
