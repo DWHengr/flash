@@ -3,7 +3,7 @@ import { useState } from "react";
 import FlahsInput from "../../../components/FlashInput";
 import user from "../../../api/user";
 import { useDispatch } from "react-redux";
-import { setToken } from "../../../store/user/action";
+import { setUser } from "../../../store/user/action";
 import { useHistory } from "react-router";
 export default function Login() {
   const [userinfo, setUserinfo] = useState({ username: "", password: "" });
@@ -28,7 +28,7 @@ export default function Login() {
     user.login(userinfo).then((res) => {
       if (res.code == 0) {
         h.push("/personal/option");
-        dispatch(setToken(res.data.token));
+        dispatch(setUser(res.data.token, res.data.username));
       }
     });
   };

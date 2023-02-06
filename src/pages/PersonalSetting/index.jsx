@@ -30,7 +30,9 @@ export default function PersonalSetting() {
         }}
       >
         <img className="head-portrait" src="/headPortrait.svg" />
-        <div className="user-name">用户名</div>
+        <div className="user-name">
+          {userDate?.isLogin ? userDate.username : "用户名"}
+        </div>
         {!userDate?.isLogin && (
           <div>
             <Link to="/personal/login">
