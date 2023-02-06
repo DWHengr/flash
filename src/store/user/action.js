@@ -1,8 +1,9 @@
 import * as type from "./type";
-export const setToken = (token) => {
+export const setUser = (token, username) => {
   return {
     type: type.Set_Token,
     token: token,
+    username: username,
   };
 };
 
