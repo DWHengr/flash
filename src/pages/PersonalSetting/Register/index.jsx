@@ -32,13 +32,22 @@ export default function Register() {
       return;
     }
     setRegisterMsg("");
-    user.register(userinfo).then(res=>{
-      console.log(res);
-    })
+    user
+      .register(userinfo)
+      .then((res) => {
+        if (res.code == 0) {
+          console.log(res);
+        } else {
+          setLoginMsg(res.msg);
+        }
+      })
+      .catch((res) => {
+        setLoginMsg(res.message);
+      });
   };
 
   return (
-    <div  className={"login-register-box"}>
+    <div className={"login-register-box"}>
       <label
         style={{ fontSize: 20, color: "rgb(155, 155, 155)", marginBottom: 10 }}
       >
