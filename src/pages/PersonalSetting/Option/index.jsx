@@ -145,10 +145,10 @@ export default function Option() {
                   />
                   <i
                     style={{ fontSize: 20 }}
-                    onClick={() => {
-                      setOptionIcon(optionInfo);
+                    onClick={async() => {
+                      await setOptionIcon(optionInfo);
                       if (isEditOption)
-                        dispatch(editOption(currentIndex, optionInfo));
+                      dispatch(editOption(currentIndex, optionInfo));
                       else dispatch(addOption(optionInfo));
                     }}
                     className="option-add-bar-button-icon iconfont icon-chuli"

@@ -2,7 +2,6 @@ import { useState, useEffect, useRef } from "react";
 import { invoke } from "@tauri-apps/api/tauri";
 import "./App.css";
 import { PhysicalSize, appWindow } from "@tauri-apps/api/window";
-import { getClient } from "@tauri-apps/api/http";
 import AutosizeInput from "react-input-autosize";
 import {
   initOptionData,
@@ -42,7 +41,6 @@ function App() {
   }, []);
 
   const optionIcon = async (options) => {
-    const client = await getClient();
     for (let index = 0; index < options?.length; index++) {
       let o = options[index];
       setOptionIcon(o);

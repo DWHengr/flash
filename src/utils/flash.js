@@ -1,6 +1,7 @@
-export function setOptionIcon(o) {
+import { getClient } from "@tauri-apps/api/http";
+export async function setOptionIcon(o) {
   o.icon = "/icon.svg";
-
+  const client = await getClient();
   if (o.option_type == "project") o.icon = "/project.svg";
   if (o.option_type == "file") o.icon = "/file.svg";
   if (o.option_type == "app") o.icon = "/app.svg";
@@ -10,13 +11,23 @@ export function setOptionIcon(o) {
     try {
       let pattern = new RegExp("^https?://[^/]*", "i");
       let domain = pattern.exec(o.path);
-      if (domain)
+      let url = "";
+      if (!domain) {
+        let pattern = new RegExp("([^/]*)", "i");
+        let domain = pattern.exec(o.path);
+        if (domain) url = "http://" + domain[0];
+      } else {
+        url = domain[0];
+      }
+      console.log(url)
+      if (url)
         client
-          .get(domain[0] + "/favicon.ico", {
-            timeout: 5,
-            responseType: ResponseType.Binary,
+          .get(url + "/favicon.ico", {
+            timeout: 60,
+            responseType: 3,
           })
           .then((res) => {
+            console.log(res);
             if (res?.status == 200) {
               o.icon =
                 "data:image/png;base64," +
@@ -28,6 +39,8 @@ export function setOptionIcon(o) {
                 );
             }
           });
-    } catch {}
+    } catch (res) {
+      console.log(res);
+    }
   }
 }
