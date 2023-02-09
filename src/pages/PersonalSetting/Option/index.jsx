@@ -16,6 +16,7 @@ export default function Option() {
   const settingData = useSelector((state) => state.settingData);
   const allDataList = useSelector((state) => state.optionData.allDataList);
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [operationMsg, setOperationMsg] = useState("");
   const [optionInfo, setOptionInfo] = useState({
     name: "",
     option_type: "",
@@ -107,10 +108,22 @@ export default function Option() {
           </div>
         )}
         <div className="option-add-bar">
+          <div
+            style={{
+              position: "absolute",
+              left: "80px",
+              lineHeight: "40px",
+              display: "inline-block",
+              color: "#FCDA01",
+            }}
+          >
+            {operationMsg}
+          </div>
           <div className="option-add-bar-button">
             {!isCreateOption && (
               <i
                 onClick={() => {
+                  setOperationMsg("");
                   setIsCreateOption(true);
                   setIsEditOption(false);
                   onOptionInfoReset();
@@ -123,6 +136,7 @@ export default function Option() {
               <div style={{ weith: "100%", position: "relative" }}>
                 <i
                   onClick={() => {
+                    setOperationMsg("");
                     setIsCreateOption(false);
                     setIsEditOption(false);
                   }}
@@ -138,6 +152,7 @@ export default function Option() {
                 >
                   <i
                     onClick={() => {
+                      setOperationMsg("");
                       onOptionInfoReset();
                     }}
                     style={{ fontSize: 20, marginRight: 5 }}
@@ -145,10 +160,23 @@ export default function Option() {
                   />
                   <i
                     style={{ fontSize: 20 }}
-                    onClick={async() => {
+                    onClick={async () => {
+                      setOperationMsg("");
+                      if (!optionInfo.name) {
+                        setOperationMsg("名称不能为空");
+                        return;
+                      }
+                      if (!optionInfo.option_type) {
+                        setOperationMsg("类型不能为空");
+                        return;
+                      }
+                      if (!optionInfo.path) {
+                        setOperationMsg("路径不能为空");
+                        return;
+                      }
                       await setOptionIcon(optionInfo);
                       if (isEditOption)
-                      dispatch(editOption(currentIndex, optionInfo));
+                        dispatch(editOption(currentIndex, optionInfo));
                       else dispatch(addOption(optionInfo));
                     }}
                     className="option-add-bar-button-icon iconfont icon-chuli"
@@ -189,6 +217,7 @@ export default function Option() {
                     <div className="option-operate-icon">
                       <i
                         onClick={() => {
+                          setOperationMsg("");
                           setIsCreateOption(true);
                           setIsEditOption(true);
                           setOptionInfo({ ...item });
