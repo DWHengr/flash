@@ -2,6 +2,8 @@ use std::{fs::File, io::Write, os::windows::process::CommandExt, process::Comman
 
 use serde::{Deserialize, Serialize};
 
+use regex::Regex;
+
 #[derive(Debug, Serialize, Deserialize, Clone)]
 pub struct App {
     name: String,
@@ -71,9 +73,15 @@ pub fn open_app(option_type: String, open_in: String, path: String) -> &'static 
         if !open_in.is_empty() {
             open_type = &open_in;
         }
+        let re = Regex::new(r"^https?://").unwrap();
+        let prefixed_url = if re.is_match(&path) {
+            path.to_string()
+        } else {
+            format!("http://{}", path)
+        };
         cmd.arg("/c")
             .arg(open_type)
-            .arg(&path)
+            .arg(&prefixed_url)
             .spawn()
             .expect("cmd exec error!");
     }
