@@ -1,8 +1,8 @@
 @font-face {
   font-family: "iconfont"; /* Project id 3859557 */
-  src: url('iconfont.woff2?t=1674608472994') format('woff2'),
-       url('iconfont.woff?t=1674608472994') format('woff'),
-       url('iconfont.ttf?t=1674608472994') format('truetype');
+  src: url('iconfont.woff2?t=1675944072931') format('woff2'),
+       url('iconfont.woff?t=1675944072931') format('woff'),
+       url('iconfont.ttf?t=1675944072931') format('truetype');
 }
 
 .iconfont {
@@ -11,6 +11,10 @@
   font-style: normal;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-yunshangchuan:before {
+  content: "\eb2c";
 }
 
 .icon-wenbenshuru:before {

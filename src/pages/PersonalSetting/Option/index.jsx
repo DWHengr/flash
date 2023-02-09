@@ -120,70 +120,86 @@ export default function Option() {
             {operationMsg}
           </div>
           <div className="option-add-bar-button">
-            {!isCreateOption && (
-              <i
-                onClick={() => {
-                  setOperationMsg("");
-                  setIsCreateOption(true);
-                  setIsEditOption(false);
-                  onOptionInfoReset();
-                }}
-                style={{ fontSize: 30 }}
-                className="option-add-bar-button-icon iconfont icon-zhankai"
-              />
-            )}
-            {isCreateOption && (
-              <div style={{ weith: "100%", position: "relative" }}>
-                <i
-                  onClick={() => {
-                    setOperationMsg("");
-                    setIsCreateOption(false);
-                    setIsEditOption(false);
-                  }}
-                  style={{ fontSize: 30 }}
-                  className="option-add-bar-button-icon iconfont icon-shouqi"
-                />
-                <div
-                  style={{
-                    position: "absolute",
-                    right: "85px",
-                    display: "inline-block",
-                  }}
-                >
+            <div style={{ weith: "100%", position: "relative" }}>
+              {!isCreateOption && (
+                <div>
                   <i
                     onClick={() => {
                       setOperationMsg("");
+                      setIsCreateOption(true);
+                      setIsEditOption(false);
                       onOptionInfoReset();
                     }}
-                    style={{ fontSize: 20, marginRight: 5 }}
-                    className="option-add-bar-button-icon iconfont icon-bohui"
+                    style={{ fontSize: 30 }}
+                    className="option-add-bar-button-icon iconfont icon-zhankai"
                   />
-                  <i
-                    style={{ fontSize: 20 }}
-                    onClick={async () => {
-                      setOperationMsg("");
-                      if (!optionInfo.name) {
-                        setOperationMsg("名称不能为空");
-                        return;
-                      }
-                      if (!optionInfo.option_type) {
-                        setOperationMsg("类型不能为空");
-                        return;
-                      }
-                      if (!optionInfo.path) {
-                        setOperationMsg("路径不能为空");
-                        return;
-                      }
-                      await setOptionIcon(optionInfo);
-                      if (isEditOption)
-                        dispatch(editOption(currentIndex, optionInfo));
-                      else dispatch(addOption(optionInfo));
+                  <div
+                    style={{
+                      position: "absolute",
+                      right: "3px",
+                      display: "inline-block",
                     }}
-                    className="option-add-bar-button-icon iconfont icon-chuli"
-                  />
+                  >
+                    <i
+                      style={{ fontSize: 28, marginRight: 5 }}
+                      className="option-add-bar-button-icon iconfont icon-yunshangchuan"
+                    />
+                  </div>
                 </div>
-              </div>
-            )}
+              )}
+              {isCreateOption && (
+                <div>
+                  <i
+                    onClick={() => {
+                      setOperationMsg("");
+                      setIsCreateOption(false);
+                      setIsEditOption(false);
+                    }}
+                    style={{ fontSize: 30 }}
+                    className="option-add-bar-button-icon iconfont icon-shouqi"
+                  />
+                  <div
+                    style={{
+                      position: "absolute",
+                      right: "85px",
+                      display: "inline-block",
+                    }}
+                  >
+                    <i
+                      onClick={() => {
+                        setOperationMsg("");
+                        onOptionInfoReset();
+                      }}
+                      style={{ fontSize: 20, marginRight: 5 }}
+                      className="option-add-bar-button-icon iconfont icon-bohui"
+                    />
+                    <i
+                      style={{ fontSize: 20 }}
+                      onClick={async () => {
+                        setOperationMsg("");
+                        if (!optionInfo.name) {
+                          setOperationMsg("名称不能为空");
+                          return;
+                        }
+                        if (!optionInfo.option_type) {
+                          setOperationMsg("类型不能为空");
+                          return;
+                        }
+                        if (!optionInfo.path) {
+                          setOperationMsg("路径不能为空");
+                          return;
+                        }
+                        await setOptionIcon(optionInfo);
+                        if (isEditOption)
+                          dispatch(editOption(currentIndex, optionInfo));
+                        else dispatch(addOption(optionInfo));
+                      }}
+                      className="option-add-bar-button-icon iconfont icon-chuli"
+                    />
+                  </div>
+                </div>
+              )}
+            </div>
             <div
               style={{
                 overflowY: "scroll",
