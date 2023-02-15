@@ -11,8 +11,10 @@ export function useLoading() {
 export default function Loading(props) {
   const [isLoading, setIsLoading] = useState(false);
   const [isShowSuccessMsg, setIsShowSuccessMsg] = useState(false);
+  const [tip, setTip] = useState("");
 
-  const showLoading = useCallback(() => {
+  const showLoading = useCallback((tip = "正在加载中") => {
+    setTip(tip);
     setIsShowSuccessMsg(false);
     setIsLoading(true);
   }, []);
@@ -41,7 +43,7 @@ export default function Loading(props) {
                   <img className="loading-icon-box" src="/finish.svg" />
                 )}
               </div>
-              {!isShowSuccessMsg && <div>正在加载中</div>}
+              {!isShowSuccessMsg && <div>{tip}</div>}
               {isShowSuccessMsg && (
                 <div style={{ color: "#38E274" }}>加载完成</div>
               )}
