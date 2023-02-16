@@ -9,6 +9,9 @@ import {
 } from "../../../store/option/action";
 import { setOptionIcon } from "../../../utils/flash";
 import { updateConfig } from "../../../utils/command";
+import collocate from "../../../api/collocate";
+import { useLoading } from "../../../components/Loading";
+
 export default function Option() {
   const [isCreateOption, setIsCreateOption] = useState(false);
   const [isEditOption, setIsEditOption] = useState(false);
@@ -25,6 +28,7 @@ export default function Option() {
     describe: "",
   });
   const dispatch = useDispatch();
+  const loading = useLoading();
 
   const optionInfoHandleChange = (event) => {
     const { name, value } = event.target;
@@ -47,6 +51,24 @@ export default function Option() {
       path: "",
       describe: "",
     });
+  };
+
+  const onUploadCloud = () => {
+    let config = {
+      option: optionData,
+      setting: settingData,
+    };
+    loading.showLoading("上传中...");
+    collocate
+      .create({ collocateContents: JSON.stringify(config) })
+      .then((res) => {
+        console.log(res);
+      })
+      .finally(() => {
+        setTimeout(() => {
+          loading.hideLoading();
+        }, 1000);
+      });
   };
 
   return (
@@ -142,6 +164,7 @@ export default function Option() {
                   >
                     <i
                       style={{ fontSize: 28, marginRight: 5 }}
+                      onClick={onUploadCloud}
                       className="option-add-bar-button-icon iconfont icon-yunshangchuan"
                     />
                   </div>
