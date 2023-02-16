@@ -3,7 +3,7 @@ import axios from "axios";
 const SERVICE_URL = "http://" + "127.0.0.1:3000";
 
 axios.interceptors.request.use((config) => {
-  config.headers["Token"] = ""; //todo set token
+  config.headers["Token"] = localStorage.getItem("token");
   return config;
 });
 
