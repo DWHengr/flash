@@ -8,6 +8,21 @@ import { useLoading } from "../../components/Loading";
 import { useSelector, useDispatch } from "react-redux";
 import { clearUser } from "../../store/user/action";
 
+function PrivateRoute({ component: Component, ...rest }) {
+  console.log(2);
+  const dispatch = useDispatch();
+  const token = localStorage.getItem("token");
+  if (!token) dispatch(clearUser());
+  return (
+    <Route
+      {...rest}
+      render={(props) =>
+        token ? <Component {...props} /> : <Redirect to="/personal/login" />
+      }
+    />
+  );
+}
+
 export default function PersonalSetting() {
   const userDate = useSelector((state) => state.userData);
   const h = useHistory();
@@ -92,7 +107,7 @@ export default function PersonalSetting() {
           <Route exact path="/personal/login" component={Login}></Route>
           <Route exact path="/personal/register" component={Register}></Route>
           <Route exact path="/personal/setting" component={Setting}></Route>
-          <Route exact path="/personal/option" component={Option}></Route>
+          <PrivateRoute exact path="/personal/option" component={Option}></PrivateRoute>
           {userDate?.isLogin ? (
             <Redirect to="/personal/option" />
           ) : (
