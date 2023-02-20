@@ -17,6 +17,7 @@ export default function Option() {
   const [isEditOption, setIsEditOption] = useState(false);
   const optionData = useSelector((state) => state.optionData);
   const settingData = useSelector((state) => state.settingData);
+  const userDate = useSelector((state) => state.userData);
   const allDataList = useSelector((state) => state.optionData.allDataList);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [operationMsg, setOperationMsg] = useState("");
@@ -162,11 +163,13 @@ export default function Option() {
                       display: "inline-block",
                     }}
                   >
-                    <i
-                      style={{ fontSize: 28, marginRight: 5 }}
-                      onClick={onUploadCloud}
-                      className="option-add-bar-button-icon iconfont icon-yunshangchuan"
-                    />
+                    {userDate?.isLogin && (
+                      <i
+                        style={{ fontSize: 28, marginRight: 5 }}
+                        onClick={onUploadCloud}
+                        className="option-add-bar-button-icon iconfont icon-yunshangchuan"
+                      />
+                    )}
                   </div>
                 </div>
               )}

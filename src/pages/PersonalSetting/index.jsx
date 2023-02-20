@@ -107,7 +107,7 @@ export default function PersonalSetting() {
           <Route exact path="/personal/login" component={Login}></Route>
           <Route exact path="/personal/register" component={Register}></Route>
           <Route exact path="/personal/setting" component={Setting}></Route>
-          <PrivateRoute exact path="/personal/option" component={Option}></PrivateRoute>
+          <Route exact path="/personal/option" component={Option}></Route>
           {userDate?.isLogin ? (
             <Redirect to="/personal/option" />
           ) : (
