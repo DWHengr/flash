@@ -11,6 +11,7 @@ import { setOptionIcon } from "../../../utils/flash";
 import { updateConfig } from "../../../utils/command";
 import collocate from "../../../api/collocate";
 import { useLoading } from "../../../components/Loading";
+import DropdownMenu from "../../../components/DropdownMenu";
 
 export default function Option() {
   const [isCreateOption, setIsCreateOption] = useState(false);
@@ -91,11 +92,13 @@ export default function Option() {
             <div className="option">
               <div className="option-key">类型：</div>
               <div className="option-value input-box">
-                <input
-                  name="option_type"
-                  onChange={optionInfoHandleChange}
+                <DropdownMenu
+                  onSelect={(value) => {
+                    setOptionInfo({ ...optionInfo, option_type: value });
+                  }}
                   value={optionInfo.option_type}
-                />
+                  options={["link", "file", "project", "app", "folder"]}
+                ></DropdownMenu>
               </div>
             </div>
             <div className="option">
