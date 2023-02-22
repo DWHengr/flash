@@ -96,6 +96,7 @@ export default function Option() {
                   onSelect={(value) => {
                     setOptionInfo({ ...optionInfo, option_type: value });
                   }}
+                  readOnly
                   value={optionInfo.option_type}
                   options={["link", "file", "project", "app", "folder"]}
                 ></DropdownMenu>
