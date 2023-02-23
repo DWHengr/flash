@@ -3,6 +3,7 @@ import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { setSearchTxt, setShortcutCmd } from "../../../store/setting/action";
 import { updateConfig } from "../../../utils/command";
+import DropdownMenu from "../../../components/DropdownMenu";
 export default function Setting() {
   const optionData = useSelector((state) => state.optionData);
   const settingData = useSelector((state) => state.settingData);
@@ -15,27 +16,27 @@ export default function Setting() {
   const onKeyDown = (event) => {
     let shortcut = event.key;
     if (event.ctrlKey && event.altKey) {
-      if (shortcut == "Control" || shortcut == "Alt") shortcut = "Alt+Ctrl+";
+      if (shortcut == "Control" || shortcut == "Alt") shortcut = "alt+ctrl+";
       else {
-        shortcut = `Alt+Ctrl+${shortcut}`;
+        shortcut = `alt+ctrl+${shortcut}`;
         dispatch(setShortcutCmd(shortcut));
       }
       setShortcut(shortcut);
       return;
     }
     if (event.ctrlKey) {
-      if (shortcut == "Control") shortcut = "Ctrl+";
+      if (shortcut == "Control") shortcut = "ctrl+";
       else {
-        shortcut = `Ctrl+${shortcut}`;
+        shortcut = `ctrl+${shortcut}`;
         dispatch(setShortcutCmd(shortcut));
       }
       setShortcut(shortcut);
       return;
     }
     if (event.altKey) {
-      if (shortcut == "Alt") shortcut = "Alt+";
+      if (shortcut == "Alt") shortcut = "alt+";
       else {
-        shortcut = `Alt+${shortcut}`;
+        shortcut = `alt+${shortcut}`;
         dispatch(setShortcutCmd(shortcut));
       }
       setShortcut(shortcut);
@@ -57,21 +58,26 @@ export default function Setting() {
       <div className="setting-option">
         <div className="setting-option-key">显示/隐藏快捷键</div>
         <div className="setting-option-value shortcut-input-box">
-          <input
-            style={{ caretColor: "transparent" }}
+          <DropdownMenu
+            width={185}
             onKeyDown={onKeyDown}
             value={shortcut}
             onBlur={() => {
               if (
                 shortcut != oldShortcut &&
-                shortcut != "Alt+Ctrl+" &&
-                shortcut != "Alt+" &&
-                shortcut != "Ctrl+"
+                shortcut != "alt+ctrl+" &&
+                shortcut != "alt+" &&
+                shortcut != "ctrl+"
               ) {
                 onBlur();
                 setOldShortcut(shortcut);
               }
             }}
+            onSelect={(value) => {
+              setShortcut(value);
+              dispatch(setShortcutCmd(value));
+            }}
+            options={["alt+space", "ctrl+space", "alt+ctrl+space"]}
             readOnly
           />
         </div>
