@@ -37,8 +37,8 @@ export default function Record() {
     },
     {
       name: "测试",
-      time: "2022-1-12 22:22:22",
-    }
+      time: "时间",
+    },
   ];
   return (
     <div>
@@ -61,6 +61,14 @@ export default function Record() {
                 <div className="seek-option-describe">{item.time}</div>
               </div>
               <div className="option-operate-icon">
+                <i
+                  style={{ fontSize: 20, marginRight: 5 }}
+                  className="option-add-bar-button-icon iconfont icon-yunxiazai"
+                />
+                <i
+                  style={{ fontSize: 20, marginRight: 5 }}
+                  className="option-add-bar-button-icon iconfont icon-shanchu"
+                />
               </div>
             </div>
           );
