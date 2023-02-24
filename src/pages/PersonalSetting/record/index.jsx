@@ -1,5 +1,6 @@
 import "./index.css";
 import { useState } from "react";
+import EditableTxt from "../../../components/EditableTxt";
 export default function Record() {
   const [currentIndex, setCurrentIndex] = useState(0);
   let collocateList = [
@@ -57,7 +58,12 @@ export default function Record() {
               }}
             >
               <div style={{ display: "inline-block", marginLeft: "8px" }}>
-                <div className="seek-option-name">{item.name}</div>
+                <EditableTxt
+                  className="seek-option-name"
+                  onBlur={(e, f) => console.log(e, f)}
+                >
+                  {item.name}
+                </EditableTxt>
                 <div className="seek-option-describe">{item.time}</div>
               </div>
               <div className="option-operate-icon">
