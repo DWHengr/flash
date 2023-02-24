@@ -1,0 +1,15 @@
+.editalbe-txt input {
+  display: inline-block;
+  outline: none;
+  border: none;
+  width: 120px;
+  margin-bottom: 2px;
+  color: rgb(255, 255, 255);
+  border-bottom: 1px solid #fff;
+  background-color: transparent;
+}
+
+.editalbe-txt input:hover,
+input:focus {
+  border-bottom: 1px solid #fff;
+}
