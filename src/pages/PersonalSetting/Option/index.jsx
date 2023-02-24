@@ -1,5 +1,4 @@
 import "./index.css";
-import "./iconfont.css";
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import {

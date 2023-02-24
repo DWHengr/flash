@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import { invoke } from "@tauri-apps/api/tauri";
 import "./App.css";
+import "./icon/iconfont.css";
 import { PhysicalSize, appWindow } from "@tauri-apps/api/window";
 import AutosizeInput from "react-input-autosize";
 import {
