@@ -4,6 +4,7 @@ import Login from "./Login";
 import Register from "./Register";
 import Setting from "./Setting";
 import Option from "./Option";
+import Record from "./record";
 import { useLoading } from "../../components/Loading";
 import { useSelector, useDispatch } from "react-redux";
 import { clearUser } from "../../store/user/action";
@@ -67,6 +68,11 @@ export default function PersonalSetting() {
             选项设置
           </button>
         </Link>
+        <Link to="/personal/record">
+          <button style={{ marginTop: 10 }} className="primary-button">
+            同步记录
+          </button>
+        </Link>
         {userDate?.isLogin && (
           <div>
             <button
@@ -108,6 +114,7 @@ export default function PersonalSetting() {
           <Route exact path="/personal/register" component={Register}></Route>
           <Route exact path="/personal/setting" component={Setting}></Route>
           <Route exact path="/personal/option" component={Option}></Route>
+          <Route exact path="/personal/record" component={Record}></Route>
           {userDate?.isLogin ? (
             <Redirect to="/personal/option" />
           ) : (
