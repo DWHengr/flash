@@ -10,7 +10,6 @@ import { useSelector, useDispatch } from "react-redux";
 import { clearUser } from "../../store/user/action";
 
 function PrivateRoute({ component: Component, ...rest }) {
-  console.log(2);
   const dispatch = useDispatch();
   const token = localStorage.getItem("token");
   if (!token) dispatch(clearUser());

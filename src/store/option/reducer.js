@@ -52,7 +52,6 @@ export const optionData = (state = defaultState, action) => {
         ...{ allDataList: DeleteDataList.toJS() },
       };
     case type.Edit_Option:
-      console.log(action.optionIndex, action.optionInfo)
       let EditDataList = Immutable.List(state.allDataList);
       EditDataList = EditDataList.set(action.optionIndex, action.optionInfo);
       return {

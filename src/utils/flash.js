@@ -19,7 +19,6 @@ export async function setOptionIcon(o) {
       } else {
         url = domain[0];
       }
-      console.log(url)
       if (url)
         client
           .get(url + "/favicon.ico", {
@@ -27,7 +26,6 @@ export async function setOptionIcon(o) {
             responseType: 3,
           })
           .then((res) => {
-            console.log(res);
             if (res?.status == 200) {
               o.icon =
                 "data:image/png;base64," +
