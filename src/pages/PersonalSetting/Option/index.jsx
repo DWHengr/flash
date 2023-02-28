@@ -55,11 +55,20 @@ export default function Option() {
   };
 
   const onUploadCloud = () => {
+    loading.showLoading("上传中...");
+    const option = optionData.allDataList?.map((item) => {
+      return {
+        name: item.name,
+        option_type: item.option_type,
+        open_in: item.open_in,
+        path: item.path,
+        describe: item.describe,
+      };
+    });
     let config = {
-      option: optionData,
+      option: option,
       setting: settingData,
     };
-    loading.showLoading("上传中...");
     collocate
       .create({ collocateContents: JSON.stringify(config) })
       .then((res) => {
