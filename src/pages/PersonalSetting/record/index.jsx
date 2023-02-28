@@ -45,6 +45,18 @@ export default function Record() {
       });
   };
 
+  const handleOnUpdate = (item, index, value) => {
+    setOperationMsg("");
+    collocate
+      .update({ id: item.id, collocateName: value })
+      .then((res) => {
+        if (res.code != 0) setOperationMsg("修改失败");
+      })
+      .catch(() => {
+        setOperationMsg("修改失败");
+      });
+  };
+
   return (
     <div>
       <div className="option-bar">
@@ -79,7 +91,11 @@ export default function Record() {
               <div style={{ display: "inline-block", marginLeft: "8px" }}>
                 <EditableTxt
                   className="seek-option-name"
-                  onBlur={(e, f) => console.log(e, f)}
+                  onBlur={(e, f) => {
+                    if (f) {
+                      handleOnUpdate(item, index, e.target.value);
+                    }
+                  }}
                 >
                   {item.collocateName}
                 </EditableTxt>
