@@ -1,46 +1,19 @@
 import "./index.css";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import EditableTxt from "../../../components/EditableTxt";
+import collocate from "../../../api/collocate";
+import { formatDate } from "../../../utils/flash";
 export default function Record() {
   const [currentIndex, setCurrentIndex] = useState(0);
-  let collocateList = [
-    {
-      name: "测试",
-      time: "2022-1-12 22:22:22",
-    },
-    {
-      name: "测试",
-      time: "2022-1-12 22:22:22",
-    },
-    {
-      name: "测试",
-      time: "2022-1-12 22:22:22",
-    },
-    {
-      name: "测试",
-      time: "2022-1-12 22:22:22",
-    },
-    {
-      name: "测试",
-      time: "2022-1-12 22:22:22",
-    },
-    {
-      name: "测试",
-      time: "2022-1-12 22:22:22",
-    },
-    {
-      name: "测试",
-      time: "2022-1-12 22:22:22",
-    },
-    {
-      name: "测试",
-      time: "2022-1-12 22:22:22",
-    },
-    {
-      name: "测试",
-      time: "时间",
-    },
-  ];
+  const [collocateList, setCollocateList] = useState([]);
+  useEffect(() => {
+    collocate.list().then((res) => {
+      if (res.code == 0) {
+        setCollocateList(res.data);
+      }
+    });
+  }, []);
+
   return (
     <div>
       <div style={{ overflowY: "scroll", height: "350px" }}>
@@ -62,9 +35,11 @@ export default function Record() {
                   className="seek-option-name"
                   onBlur={(e, f) => console.log(e, f)}
                 >
-                  {item.name}
+                  {item.collocateName}
                 </EditableTxt>
-                <div className="seek-option-describe">{item.time}</div>
+                <div className="seek-option-describe">
+                  {formatDate(new Date(item.createTime))}
+                </div>
               </div>
               <div className="option-operate-icon">
                 <i
