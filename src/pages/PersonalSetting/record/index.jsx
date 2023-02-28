@@ -3,20 +3,35 @@ import { useState, useEffect } from "react";
 import EditableTxt from "../../../components/EditableTxt";
 import collocate from "../../../api/collocate";
 import { formatDate } from "../../../utils/flash";
+import { useLoading } from "../../../components/Loading";
 export default function Record() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [collocateList, setCollocateList] = useState([]);
+  const loading = useLoading();
+
   useEffect(() => {
-    collocate.list().then((res) => {
-      if (res.code == 0) {
-        setCollocateList(res.data);
-      }
-    });
+    loading.showLoading("加载同步记录中...");
+    collocate
+      .list()
+      .then((res) => {
+        if (res.code == 0) {
+          setCollocateList(res.data);
+        }
+      })
+      .finally(() => {
+        setTimeout(() => {
+          loading.hideLoading();
+        }, 500);
+      });
   }, []);
 
   return (
     <div>
-      <div style={{ overflowY: "scroll", height: "350px" }}>
+      <div className="option-bar">
+        <div>同步记录</div>
+      </div>
+      {(collocateList.length == 0 || !collocateList) && <div>暂无同步记录</div>}
+      <div style={{ overflowY: "scroll", height: "312px" }}>
         {collocateList?.map((item, index) => {
           return (
             <div
