@@ -7,6 +7,7 @@ import { useLoading } from "../../../components/Loading";
 export default function Record() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [collocateList, setCollocateList] = useState([]);
+  const [operationMsg, setOperationMsg] = useState("");
   const loading = useLoading();
 
   useEffect(() => {
@@ -25,9 +26,39 @@ export default function Record() {
       });
   }, []);
 
+  const handleOnDelete = (item, index) => {
+    setOperationMsg("");
+    collocate
+      .deletes([item.id])
+      .then((res) => {
+        if (res.code == 0) {
+          const newCllocateList = collocateList.filter(
+            (item, i) => i !== index
+          );
+          setCollocateList(newCllocateList);
+        } else {
+          setOperationMsg("删除失败");
+        }
+      })
+      .catch(() => {
+        setOperationMsg("删除失败");
+      });
+  };
+
   return (
     <div>
       <div className="option-bar">
+        <div
+          style={{
+            position: "absolute",
+            left: "80px",
+            lineHeight: "40px",
+            display: "inline-block",
+            color: "#FCDA01",
+          }}
+        >
+          {operationMsg}
+        </div>
         <div>同步记录</div>
       </div>
       {(collocateList.length == 0 || !collocateList) && <div>暂无同步记录</div>}
@@ -62,6 +93,7 @@ export default function Record() {
                   className="option-add-bar-button-icon iconfont icon-yunxiazai"
                 />
                 <i
+                  onClick={() => handleOnDelete(item, index)}
                   style={{ fontSize: 20, marginRight: 5 }}
                   className="option-add-bar-button-icon iconfont icon-shanchu"
                 />
