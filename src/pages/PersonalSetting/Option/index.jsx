@@ -11,6 +11,7 @@ import { updateConfig } from "../../../utils/command";
 import collocate from "../../../api/collocate";
 import { useLoading } from "../../../components/Loading";
 import DropdownMenu from "../../../components/DropdownMenu";
+import Dialog from "../../../components/Dialog";
 
 export default function Option() {
   const [isCreateOption, setIsCreateOption] = useState(false);
@@ -30,6 +31,8 @@ export default function Option() {
   });
   const dispatch = useDispatch();
   const loading = useLoading();
+  const [deleteData, setDeleteData] = useState({});
+  const [visible, setVisible] = useState(false);
 
   const optionInfoHandleChange = (event) => {
     const { name, value } = event.target;
@@ -238,6 +241,14 @@ export default function Option() {
                 </div>
               )}
             </div>
+            <Dialog
+              tip="确认删除?"
+              visible={visible}
+              onVisible={(visible) => setVisible(visible)}
+              onOk={() => {
+                dispatch(deleteOption(deleteData.index));
+              }}
+            />
             <div
               style={{
                 overflowY: "scroll",
@@ -281,7 +292,8 @@ export default function Option() {
                       />
                       <i
                         onClick={() => {
-                          dispatch(deleteOption(index));
+                          setDeleteData({ index });
+                          setVisible(true);
                         }}
                         style={{ fontSize: 20, marginRight: 5 }}
                         className="option-add-bar-button-icon iconfont icon-shanchu"

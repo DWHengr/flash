@@ -9,12 +9,15 @@ import { initSettingData } from "../../../store/setting/action";
 import { setOptionIcon } from "../../../utils/flash";
 import { useDispatch } from "react-redux";
 import { updateConfig } from "../../../utils/command";
+import Dialog from "../../../components/Dialog";
 export default function Record() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [collocateList, setCollocateList] = useState([]);
   const [operationMsg, setOperationMsg] = useState("");
+  const [deleteData, setDeleteData] = useState({});
   const loading = useLoading();
   const dispatch = useDispatch();
+  const [visible, setVisible] = useState(false);
 
   useEffect(() => {
     loading.showLoading("加载同步记录中...");
@@ -41,6 +44,7 @@ export default function Record() {
           const newCllocateList = collocateList.filter(
             (item, i) => i !== index
           );
+          console.log(newCllocateList);
           setCollocateList(newCllocateList);
         } else {
           setOperationMsg("删除失败");
@@ -116,12 +120,20 @@ export default function Record() {
         </div>
         <div>同步记录</div>
       </div>
+      <Dialog
+        tip="确认删除?"
+        visible={visible}
+        onVisible={(visible) => setVisible(visible)}
+        onOk={() => {
+          handleOnDelete(deleteData.item, deleteData.index);
+        }}
+      />
       {(collocateList.length == 0 || !collocateList) && <div>暂无同步记录</div>}
       <div style={{ overflowY: "scroll", height: "312px" }}>
         {collocateList?.map((item, index) => {
           return (
             <div
-              key={index}
+              key={item.id}
               className="seek-option "
               onClick={() => {
                 setCurrentIndex(index);
@@ -153,7 +165,10 @@ export default function Record() {
                   className="option-add-bar-button-icon iconfont icon-yunxiazai"
                 />
                 <i
-                  onClick={() => handleOnDelete(item, index)}
+                  onClick={() => {
+                    setDeleteData({ item, index });
+                    setVisible(true);
+                  }}
                   style={{ fontSize: 20, marginRight: 5 }}
                   className="option-add-bar-button-icon iconfont icon-shanchu"
                 />
