@@ -13,4 +13,7 @@ export default {
   update(param) {
     return Http.post("/v1/collocate/update", param);
   },
+  info(id) {
+    return Http.get("/v1/collocate/info/" + id);
+  },
 };

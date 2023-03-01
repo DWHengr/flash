@@ -4,11 +4,17 @@ import EditableTxt from "../../../components/EditableTxt";
 import collocate from "../../../api/collocate";
 import { formatDate } from "../../../utils/flash";
 import { useLoading } from "../../../components/Loading";
+import { initOptionData } from "../../../store/option/action";
+import { initSettingData } from "../../../store/setting/action";
+import { setOptionIcon } from "../../../utils/flash";
+import { useDispatch } from "react-redux";
+import { updateConfig } from "../../../utils/command";
 export default function Record() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [collocateList, setCollocateList] = useState([]);
   const [operationMsg, setOperationMsg] = useState("");
   const loading = useLoading();
+  const dispatch = useDispatch();
 
   useEffect(() => {
     loading.showLoading("加载同步记录中...");
@@ -55,6 +61,43 @@ export default function Record() {
       .catch(() => {
         setOperationMsg("修改失败");
       });
+  };
+
+  const handleOnDownLoad = (item) => {
+    setOperationMsg("");
+    loading.showLoading("应用中...");
+    collocate
+      .info(item.id)
+      .then(async (res) => {
+        if (res.code == 0) {
+          let config = JSON.parse(res.data.collocateContents);
+          await optionIcon(config.option);
+          dispatch(initOptionData(config.option));
+          dispatch(initSettingData(config.setting));
+          updateConfig(config.option, config.setting).then(async (res) => {
+            if (res) {
+              console.log(res);
+            }
+          });
+        } else {
+          setOperationMsg("应用失败");
+        }
+      })
+      .catch(() => {
+        setOperationMsg("应用失败");
+      })
+      .finally(() => {
+        setTimeout(() => {
+          loading.hideLoading("应用完成");
+        }, 500);
+      });
+  };
+
+  const optionIcon = async (options) => {
+    for (let index = 0; index < options?.length; index++) {
+      let o = options[index];
+      setOptionIcon(o);
+    }
   };
 
   return (
@@ -105,6 +148,7 @@ export default function Record() {
               </div>
               <div className="option-operate-icon">
                 <i
+                  onClick={() => handleOnDownLoad(item)}
                   style={{ fontSize: 20, marginRight: 5 }}
                   className="option-add-bar-button-icon iconfont icon-yunxiazai"
                 />

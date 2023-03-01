@@ -7,7 +7,7 @@ export function updateConfig(optionData, settingData) {
         shortcut: settingData.shortcut,
         search_text: settingData.search_text,
       },
-      option: optionData.allDataList,
+      option: optionData.allDataList ? optionData.allDataList : optionData,
     },
   });
 }
