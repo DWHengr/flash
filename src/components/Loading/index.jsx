@@ -12,18 +12,25 @@ export default function Loading(props) {
   const [isLoading, setIsLoading] = useState(false);
   const [isShowSuccessMsg, setIsShowSuccessMsg] = useState(false);
   const [tip, setTip] = useState("");
+  const [resultTip, setResultTip] = useState("");
 
   const showLoading = useCallback((tip = "正在加载中") => {
     setTip(tip);
+    setResultTip(resultTip);
     setIsShowSuccessMsg(false);
     setIsLoading(true);
   }, []);
 
-  const hideLoading = useCallback(() => {
-    setIsShowSuccessMsg(true);
-    setTimeout(() => {
+  const hideLoading = useCallback((resultTip = "") => {
+    setResultTip(resultTip);
+    if (resultTip) {
+      setIsShowSuccessMsg(true);
+      setTimeout(() => {
+        setIsLoading(false);
+      }, 1200);
+    } else {
       setIsLoading(false);
-    }, 1200);
+    }
   }, []);
 
   return (
@@ -45,7 +52,7 @@ export default function Loading(props) {
               </div>
               {!isShowSuccessMsg && <div>{tip}</div>}
               {isShowSuccessMsg && (
-                <div style={{ color: "#38E274" }}>加载完成</div>
+                <div style={{ color: "#38E274" }}>{resultTip}</div>
               )}
             </div>
           </div>
