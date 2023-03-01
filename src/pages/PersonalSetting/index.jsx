@@ -67,25 +67,13 @@ export default function PersonalSetting() {
             选项设置
           </button>
         </Link>
-        <Link to="/personal/record">
-          <button style={{ marginTop: 10 }} className="primary-button">
-            同步记录
-          </button>
-        </Link>
         {userDate?.isLogin && (
           <div>
-            <button
-              onClick={() => {
-                loading.showLoading();
-                setTimeout(() => {
-                  loading.hideLoading();
-                }, 3000);
-              }}
-              style={{ marginTop: 10 }}
-              className="primary-button"
-            >
-              数据同步
-            </button>
+            <Link to="/personal/record">
+              <button style={{ marginTop: 10 }} className="primary-button">
+                同步记录
+              </button>
+            </Link>
             <button
               onClick={() => {
                 dispatch(clearUser());
@@ -113,7 +101,11 @@ export default function PersonalSetting() {
           <Route exact path="/personal/register" component={Register}></Route>
           <Route exact path="/personal/setting" component={Setting}></Route>
           <Route exact path="/personal/option" component={Option}></Route>
-          <Route exact path="/personal/record" component={Record}></Route>
+          <PrivateRoute
+            exact
+            path="/personal/record"
+            component={Record}
+          ></PrivateRoute>
           {userDate?.isLogin ? (
             <Redirect to="/personal/option" />
           ) : (
