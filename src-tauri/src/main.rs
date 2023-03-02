@@ -24,7 +24,7 @@ fn main() {
         ])
         .system_tray(SystemTray::new().with_menu(tray_menu()))
         .on_system_tray_event(system_tray_event)
-        .on_window_event(window_event)
+        // .on_window_event(window_event)
         .build(tauri::generate_context!())
         .expect("error while running tauri application");
     // register_shortcut(&app);

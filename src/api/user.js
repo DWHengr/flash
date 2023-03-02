@@ -5,6 +5,6 @@ export default {
     return Http.post("/v1/user/login", param);
   },
   register(param) {
-    return Http.post("/v1/user/create", param);
+    return Http.post("/v1/user/register", param);
   },
 };

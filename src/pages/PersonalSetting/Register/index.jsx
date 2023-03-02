@@ -38,11 +38,11 @@ export default function Register() {
         if (res.code == 0) {
           console.log(res);
         } else {
-          setLoginMsg(res.msg);
+          setRegisterMsg(res.msg);
         }
       })
       .catch((res) => {
-        setLoginMsg(res.message);
+        setRegisterMsg(res.message);
       });
   };
 

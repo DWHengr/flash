@@ -79,7 +79,7 @@ export default function Option() {
       })
       .finally(() => {
         setTimeout(() => {
-          loading.hideLoading();
+          loading.hideLoading("上传成功");
         }, 1000);
       });
   };
