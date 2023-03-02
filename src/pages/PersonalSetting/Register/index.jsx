@@ -7,7 +7,17 @@ export default function Register() {
     password: "",
     confirmPassword: "",
   });
-  const [registerMsg, setRegisterMsg] = useState("");
+  const [registerMsg, setRegisterMsg] = useState({
+    isSuccess: false,
+    msg: "",
+  });
+
+  const setMsg = (msg, isSuccess = false) => {
+    setRegisterMsg({
+      isSuccess: isSuccess,
+      msg: msg,
+    });
+  };
 
   const userinfoHandleChange = (event) => {
     const { name, value } = event.target;
@@ -16,19 +26,19 @@ export default function Register() {
 
   const onRegister = () => {
     if (!userinfo.username) {
-      setRegisterMsg("用户名不能为空");
+      setMsg("用户名不能为空");
       return;
     }
     if (!userinfo.password) {
-      setRegisterMsg("密码不能为空");
+      setMsg("密码不能为空");
       return;
     }
     if (!userinfo.confirmPassword) {
-      setRegisterMsg("确认密码不能为空");
+      setMsg("确认密码不能为空");
       return;
     }
     if (userinfo.confirmPassword != userinfo.password) {
-      setRegisterMsg("密码不一致");
+      setMsg("密码不一致");
       return;
     }
     setRegisterMsg("");
@@ -36,13 +46,18 @@ export default function Register() {
       .register(userinfo)
       .then((res) => {
         if (res.code == 0) {
-          console.log(res);
+          setMsg("注册成功", true);
+          setUserinfo({
+            username: "",
+            password: "",
+            confirmPassword: "",
+          });
         } else {
-          setRegisterMsg(res.msg);
+          setMsg(res.msg);
         }
       })
       .catch((res) => {
-        setRegisterMsg(res.message);
+        setMsg(res.message);
       });
   };
 
@@ -86,7 +101,14 @@ export default function Register() {
       >
         注册 Flash
       </button>
-      <div style={{ color: "#FCDA01", marginTop: 5 }}>{registerMsg}</div>
+      <div
+        style={{
+          color: registerMsg.isSuccess ? "#38E274" : "#FCDA01",
+          marginTop: 5,
+        }}
+      >
+        {registerMsg.msg}
+      </div>
     </div>
   );
 }
