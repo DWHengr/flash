@@ -1,7 +1,10 @@
-import "./index.css"
-import { useState } from "react";
+import "./index.css";
+import { useState, useEffect } from "react";
 function FlahsInput(props) {
   const [value, setValue] = useState(props.value);
+  useEffect(() => {
+    setValue(props.value);
+  }, [props.value]);
   return (
     <div className="custom-input-box">
       <input
