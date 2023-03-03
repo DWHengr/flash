@@ -1,11 +1,13 @@
 import * as type from "./type";
-import { invoke } from "@tauri-apps/api/tauri";
 import Immutable from "immutable";
+import { openApp } from "../../utils/command";
 let defaultState = {
   optionIndex: 0, //当前选中的index
   content: "", //input内容
   currentDataList: [], //当前根据content筛选出的option
   allDataList: [], //全部option
+  searchKey: "",
+  searchValue: "",
 };
 
 export const optionData = (state = defaultState, action) => {
@@ -14,7 +16,9 @@ export const optionData = (state = defaultState, action) => {
       return { ...state, ...action };
     case type.Get_Option_by_Content:
       let content = action.content;
-      const kv = content?.split(/:|：/);
+      const kv = content?.split(":");
+      let searchKeyData = kv[0] ? kv[0] : "";
+      let searchValueDate = kv[1] ? kv.slice(1, kv.length).join(":") : "";
       let currentOption = state.allDataList.filter(
         (item) => kv?.length == 1 || item.option_type?.indexOf(kv[0]) != -1
       );
@@ -26,7 +30,12 @@ export const optionData = (state = defaultState, action) => {
       return {
         ...state,
         ...action,
-        ...{ allDataList: state.allDataList, currentDataList: currentOption },
+        ...{
+          allDataList: state.allDataList,
+          currentDataList: currentOption,
+          searchKey: searchKeyData,
+          searchValue: searchValueDate,
+        },
       };
     case type.Set_Current_Option_index:
       return { ...state, ...action };
@@ -39,11 +48,9 @@ export const optionData = (state = defaultState, action) => {
       };
     case type.Open_App_By_Index:
       const index = action.index;
-      invoke("open_app", {
-        optionType: state.currentDataList[index].option_type,
-        openIn: state.currentDataList[index].open_in,
-        path: state.currentDataList[index].path,
-      }).then((res) => {});
+      if (state.currentDataList?.length > 0) {
+        openApp(state.currentDataList[index]);
+      }
     case type.Delete_Option:
       let DeleteDataList = Immutable.List(state.allDataList);
       DeleteDataList = DeleteDataList.delete(action.optionIndex);
