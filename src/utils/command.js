@@ -11,3 +11,18 @@ export function updateConfig(optionData, settingData) {
     },
   });
 }
+
+export function openUrl(url, browser = "") {
+  invoke("open_url", {
+    url: url,
+    browser: browser,
+  }).then((res) => {});
+}
+
+export function openApp(option) {
+  invoke("open_app", {
+    optionType: option.option_type,
+    openIn: option.open_in,
+    path: option.path,
+  }).then((res) => {});
+}
