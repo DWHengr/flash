@@ -17,6 +17,7 @@ import Option from "./pages/Option";
 import { useSelector, useDispatch } from "react-redux";
 import { Route, Switch, useHistory } from "react-router-dom";
 import { setOptionIcon } from "./utils/flash";
+import { openUrl } from "./utils/command";
 
 function App() {
   const [content, setContent] = useState("");
@@ -68,27 +69,57 @@ function App() {
     } else appWindow.setSize(new PhysicalSize(600, 60));
   };
 
-  const ignoreKey = ["v", "a", "c"];
+  const ignoreKey = ["v", "a", "c", "z"];
 
-  const onGlobalKeyDown = (e) =>{
+  const onGlobalKeyDown = (e) => {
     if ((e.ctrlKey || e.altKey) && ignoreKey.indexOf(e.key) < 0) {
       e.preventDefault();
     }
-  }
+  };
 
   useEffect(() => {
-    window.addEventListener('keydown', onGlobalKeyDown);
+    window.addEventListener("keydown", onGlobalKeyDown);
     return () => {
-      window.removeEventListener('keydown', onGlobalKeyDown);
+      window.removeEventListener("keydown", onGlobalKeyDown);
     };
   }, []);
+
+  const openApp = () => {
+    let key = optionData.searchKey;
+    let value = optionData.searchValue;
+    if (optionData.currentDataList?.length == 0 && !value) {
+      openUrl("https://www.baidu.com/s?wd=" + key);
+      return;
+    }
+    if (!value) {
+      dispatch(openAppByIndex(optionData.optionIndex));
+      return;
+    }
+    switch (key) {
+      case "baidu":
+        openUrl("https://www.baidu.com/s?wd=" + value);
+        break;
+      case "biying":
+        openUrl("https://cn.bing.com/search?q=" + value);
+        break;
+      case "csdn":
+        openUrl("https://so.csdn.net/so/search?q=" + value);
+        break;
+      default:
+        if (optionData.currentDataList?.length == 0) {
+          openUrl(`https://www.baidu.com/s?wd=${key}:${value}`);
+        } else {
+          dispatch(openAppByIndex(optionData.optionIndex));
+        }
+    }
+  };
 
   const onKeyDown = (e) => {
     if (e.keyCode === 40 || e.keyCode === 38 || e.keyCode === 9) {
       e.preventDefault();
     }
     if (e.keyCode === 13 && content) {
-      dispatch(openAppByIndex(optionData.optionIndex));
+      openApp();
     }
     if (e.keyCode === 27) {
       appWindow.hide();
@@ -131,10 +162,7 @@ function App() {
   };
 
   return (
-    <div
-      className="mian-container"
-      onContextMenu={(e) => e.preventDefault()}
-    >
+    <div className="mian-container" onContextMenu={(e) => e.preventDefault()}>
       <div className="row">
         <div>
           <AutosizeInput
