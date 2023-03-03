@@ -89,6 +89,22 @@ pub fn open_app(option_type: String, open_in: String, path: String) -> &'static 
 }
 
 #[tauri::command]
+pub fn open_url(url: String, browser: String) -> &'static str {
+    let mut cmd = Command::new("cmd");
+    cmd.creation_flags(0x08000000);
+    let mut open_type = "start";
+    if !browser.is_empty() {
+        open_type = &browser;
+    }
+    cmd.arg("/c")
+        .arg(open_type)
+        .arg(&url)
+        .spawn()
+        .expect("cmd exec error!");
+    ""
+}
+
+#[tauri::command]
 pub fn load_config(handle: tauri::AppHandle) -> FlashConfig {
     let resource_path = handle
         .path_resolver()
