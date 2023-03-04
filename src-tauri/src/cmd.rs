@@ -17,6 +17,7 @@ pub struct App {
 pub struct Setiing {
     shortcut: String,
     search_text: String,
+    search_engine: String,
 }
 
 #[derive(Debug, Serialize, Deserialize)]
@@ -119,6 +120,7 @@ pub fn load_config(handle: tauri::AppHandle) -> FlashConfig {
             setting: Setiing {
                 shortcut: "".to_string(),
                 search_text: "".to_string(),
+                search_engine: "".to_string(),
             },
             option: vec![],
         };

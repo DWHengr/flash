@@ -4,6 +4,7 @@ import { appWindow } from "@tauri-apps/api/window";
 let defaultState = {
   shortcut: "",
   search_text: "",
+  search_engine: "",
 };
 
 const registerShortCut = (shortcut) => {
@@ -26,6 +27,8 @@ export const settingData = (state = defaultState, action) => {
       return { ...state, ...action };
     case type.Set_Search_Txt:
       return { ...state, ...{ search_text: action.search_text } };
+    case type.Set_Search_Engine:
+      return { ...state, ...{ search_engine: action.search_engine } };
     case type.Set_Shortcut:
       unregisterAll();
       registerShortCut(action.shortcut);

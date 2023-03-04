@@ -6,6 +6,7 @@ export function updateConfig(optionData, settingData) {
       setting: {
         shortcut: settingData.shortcut,
         search_text: settingData.search_text,
+        search_engine: settingData.search_engine,
       },
       option: optionData.allDataList ? optionData.allDataList : optionData,
     },

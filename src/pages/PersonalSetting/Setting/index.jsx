@@ -1,7 +1,11 @@
 import "./index.css";
 import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { setSearchTxt, setShortcutCmd } from "../../../store/setting/action";
+import {
+  setSearchTxt,
+  setShortcutCmd,
+  setSearchEngineTxt,
+} from "../../../store/setting/action";
 import { updateConfig } from "../../../utils/command";
 import DropdownMenu from "../../../components/DropdownMenu";
 export default function Setting() {
@@ -10,7 +14,11 @@ export default function Setting() {
   const [shortcut, setShortcut] = useState(settingData.shortcut);
   const [searchText, setSearchText] = useState(settingData.search_text);
   const [oldShortcut, setOldShortcut] = useState(settingData.shortcut);
-  const [oldSearchText, setOldSearchText] = useState(settingData.search_text);
+  const [oldSearchText, setOldSearchText] = useState(settingData.shortcut);
+  const [searchEngine, setSearchEngine] = useState(settingData.search_engine);
+  const [oldSearchEngine, setOldSearchEngine] = useState(
+    settingData.search_engine
+  );
   const dispatch = useDispatch();
 
   const onKeyDown = (event) => {
@@ -97,6 +105,26 @@ export default function Setting() {
               }
             }}
             value={searchText}
+          />
+        </div>
+      </div>
+      <div className="setting-option">
+        <div className="setting-option-key">默认搜索引擎</div>
+        <div className="setting-option-value shortcut-input-box">
+          <DropdownMenu
+            onSelect={(value) => {
+              setSearchEngine(value);
+              dispatch(setSearchEngineTxt(value));
+            }}
+            onBlur={() => {
+              if (searchEngine != oldSearchEngine) {
+                onBlur();
+                setOldSearchEngine(searchEngine);
+              }
+            }}
+            value={searchEngine}
+            options={["baidu", "biying", "csdn"]}
+            readOnly
           />
         </div>
       </div>
