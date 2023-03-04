@@ -84,11 +84,26 @@ function App() {
     };
   }, []);
 
+  const openSearchEngine = (engine, value) => {
+    switch (engine) {
+      case "biying":
+        openUrl("https://cn.bing.com/search?q=" + value);
+        break;
+      case "csdn":
+        openUrl("https://so.csdn.net/so/search?q=" + value);
+        break;
+      case "baidu":
+      default:
+        openUrl("https://www.baidu.com/s?wd=" + value);
+        break;
+    }
+  };
+
   const openApp = () => {
     let key = optionData.searchKey;
     let value = optionData.searchValue;
     if (optionData.currentDataList?.length == 0 && !value) {
-      openUrl("https://www.baidu.com/s?wd=" + key);
+      openSearchEngine(settingData.search_engine, key);
       return;
     }
     if (!value) {
@@ -97,13 +112,9 @@ function App() {
     }
     switch (key) {
       case "baidu":
-        openUrl("https://www.baidu.com/s?wd=" + value);
-        break;
       case "biying":
-        openUrl("https://cn.bing.com/search?q=" + value);
-        break;
       case "csdn":
-        openUrl("https://so.csdn.net/so/search?q=" + value);
+        openSearchEngine(key, value);
         break;
       default:
         if (optionData.currentDataList?.length == 0) {
