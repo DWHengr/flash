@@ -1,22 +1,58 @@
 {
   "setting":{
     "shortcut": "alt+space",
-    "search_text": "Enter to open the world..."
+    "search_text": "Enter to open the world...",
+    "search_engine":"baidu"
   },
   "option":[
     {
-      "name":"host",
-      "option_type":"file",
+      "name":"github",
+      "option_type":"link",
       "open_in":"",
-      "path":"C:\\Windows\\System32\\drivers\\etc\\hosts",
-      "describe":"host file"
+      "path":"github.com",
+      "describe":"github地址"
     },
     {
-      "name":"flash",
-      "option_type":"project",
-      "open_in":"D:/Microsoft VS Code/Code.exe",
-      "path":"C:/flash/flash",
-      "describe":"flash project"
+      "name":"腾讯云",
+      "option_type":"link",
+      "open_in":"",
+      "path":"cloud.tencent.com",
+      "describe":"腾讯云地址"
+    },
+    {
+      "name":"阿里云",
+      "option_type":"link",
+      "open_in":"",
+      "path":"www.aliyun.com",
+      "describe":"阿里云地址"
+    },
+    {
+      "name":"baidu",
+      "option_type":"link",
+      "open_in":"",
+      "path":"baidu.com",
+      "describe":"百度地址"
+    },
+    {
+      "name":"tauri",
+      "option_type":"link",
+      "open_in":"",
+      "path":"tauri.app",
+      "describe":""
+    },
+    {
+      "name":"b站",
+      "option_type":"link",
+      "open_in":"",
+      "path":"https://www.bilibili.com/",
+      "describe":"bilibili"
+    },
+    {
+      "name":"nest",
+      "option_type":"link",
+      "open_in":"",
+      "path":"https://docs.nestjs.com/",
+      "describe":"nest官网"
     }
   ]
 }
