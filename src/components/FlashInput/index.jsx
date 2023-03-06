@@ -6,8 +6,12 @@ function FlahsInput(props) {
     setValue(props.value);
   }, [props.value]);
   return (
-    <div className="custom-input-box">
+    <div
+      style={{ width: props.width ? props.width : 200 + "px" }}
+      className="custom-input-box"
+    >
       <input
+        style={{ width: props.width ? props.width : 200 + "px" }}
         type={props.type}
         name={props.name}
         value={value}
@@ -15,9 +19,15 @@ function FlahsInput(props) {
           setValue(e.target.value);
           props.onChange(e);
         }}
+        readOnly={props.readOnly}
         required
       />
-      <label>{props.children}</label>
+      {props.readOnly && (
+        <label style={{ top: "-20px", color: "#fff", fontSize: "12px" }}>
+          {props.children}
+        </label>
+      )}
+      {!props.readOnly && <label>{props.children}</label>}
     </div>
   );
 }
