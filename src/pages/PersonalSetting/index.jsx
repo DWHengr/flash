@@ -5,6 +5,7 @@ import Register from "./Register";
 import Setting from "./Setting";
 import Option from "./Option";
 import Record from "./record";
+import Center from "./center";
 import { useLoading } from "../../components/Loading";
 import { useSelector, useDispatch } from "react-redux";
 import { clearUser } from "../../store/user/action";
@@ -44,7 +45,9 @@ export default function PersonalSetting() {
           position: "relative",
         }}
       >
-        <img className="head-portrait" src="/headPortrait.svg" />
+        <Link to="/personal/center">
+          <img className="head-portrait" src="/headPortrait.svg" />
+        </Link>
         <div className="user-name">
           {userDate?.isLogin ? userDate.username : "用户名"}
         </div>
@@ -101,6 +104,7 @@ export default function PersonalSetting() {
           <Route exact path="/personal/register" component={Register}></Route>
           <Route exact path="/personal/setting" component={Setting}></Route>
           <Route exact path="/personal/option" component={Option}></Route>
+          <Route exact path="/personal/center" component={Center}></Route>
           <PrivateRoute
             exact
             path="/personal/record"
