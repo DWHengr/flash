@@ -1,23 +1,17 @@
 import "./index.css";
 import { useState } from "react";
 import FlahsInput from "../../../components/FlashInput";
-import user from "../../../api/user";
+import { useHistory } from "react-router-dom";
 export default function Center() {
+  const h = useHistory();
   const [userinfo, setUserinfo] = useState({
     username: "2",
-    password: "",
-    confirmPassword: "",
-  });
-  const [registerMsg, setRegisterMsg] = useState({
-    isSuccess: false,
-    msg: "",
+    email: "heath@test.com",
+    phone: "18888888888",
   });
 
-  const setMsg = (msg, isSuccess = false) => {
-    setRegisterMsg({
-      isSuccess: isSuccess,
-      msg: msg,
-    });
+  const toLink = (link) => {
+    h.push(link);
   };
 
   return (
@@ -39,7 +33,7 @@ export default function Center() {
           width={260}
           type="text"
           name="phone"
-          value={userinfo.password}
+          value={userinfo.email}
           readOnly
         >
           邮箱
@@ -48,11 +42,27 @@ export default function Center() {
           width={260}
           type="text"
           name="email"
-          value={userinfo.confirmPassword}
+          value={userinfo.phone}
           readOnly
         >
           手机号
         </FlahsInput>
+        <div>
+          <div className="center-option">
+            <label
+              onClick={() => toLink("/personal/changepassword")}
+              className="center-option-label"
+            >
+              修改密码
+            </label>
+          </div>
+          <div className="center-option">
+            <label className="center-option-label">设置邮箱</label>
+          </div>
+          <div className="center-option">
+            <label className="center-option-bar-label">设置手机号</label>
+          </div>
+        </div>
       </div>
     </div>
   );

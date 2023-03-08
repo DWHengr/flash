@@ -4,3 +4,15 @@
   flex-direction: column;
   align-items: center;
 }
+
+.center-option {
+  width: 270px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.center-option-label:hover{
+  color: #fff;
+  text-decoration:underline;
+  cursor: pointer;
+}
