@@ -6,6 +6,7 @@ import Setting from "./Setting";
 import Option from "./Option";
 import Record from "./record";
 import Center from "./center";
+import ChangePassword from "./ChangePassword";
 import { useLoading } from "../../components/Loading";
 import { useSelector, useDispatch } from "react-redux";
 import { clearUser } from "../../store/user/action";
@@ -110,6 +111,11 @@ export default function PersonalSetting() {
             path="/personal/record"
             component={Record}
           ></PrivateRoute>
+          <Route
+            exact
+            path="/personal/changepassword"
+            component={ChangePassword}
+          ></Route>
           {userDate?.isLogin ? (
             <Redirect to="/personal/option" />
           ) : (
