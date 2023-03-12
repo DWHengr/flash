@@ -1,18 +1,23 @@
 import "./index.css";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import FlahsInput from "../../../components/FlashInput";
 import { useHistory } from "react-router-dom";
+import user from "../../../api/user";
 export default function Center() {
   const h = useHistory();
-  const [userinfo, setUserinfo] = useState({
-    username: "2",
-    email: "heath@test.com",
-    phone: "18888888888",
-  });
+  const [userinfo, setUserinfo] = useState({});
 
   const toLink = (link) => {
     h.push(link);
   };
+
+  useEffect(() => {
+    user.info().then((res) => {
+      if (res.code == 0) {
+        setUserinfo(res.data);
+      }
+    });
+  }, []);
 
   return (
     <div>

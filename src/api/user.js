@@ -7,4 +7,7 @@ export default {
   register(param) {
     return Http.post("/v1/user/register", param);
   },
+  info() {
+    return Http.get("/v1/user/info");
+  },
 };
