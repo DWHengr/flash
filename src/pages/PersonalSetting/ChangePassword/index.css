@@ -1,0 +1,12 @@
+.change-pwd-box {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.change-pwd-option {
+  width: 270px;
+  display: flex;
+  justify-content: flex-end;
+}
