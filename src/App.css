@@ -65,6 +65,7 @@
   height: 32px;
   width: 120px;
   background-color: #2d9def;
+  cursor: pointer;
 }
 
 .minor-button {
@@ -75,6 +76,7 @@
   width: 200px;
   background-color: rgba(27, 27, 27, 0.5);
   border: 2px solid gray;
+  cursor: pointer;
 }
 
 .primary-button:hover {
