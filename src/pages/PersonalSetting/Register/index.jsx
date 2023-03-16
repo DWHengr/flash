@@ -1,5 +1,5 @@
 import { useState } from "react";
-import FlahsInput from "../../../components/FlashInput";
+import FlashInput from "../../../components/FlashInput";
 import user from "../../../api/user";
 export default function Register() {
   const [userinfo, setUserinfo] = useState({
@@ -68,30 +68,30 @@ export default function Register() {
       >
         注册
       </label>
-      <FlahsInput
+      <FlashInput
         type="text"
         name="username"
         value={userinfo.username}
         onChange={userinfoHandleChange}
       >
         用户名
-      </FlahsInput>
-      <FlahsInput
+      </FlashInput>
+      <FlashInput
         type="password"
         name="password"
         value={userinfo.password}
         onChange={userinfoHandleChange}
       >
         密码
-      </FlahsInput>
-      <FlahsInput
+      </FlashInput>
+      <FlashInput
         type="password"
         name="confirmPassword"
         value={userinfo.confirmPassword}
         onChange={userinfoHandleChange}
       >
         确认密码
-      </FlahsInput>
+      </FlashInput>
       <button
         style={{
           marginTop: 5,

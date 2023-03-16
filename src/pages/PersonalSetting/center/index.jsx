@@ -1,6 +1,6 @@
 import "./index.css";
 import { useState, useEffect } from "react";
-import FlahsInput from "../../../components/FlashInput";
+import FlashInput from "../../../components/FlashInput";
 import { useHistory } from "react-router-dom";
 import user from "../../../api/user";
 export default function Center() {
@@ -25,7 +25,7 @@ export default function Center() {
         <div>个人中心</div>
       </div>
       <div className={"center-box"}>
-        <FlahsInput
+        <FlashInput
           width={260}
           type="text"
           name="username"
@@ -33,8 +33,8 @@ export default function Center() {
           readOnly
         >
           用户名
-        </FlahsInput>
-        <FlahsInput
+        </FlashInput>
+        <FlashInput
           width={260}
           type="text"
           name="phone"
@@ -42,8 +42,8 @@ export default function Center() {
           readOnly
         >
           邮箱
-        </FlahsInput>
-        <FlahsInput
+        </FlashInput>
+        <FlashInput
           width={260}
           type="text"
           name="email"
@@ -51,7 +51,7 @@ export default function Center() {
           readOnly
         >
           手机号
-        </FlahsInput>
+        </FlashInput>
         <div>
           <div className="center-option">
             <label

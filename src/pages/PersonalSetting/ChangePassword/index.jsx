@@ -1,7 +1,7 @@
 import "./index.css";
 import { useState } from "react";
 import { useHistory } from "react-router";
-import FlahsInput from "../../../components/FlashInput";
+import FlashInput from "../../../components/FlashInput";
 import MsgTipTxt from "../../../components/MsgTipTxt";
 export default function ChangePassword() {
   const h = useHistory();
@@ -67,7 +67,7 @@ export default function ChangePassword() {
         <div>修改密码</div>
       </div>
       <div className={"change-pwd-box"}>
-        <FlahsInput
+        <FlashInput
           width={260}
           type="text"
           name="oldPassword"
@@ -75,8 +75,8 @@ export default function ChangePassword() {
           onChange={pwdinfoHandleChange}
         >
           原密码
-        </FlahsInput>
-        <FlahsInput
+        </FlashInput>
+        <FlashInput
           width={260}
           type="text"
           name="newPassword"
@@ -84,8 +84,8 @@ export default function ChangePassword() {
           onChange={pwdinfoHandleChange}
         >
           新密码
-        </FlahsInput>
-        <FlahsInput
+        </FlashInput>
+        <FlashInput
           width={260}
           type="text"
           name="confirmPassword"
@@ -93,7 +93,7 @@ export default function ChangePassword() {
           onChange={pwdinfoHandleChange}
         >
           确认密码
-        </FlahsInput>
+        </FlashInput>
         <div>
           <div style={{ position: "absolute" }}>
             <MsgTipTxt msg={msgInfo.msg} isSuccess={msgInfo.isSuccess} />

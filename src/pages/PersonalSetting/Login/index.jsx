@@ -1,6 +1,6 @@
 import "./index.css";
 import { useState } from "react";
-import FlahsInput from "../../../components/FlashInput";
+import FlashInput from "../../../components/FlashInput";
 import user from "../../../api/user";
 import { useDispatch } from "react-redux";
 import { setUser } from "../../../store/user/action";
@@ -51,15 +51,15 @@ export default function Login() {
       >
         登录
       </label>
-      <FlahsInput
+      <FlashInput
         name="username"
         value={userinfo.username}
         onChange={userinfoHandleChange}
         required
       >
         用户名
-      </FlahsInput>
-      <FlahsInput
+      </FlashInput>
+      <FlashInput
         type="password"
         name="password"
         value={userinfo.password}
@@ -67,7 +67,7 @@ export default function Login() {
         required
       >
         密码
-      </FlahsInput>
+      </FlashInput>
       <button
         style={{
           marginTop: 5,

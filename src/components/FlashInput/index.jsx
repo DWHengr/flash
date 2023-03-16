@@ -1,6 +1,6 @@
 import "./index.css";
 import { useState, useEffect } from "react";
-function FlahsInput(props) {
+function FlashInput(props) {
   const [value, setValue] = useState(props.value);
   useEffect(() => {
     setValue(props.value);
@@ -32,8 +32,8 @@ function FlahsInput(props) {
   );
 }
 
-FlahsInput.defaultProps = {
+FlashInput.defaultProps = {
   type: "text",
 };
 
-export default FlahsInput;
+export default FlashInput;
