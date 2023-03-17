@@ -3,6 +3,7 @@ import { useState } from "react";
 import { useHistory } from "react-router";
 import FlashInput from "../../../components/FlashInput";
 import MsgTipTxt from "../../../components/MsgTipTxt";
+import user from "../../../api/user";
 export default function ChangePassword() {
   const h = useHistory();
   const [pwdinfo, setPwdinfo] = useState({
@@ -29,7 +30,7 @@ export default function ChangePassword() {
   };
 
   const onChangePwd = () => {
-    console.log(pwdinfo);
+    setMsg("");
     if (!pwdinfo.oldPassword) {
       setMsg("原密码不能为空");
       return;
@@ -42,10 +43,31 @@ export default function ChangePassword() {
       setMsg("确认密码不能为空");
       return;
     }
+    if (pwdinfo.oldPassword == pwdinfo.newPassword) {
+      setMsg("原密码与新密码一致");
+      return;
+    }
     if (pwdinfo.confirmPassword != pwdinfo.newPassword) {
       setMsg("密码不一致");
       return;
     }
+    user
+      .changePwd(pwdinfo)
+      .then((res) => {
+        if (res.code == 0) {
+          setPwdinfo({
+            oldPassword: "",
+            newPassword: "",
+            confirmPassword: "",
+          });
+          setMsg("修改成功", true);
+        } else {
+          setMsg(res.msg);
+        }
+      })
+      .catch((res) => {
+        setMsg(res.message);
+      });
   };
 
   return (
@@ -71,7 +93,7 @@ export default function ChangePassword() {
           width={260}
           type="text"
           name="oldPassword"
-          vlaue={pwdinfo.oldPassword}
+          value={pwdinfo.oldPassword}
           onChange={pwdinfoHandleChange}
         >
           原密码
@@ -80,7 +102,7 @@ export default function ChangePassword() {
           width={260}
           type="text"
           name="newPassword"
-          vlaue={pwdinfo.newPassword}
+          value={pwdinfo.newPassword}
           onChange={pwdinfoHandleChange}
         >
           新密码
@@ -89,7 +111,7 @@ export default function ChangePassword() {
           width={260}
           type="text"
           name="confirmPassword"
-          vlaue={pwdinfo.newPassword}
+          value={pwdinfo.confirmPassword}
           onChange={pwdinfoHandleChange}
         >
           确认密码

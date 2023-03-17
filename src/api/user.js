@@ -10,4 +10,7 @@ export default {
   info() {
     return Http.get("/v1/user/info");
   },
+  changePwd(param) {
+    return Http.post("/v1/user/pwd", param);
+  },
 };
