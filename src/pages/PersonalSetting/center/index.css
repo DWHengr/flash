@@ -16,3 +16,11 @@
   text-decoration:underline;
   cursor: pointer;
 }
+
+.center-avatar{
+  width: 70px;
+  height: 70px;
+  border-radius: 35px;
+  position: relative;
+  overflow: hidden;
+}

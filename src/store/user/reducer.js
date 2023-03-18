@@ -33,7 +33,10 @@ export const userData = (state = defaultState, action) => {
       localStorage.removeItem("token");
       localStorage.removeItem("username");
       localStorage.removeItem("avatar");
-      return { ...state, ...{ token: "", isLogin: false } };
+      return { ...state, ...{ token: "", isLogin: false, avatar: "" } };
+    case type.Set_Avatar:
+      localStorage.setItem("avatar", action.avatar);
+      return { ...state, ...{ avatar: action.avatar } };
     default:
       return state;
   }

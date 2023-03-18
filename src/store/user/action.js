@@ -19,3 +19,10 @@ export const clearUser = () => {
     type: type.Clear_User,
   };
 };
+
+export const setUserAvatar = (avatar) => {
+  return {
+    type: type.Set_Avatar,
+    avatar: avatar,
+  };
+};
