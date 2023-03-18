@@ -1,9 +1,10 @@
 import * as type from "./type";
-export const setUser = (token, username) => {
+export const setUser = (token, username, avatar) => {
   return {
     type: type.Set_Token,
     token: token,
     username: username,
+    avatar: avatar,
   };
 };
 

@@ -32,7 +32,7 @@ export default function Login() {
       .then((res) => {
         if (res.code == 0) {
           h.push("/personal/option");
-          dispatch(setUser(res.data.token, res.data.username));
+          dispatch(setUser(res.data.token, res.data.username, res.data.avatar));
         } else {
           setLoginMsg(res.msg);
         }

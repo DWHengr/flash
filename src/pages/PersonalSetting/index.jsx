@@ -47,7 +47,10 @@ export default function PersonalSetting() {
         }}
       >
         <Link to="/personal/center">
-          <img className="head-portrait" src="/headPortrait.svg" />
+          <img
+            className="head-portrait"
+            src={userDate?.avatar ? userDate.avatar : "/headPortrait.svg"}
+          />
         </Link>
         <div className="user-name">
           {userDate?.isLogin ? userDate.username : "用户名"}
