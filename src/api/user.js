@@ -13,4 +13,7 @@ export default {
   changePwd(param) {
     return Http.post("/v1/user/pwd", param);
   },
+  changeAvatar(param) {
+    return Http.post("/v1/user/avatar", param);
+  },
 };

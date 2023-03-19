@@ -27,6 +27,7 @@ export default function Center() {
   }, []);
 
   const handleAvatarChange = (file) => {
+    if (!file.type.startsWith("image/")) return;
     Resizer.imageFileResizer(
       file,
       70,
@@ -34,9 +35,10 @@ export default function Center() {
       "PNG",
       80,
       0,
-      (uri) => {
-        setAvatar(uri);
-        dispatch(setUserAvatar(uri));
+      (avatar) => {
+        setAvatar(avatar);
+        dispatch(setUserAvatar(avatar));
+        user.changeAvatar({ avatar });
       },
       "base64"
     );
