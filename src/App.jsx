@@ -116,6 +116,9 @@ function App() {
       case "csdn":
         openSearchEngine(key, value);
         break;
+      case "www":
+        openUrl(value);
+        break;
       default:
         if (optionData.currentDataList?.length == 0) {
           openUrl(`https://www.baidu.com/s?wd=${key}:${value}`);

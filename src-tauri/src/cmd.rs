@@ -97,9 +97,15 @@ pub fn open_url(url: String, browser: String) -> &'static str {
     if !browser.is_empty() {
         open_type = &browser;
     }
+    let re = Regex::new(r"^https?://").unwrap();
+    let prefixed_url = if re.is_match(&url) {
+        url.to_string()
+    } else {
+        format!("http://{}", url)
+    };
     cmd.arg("/c")
         .arg(open_type)
-        .arg(&url)
+        .arg(&prefixed_url)
         .spawn()
         .expect("cmd exec error!");
     ""
