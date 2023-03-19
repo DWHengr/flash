@@ -1,4 +1,4 @@
-import Http from '../utils/axios';
+import Http from '../utils/api';
 
 export default {
   get() {
