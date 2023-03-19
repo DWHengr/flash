@@ -8,7 +8,7 @@
   },
   "package": {
     "productName": "Flash",
-    "version": "1.0.1"
+    "version": "2.0.1"
   },
   "tauri": {
     "systemTray": {
@@ -18,8 +18,7 @@
     "allowlist": {
       "http": {
         "all": true, 
-        "request": true,
-        "scope": ["https://*/*","http://*/*"]
+        "scope": ["https://**","http://**"]
       },
       "fs": {
         "scope": ["$RESOURCE/config/*"]
