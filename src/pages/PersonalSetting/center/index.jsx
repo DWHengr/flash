@@ -85,7 +85,7 @@ export default function Center() {
               {({ getRootProps, getInputProps }) => (
                 <div {...getRootProps()}>
                   <input {...getInputProps()} />
-                  <diV className="center-avatar">
+                  <div className="center-avatar">
                     <img
                       style={{ width: "70px", height: "70px" }}
                       src={avatar ? avatar : "/headPortrait.svg"}
@@ -102,7 +102,7 @@ export default function Center() {
                     >
                       修改头像
                     </div>
-                  </diV>
+                  </div>
                 </div>
               )}
             </Dropzone>
