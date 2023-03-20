@@ -116,7 +116,12 @@ export default function Center() {
             </label>
           </div>
           <div className="center-option">
-            <label className="center-option-label">设置邮箱</label>
+            <label
+              onClick={() => toLink("/personal/setemail")}
+              className="center-option-label"
+            >
+              设置邮箱
+            </label>
           </div>
           <div className="center-option">
             <label className="center-option-bar-label">设置手机号</label>

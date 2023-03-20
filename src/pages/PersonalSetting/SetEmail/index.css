@@ -1,0 +1,28 @@
+.set-email-box {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.set-email-option {
+  width: 270px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.set-email-code-option {
+  margin-left: 20px;
+  align-items: center;
+  display: flex;
+}
+
+.set-email-code-option-hover {
+  display: flex;
+}
+
+.set-email-code-option-hover:hover {
+  color: #fff;
+  text-decoration: underline;
+  cursor: pointer;
+}

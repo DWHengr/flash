@@ -6,6 +6,7 @@ import Setting from "./Setting";
 import Option from "./Option";
 import Record from "./record";
 import Center from "./center";
+import SetEmail from "./SetEmail";
 import ChangePassword from "./ChangePassword";
 import { useLoading } from "../../components/Loading";
 import { useSelector, useDispatch } from "react-redux";
@@ -46,7 +47,7 @@ export default function PersonalSetting() {
           position: "relative",
         }}
       >
-        <Link to="/personal/center">
+        <Link to={userDate?.isLogin ? "/personal/center" : "/personal/login"}>
           <img
             className="head-portrait"
             src={userDate?.avatar ? userDate.avatar : "/headPortrait.svg"}
@@ -108,17 +109,26 @@ export default function PersonalSetting() {
           <Route exact path="/personal/register" component={Register}></Route>
           <Route exact path="/personal/setting" component={Setting}></Route>
           <Route exact path="/personal/option" component={Option}></Route>
-          <Route exact path="/personal/center" component={Center}></Route>
+          <PrivateRoute
+            exact
+            path="/personal/center"
+            component={Center}
+          ></PrivateRoute>
           <PrivateRoute
             exact
             path="/personal/record"
             component={Record}
           ></PrivateRoute>
-          <Route
+          <PrivateRoute
             exact
             path="/personal/changepassword"
             component={ChangePassword}
-          ></Route>
+          ></PrivateRoute>
+          <PrivateRoute
+            exact
+            path="/personal/setemail"
+            component={SetEmail}
+          ></PrivateRoute>
           {userDate?.isLogin ? (
             <Redirect to="/personal/option" />
           ) : (
