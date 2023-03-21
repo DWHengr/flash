@@ -2,7 +2,7 @@ import { useState, useEffect, useRef } from "react";
 import { invoke } from "@tauri-apps/api/tauri";
 import "./App.css";
 import "./icon/iconfont.css";
-import { PhysicalSize, appWindow } from "@tauri-apps/api/window";
+import { PhysicalSize, appWindow,LogicalSize } from "@tauri-apps/api/window";
 import AutosizeInput from "react-input-autosize";
 import {
   initOptionData,
@@ -53,10 +53,10 @@ function App() {
     dispatch(setCurrentOptionIndex(0));
     setIsPersonalSetting(false);
     if (content && content != "") {
-      appWindow.setSize(new PhysicalSize(600, 410));
+      appWindow.setSize(new LogicalSize(600, 410));
       h.push("/option");
     } else {
-      appWindow.setSize(new PhysicalSize(600, 60));
+      appWindow.setSize(new LogicalSize(600, 60));
     }
     dispatch(getOptionbyContent(content));
   }, [content]);
@@ -64,9 +64,9 @@ function App() {
   const onDoubleClick = (e) => {
     setIsPersonalSetting(!isPersonalSetting);
     if (!isPersonalSetting) {
-      appWindow.setSize(new PhysicalSize(600, 410));
+      appWindow.setSize(new LogicalSize(600, 410));
       h.push("/personal");
-    } else appWindow.setSize(new PhysicalSize(600, 60));
+    } else appWindow.setSize(new LogicalSize(600, 60));
   };
 
   const ignoreKey = ["v", "a", "c", "z"];
