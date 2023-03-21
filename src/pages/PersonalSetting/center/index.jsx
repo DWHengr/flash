@@ -77,7 +77,7 @@ export default function Center() {
         >
           手机号
         </FlashInput>
-        <div>
+        <div style={{ position: "relative" }}>
           <div style={{ position: "absolute" }}>
             <Dropzone
               onDrop={(acceptedFiles) => handleAvatarChange(acceptedFiles[0])}
