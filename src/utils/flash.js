@@ -52,3 +52,13 @@ export function formatDate(date) {
   const second = date.getSeconds().toString().padStart(2, "0");
   return `${year}-${month}-${day} ${hour}:${minute}:${second}`;
 }
+
+export function validateEmail(email) {
+  const emailRegex = /\S+@\S+\.\S+/;
+  return emailRegex.test(email);
+}
+
+export function validateSpecialCharacters(str) {
+  const pattern = /[^A-Za-z0-9]/;
+  return pattern.test(str);
+}

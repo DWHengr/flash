@@ -1,6 +1,7 @@
 import { useState } from "react";
 import FlashInput from "../../../components/FlashInput";
 import user from "../../../api/user";
+import { validateSpecialCharacters } from "../../../utils/flash";
 export default function Register() {
   const [userinfo, setUserinfo] = useState({
     username: "",
@@ -29,8 +30,20 @@ export default function Register() {
       setMsg("用户名不能为空");
       return;
     }
+    if (validateSpecialCharacters(userinfo.username)) {
+      setMsg("用户名只能包含字符和数字");
+      return;
+    }
+    if (userinfo.username.length < 6) {
+      setMsg("用户名最小长度为6位");
+      return;
+    }
     if (!userinfo.password) {
       setMsg("密码不能为空");
+      return;
+    }
+    if (userinfo.password.length < 6) {
+      setMsg("密码最小长度为6位");
       return;
     }
     if (!userinfo.confirmPassword) {

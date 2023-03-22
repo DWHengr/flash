@@ -4,6 +4,7 @@ import { useHistory } from "react-router";
 import FlashInput from "../../../components/FlashInput";
 import MsgTipTxt from "../../../components/MsgTipTxt";
 import user from "../../../api/user";
+import { validateEmail } from "../../../utils/flash";
 export default function SetEmail() {
   const h = useHistory();
   const [emailInfo, setEmailInfo] = useState({
@@ -45,6 +46,10 @@ export default function SetEmail() {
       setMsg("邮箱不能为空");
       return;
     }
+    if (!validateEmail(emailInfo.email)) {
+      setMsg("邮箱格式错误");
+      return;
+    }
     if (!emailInfo.code) {
       setMsg("验证码不能为空");
       return;
@@ -56,6 +61,10 @@ export default function SetEmail() {
     if (timer > 0) return;
     if (!emailInfo.email) {
       setMsg("邮箱不能为空");
+      return;
+    }
+    if (!validateEmail(emailInfo.email)) {
+      setMsg("邮箱格式错误");
       return;
     }
     setTimer(60);
