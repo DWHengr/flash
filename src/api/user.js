@@ -16,4 +16,7 @@ export default {
   changeAvatar(param) {
     return Http.post("/v1/user/avatar", param);
   },
+  sendEmailSettingVerifyCode(param) {
+    return Http.post("/v1/user/code/email-setting", param);
+  },
 };

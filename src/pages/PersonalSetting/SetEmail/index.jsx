@@ -68,6 +68,16 @@ export default function SetEmail() {
       return;
     }
     setTimer(60);
+    user
+      .sendEmailSettingVerifyCode({ email: emailInfo.email })
+      .then((res) => {
+        if (res.code != 0) {
+          setMsg(res.msg);
+        }
+      })
+      .catch((error) => {
+        setMsg(error.message);
+      });
   };
 
   return (
