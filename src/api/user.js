@@ -19,4 +19,7 @@ export default {
   sendEmailSettingVerifyCode(param) {
     return Http.post("/v1/user/code/email-setting", param);
   },
+  setEmail(param) {
+    return Http.post("/v1/user/set-email", param);
+  },
 };

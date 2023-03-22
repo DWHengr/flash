@@ -54,6 +54,22 @@ export default function SetEmail() {
       setMsg("验证码不能为空");
       return;
     }
+    user
+      .setEmail({ email: emailInfo.email, code: emailInfo.code })
+      .then((res) => {
+        if (res.code == 0) {
+          setMsg("设置成功", true);
+          setEmailInfo({
+            email: "",
+            code: "",
+          });
+        } else {
+          setMsg(res.msg);
+        }
+      })
+      .catch((error) => {
+        setMsg(error.message);
+      });
   };
 
   const onSendVerifyCode = () => {
