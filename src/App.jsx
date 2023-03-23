@@ -2,7 +2,11 @@ import { useState, useEffect, useRef } from "react";
 import { invoke } from "@tauri-apps/api/tauri";
 import "./App.css";
 import "./icon/iconfont.css";
-import { PhysicalSize, appWindow,LogicalSize } from "@tauri-apps/api/window";
+import {
+  appWindow,
+  LogicalSize,
+  PhysicalPosition,
+} from "@tauri-apps/api/window";
 import AutosizeInput from "react-input-autosize";
 import {
   initOptionData,
@@ -50,6 +54,11 @@ function App() {
   };
 
   useEffect(() => {
+    const { availHeight, availWidth } = window.screen;
+    appWindow.setPosition(
+      new PhysicalPosition(availWidth / 2 - 300, availHeight / 4)
+    );
+    console.log(window.screen);
     dispatch(setCurrentOptionIndex(0));
     setIsPersonalSetting(false);
     if (content && content != "") {
