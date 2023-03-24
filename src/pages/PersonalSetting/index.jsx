@@ -11,6 +11,7 @@ import ChangePassword from "./ChangePassword";
 import { useLoading } from "../../components/Loading";
 import { useSelector, useDispatch } from "react-redux";
 import { clearUser } from "../../store/user/action";
+import ForgetPassword from "./ForgetPasswrod";
 
 function PrivateRoute({ component: Component, ...rest }) {
   const dispatch = useDispatch();
@@ -109,6 +110,7 @@ export default function PersonalSetting() {
           <Route exact path="/personal/register" component={Register}></Route>
           <Route exact path="/personal/setting" component={Setting}></Route>
           <Route exact path="/personal/option" component={Option}></Route>
+          <Route exact path="/personal/forgetpassword" component={ForgetPassword}></Route>
           <PrivateRoute
             exact
             path="/personal/center"

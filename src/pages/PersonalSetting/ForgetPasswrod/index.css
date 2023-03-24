@@ -1,0 +1,28 @@
+.forget-pwd-box {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.forget-pwd-option {
+  width: 270px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.forget-pwd-code-option {
+  margin-left: 20px;
+  align-items: center;
+  display: flex;
+}
+
+.forget-pwd-code-option-hover {
+  display: flex;
+}
+
+.forget-pwd-code-option-hover:hover {
+  color: #fff;
+  text-decoration: underline;
+  cursor: pointer;
+}

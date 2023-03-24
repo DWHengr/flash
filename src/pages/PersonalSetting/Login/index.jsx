@@ -68,6 +68,14 @@ export default function Login() {
       >
         密码
       </FlashInput>
+      <div className="login-option">
+        <label
+          onClick={() => h.push("/personal/forgetpassword")}
+          className="login-option-label"
+        >
+          忘记密码?
+        </label>
+      </div>
       <button
         style={{
           marginTop: 5,

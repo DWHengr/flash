@@ -1,0 +1,14 @@
+.login-option {
+  width: 200px;
+  display: flex;
+  margin-top: -12px;
+  margin-bottom: 5px;
+  z-index: 1;
+  justify-content: flex-end;
+}
+
+.login-option-label:hover{
+  color: #fff;
+  text-decoration:underline;
+  cursor: pointer;
+}
