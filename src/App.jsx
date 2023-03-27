@@ -58,7 +58,15 @@ function App() {
     appWindow.setPosition(
       new PhysicalPosition(availWidth / 2 - 300, availHeight / 4)
     );
-    console.log(window.screen);
+  }, []);
+
+  const onWindowHide = (e) => {
+    if (e.keyCode === 27) {
+      appWindow.hide();
+    }
+  };
+
+  useEffect(() => {
     dispatch(setCurrentOptionIndex(0));
     setIsPersonalSetting(false);
     if (content && content != "") {
@@ -225,7 +233,11 @@ function App() {
         />
       </div>
       <div>
-        <div style={{ height: 350 }}>
+        <div
+          tabindex="0"
+          onKeyDown={onWindowHide}
+          style={{ height: 350, outline: "none" }}
+        >
           <Switch>
             <Route path="/personal" component={PersonalSetting}></Route>
             <Route
