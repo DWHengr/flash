@@ -4,7 +4,6 @@ import { useHistory } from "react-router";
 import FlashInput from "../../../components/FlashInput";
 import MsgTipTxt from "../../../components/MsgTipTxt";
 import user from "../../../api/user";
-import { validateEmail } from "../../../utils/flash";
 export default function ForgetPassword() {
   const h = useHistory();
   const [forgetInfo, setForgetInfo] = useState({
@@ -43,12 +42,8 @@ export default function ForgetPassword() {
 
   const onSetEmail = () => {
     setMsg("");
-    if (!forgetInfo.email) {
-      setMsg("邮箱不能为空");
-      return;
-    }
-    if (!validateEmail(forgetInfo.email)) {
-      setMsg("邮箱格式错误");
+    if (!forgetInfo.username) {
+      setMsg("用户名不能为空");
       return;
     }
     if (!forgetInfo.code) {
@@ -65,15 +60,21 @@ export default function ForgetPassword() {
   const onSendVerifyCode = () => {
     setMsg("");
     if (timer > 0) return;
-    if (!forgetInfo.email) {
-      setMsg("邮箱不能为空");
-      return;
-    }
-    if (!validateEmail(forgetInfo.email)) {
-      setMsg("邮箱格式错误");
+    if (!forgetInfo.username) {
+      setMsg("用户名不能为空");
       return;
     }
     setTimer(60);
+    user
+    .sendForgetPwdVerifyCode({ username: forgetInfo.username })
+    .then((res) => {
+      if (res.code != 0) {
+        setMsg(res.msg);
+      }
+    })
+    .catch((error) => {
+      setMsg(error.message);
+    });
   };
 
   return (

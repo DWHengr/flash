@@ -22,4 +22,7 @@ export default {
   setEmail(param) {
     return Http.post("/v1/user/set-email", param);
   },
+  sendForgetPwdVerifyCode(param) {
+    return Http.post("/v1/user/code/forget-pwd", param);
+  },
 };
