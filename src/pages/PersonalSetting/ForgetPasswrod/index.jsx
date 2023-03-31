@@ -40,7 +40,7 @@ export default function ForgetPassword() {
     setForgetInfo({ ...forgetInfo, [name]: value });
   };
 
-  const onSetEmail = () => {
+  const onSetForgetPwd = () => {
     setMsg("");
     if (!forgetInfo.username) {
       setMsg("用户名不能为空");
@@ -50,11 +50,23 @@ export default function ForgetPassword() {
       setMsg("验证码不能为空");
       return;
     }
-    setForgetInfo({
-      username: "",
-      code: "",
-      password: "",
-    });
+    user
+      .forgetPwdSet(forgetInfo)
+      .then((res) => {
+        if (res.code == 0) {
+          setMsg("修改成功", true);
+          setForgetInfo({
+            username: "",
+            code: "",
+            password: "",
+          });
+        } else {
+          setMsg(res.msg);
+        }
+      })
+      .catch((error) => {
+        setMsg(error.message);
+      });
   };
 
   const onSendVerifyCode = () => {
@@ -66,15 +78,15 @@ export default function ForgetPassword() {
     }
     setTimer(60);
     user
-    .sendForgetPwdVerifyCode({ username: forgetInfo.username })
-    .then((res) => {
-      if (res.code != 0) {
-        setMsg(res.msg);
-      }
-    })
-    .catch((error) => {
-      setMsg(error.message);
-    });
+      .sendForgetPwdVerifyCode({ username: forgetInfo.username })
+      .then((res) => {
+        if (res.code != 0) {
+          setMsg(res.msg);
+        }
+      })
+      .catch((error) => {
+        setMsg(error.message);
+      });
   };
 
   return (
@@ -140,7 +152,7 @@ export default function ForgetPassword() {
           </div>
           <div className="forget-pwd-option">
             <button
-              onClick={onSetEmail}
+              onClick={onSetForgetPwd}
               style={{ width: "100px" }}
               className="minor-button"
             >

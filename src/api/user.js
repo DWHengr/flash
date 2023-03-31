@@ -25,4 +25,7 @@ export default {
   sendForgetPwdVerifyCode(param) {
     return Http.post("/v1/user/code/forget-pwd", param);
   },
+  forgetPwdSet(param) {
+    return Http.post("/v1/user/forget-pwd", param);
+  },
 };
