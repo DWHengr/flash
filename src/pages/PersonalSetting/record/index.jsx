@@ -10,6 +10,7 @@ import { setOptionIcon } from "../../../utils/flash";
 import { useDispatch } from "react-redux";
 import { updateConfig } from "../../../utils/command";
 import Dialog from "../../../components/Dialog";
+import { useSelector } from "react-redux";
 export default function Record() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [collocateList, setCollocateList] = useState([]);
@@ -18,6 +19,7 @@ export default function Record() {
   const loading = useLoading();
   const dispatch = useDispatch();
   const [visible, setVisible] = useState(false);
+  const settingData = useSelector((state) => state.settingData);
 
   useEffect(() => {
     loading.showLoading("加载同步记录中...");
@@ -129,7 +131,9 @@ export default function Record() {
         }}
       />
       {(collocateList.length == 0 || !collocateList) && <div>暂无同步记录</div>}
-      <div style={{ overflowY: "scroll", height: "312px" }}>
+      <div
+        style={{ overflowY: "scroll", height: settingData.windowHeight - 100 }}
+      >
         {collocateList?.map((item, index) => {
           return (
             <div

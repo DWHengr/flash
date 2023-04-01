@@ -85,7 +85,7 @@ export default function Option() {
   };
 
   return (
-    <div style={{ height: 350 }}>
+    <div style={{ height: settingData.windowHeight - 150 }}>
       <div className="create-box">
         {isCreateOption && (
           <div style={{ height: 160, background: "rgba(27, 27, 27, 0.9)" }}>
@@ -252,7 +252,9 @@ export default function Option() {
             <div
               style={{
                 overflowY: "scroll",
-                height: isCreateOption ? 150 : 310,
+                height: isCreateOption
+                  ? settingData.windowHeight - 260
+                  : settingData.windowHeight - 100,
               }}
             >
               {optionData?.allDataList?.map((item, index) => {

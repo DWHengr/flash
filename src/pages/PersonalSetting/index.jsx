@@ -29,6 +29,7 @@ function PrivateRoute({ component: Component, ...rest }) {
 
 export default function PersonalSetting() {
   const userDate = useSelector((state) => state.userData);
+  const settingData = useSelector((state) => state.settingData);
   const h = useHistory();
   const dispatch = useDispatch();
   let loading = useLoading();
@@ -104,13 +105,17 @@ export default function PersonalSetting() {
           设置
         </div>
       </div>
-      <div style={{ width: 450 }}>
+      <div style={{ width: settingData.windowWidth - 150, height: "100%" }}>
         <Switch>
           <Route exact path="/personal/login" component={Login}></Route>
           <Route exact path="/personal/register" component={Register}></Route>
           <Route exact path="/personal/setting" component={Setting}></Route>
           <Route exact path="/personal/option" component={Option}></Route>
-          <Route exact path="/personal/forgetpassword" component={ForgetPassword}></Route>
+          <Route
+            exact
+            path="/personal/forgetpassword"
+            component={ForgetPassword}
+          ></Route>
           <PrivateRoute
             exact
             path="/personal/center"

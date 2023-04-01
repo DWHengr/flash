@@ -123,6 +123,7 @@ export default function Setting() {
               }
             }}
             value={searchEngine}
+            width={185}
             options={["baidu", "biying", "csdn"]}
             readOnly
           />

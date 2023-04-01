@@ -33,6 +33,7 @@ function App() {
   const settingData = useSelector((state) => state.settingData);
   const dispatch = useDispatch();
   const h = useHistory();
+  const searchBoxHeight = 60;
 
   useEffect(() => {
     seekInput.current.focus();
@@ -70,10 +71,14 @@ function App() {
     dispatch(setCurrentOptionIndex(0));
     setIsPersonalSetting(false);
     if (content && content != "") {
-      appWindow.setSize(new LogicalSize(600, 410));
+      appWindow.setSize(
+        new LogicalSize(settingData.windowWidth, settingData.windowHeight)
+      );
       h.push("/option");
     } else {
-      appWindow.setSize(new LogicalSize(600, 60));
+      appWindow.setSize(
+        new LogicalSize(settingData.windowWidth, searchBoxHeight)
+      );
     }
     dispatch(getOptionbyContent(content));
   }, [content]);
@@ -81,9 +86,14 @@ function App() {
   const onDoubleClick = (e) => {
     setIsPersonalSetting(!isPersonalSetting);
     if (!isPersonalSetting) {
-      appWindow.setSize(new LogicalSize(600, 410));
+      appWindow.setSize(
+        new LogicalSize(settingData.windowWidth, settingData.windowHeight)
+      );
       h.push("/personal");
-    } else appWindow.setSize(new LogicalSize(600, 60));
+    } else
+      appWindow.setSize(
+        new LogicalSize(settingData.windowWidth, searchBoxHeight)
+      );
   };
 
   const ignoreKey = ["v", "a", "c", "z"];
@@ -203,7 +213,7 @@ function App() {
               fontSize: "30px",
               marginLeft: "2px",
               border: "1px solid transparent",
-              maxWidth: 525,
+              maxWidth: settingData.windowWidth - 75,
               fontFamily: "inherit",
               backgroundColor: "transparent",
               color: "rgb(235, 235, 235)",
@@ -234,16 +244,25 @@ function App() {
       </div>
       <div>
         <div
-          tabindex="0"
+          tabIndex="0"
           onKeyDown={onWindowHide}
-          style={{ height: 350, outline: "none" }}
+          style={{
+            height: settingData.windowHeight - searchBoxHeight,
+            outline: "none",
+          }}
         >
           <Switch>
             <Route path="/personal" component={PersonalSetting}></Route>
             <Route
               path="/option"
               render={() => (
-                <div className="option-contain" ref={seekOptionContain}>
+                <div
+                  className="option-contain"
+                  style={{
+                    height: settingData.windowHeight - searchBoxHeight,
+                  }}
+                  ref={seekOptionContain}
+                >
                   <Option />
                 </div>
               )}

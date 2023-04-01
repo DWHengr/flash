@@ -7,6 +7,7 @@ export function updateConfig(optionData, settingData) {
         shortcut: settingData.shortcut,
         search_text: settingData.search_text,
         search_engine: settingData.search_engine,
+        window_size: settingData.window_size,
       },
       option: optionData.allDataList ? optionData.allDataList : optionData,
     },
