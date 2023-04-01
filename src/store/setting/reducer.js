@@ -1,10 +1,12 @@
 import * as type from "./type";
 import { register, unregisterAll } from "@tauri-apps/api/globalShortcut";
-import { appWindow } from "@tauri-apps/api/window";
+import { appWindow, LogicalSize } from "@tauri-apps/api/window";
 let defaultState = {
   shortcut: "",
   search_text: "",
   search_engine: "",
+  windowHeight: 410,
+  windowWidth: 600,
 };
 
 const registerShortCut = (shortcut) => {
@@ -19,12 +21,34 @@ const registerShortCut = (shortcut) => {
   });
 };
 
+const getWidthHeight = (windowSize) => {
+  let height = 410;
+  let width = 600;
+  switch (windowSize) {
+    case "700x500":
+      height = 500;
+      width = 700;
+      break;
+  }
+  appWindow.setSize(new LogicalSize(width, 60));
+  return {
+    height,
+    width,
+  };
+};
+
 export const settingData = (state = defaultState, action) => {
   switch (action.type) {
     case type.Init_Setting:
       unregisterAll();
       registerShortCut(action.shortcut);
-      return { ...state, ...action };
+      let widthHeight = getWidthHeight(action.window_size);
+      return {
+        ...state,
+        ...action,
+        windowHeight: widthHeight.height,
+        windowWidth: widthHeight.width,
+      };
     case type.Set_Search_Txt:
       return { ...state, ...{ search_text: action.search_text } };
     case type.Set_Search_Engine:
@@ -33,6 +57,13 @@ export const settingData = (state = defaultState, action) => {
       unregisterAll();
       registerShortCut(action.shortcut);
       return { ...state, ...{ shortcut: action.shortcut } };
+    case type.Set_Window_Size:
+      widthHeight = getWidthHeight(action.window_size);
+      return {
+        ...state,
+        windowHeight: widthHeight.height,
+        windowWidth: widthHeight.width,
+      };
     default:
       return state;
   }
