@@ -2,7 +2,8 @@
   "setting":{
     "shortcut": "alt+space",
     "search_text": "Enter to open the world...",
-    "search_engine":"baidu"
+    "search_engine":"baidu",
+    "window_size": "600x410"
   },
   "option":[
     {
