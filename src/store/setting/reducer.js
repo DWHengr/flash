@@ -5,6 +5,7 @@ let defaultState = {
   shortcut: "",
   search_text: "",
   search_engine: "",
+  window_size: "600x410",
   windowHeight: 410,
   windowWidth: 600,
 };
@@ -30,7 +31,6 @@ const getWidthHeight = (windowSize) => {
       width = 700;
       break;
   }
-  appWindow.setSize(new LogicalSize(width, 60));
   return {
     height,
     width,
@@ -43,6 +43,7 @@ export const settingData = (state = defaultState, action) => {
       unregisterAll();
       registerShortCut(action.shortcut);
       let widthHeight = getWidthHeight(action.window_size);
+      appWindow.setSize(new LogicalSize(widthHeight.width, 60));
       return {
         ...state,
         ...action,
@@ -57,13 +58,16 @@ export const settingData = (state = defaultState, action) => {
       unregisterAll();
       registerShortCut(action.shortcut);
       return { ...state, ...{ shortcut: action.shortcut } };
-    case type.Set_Window_Size:
-      widthHeight = getWidthHeight(action.window_size);
+    case type.Set_Window_Size: {
+      let widthHeight = getWidthHeight(action.window_size);
+      appWindow.setSize(new LogicalSize(widthHeight.width, widthHeight.height));
       return {
         ...state,
+        window_size: action.window_size,
         windowHeight: widthHeight.height,
         windowWidth: widthHeight.width,
       };
+    }
     default:
       return state;
   }

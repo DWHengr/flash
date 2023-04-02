@@ -5,9 +5,11 @@ import {
   setSearchTxt,
   setShortcutCmd,
   setSearchEngineTxt,
+  setWindowSizeContent,
 } from "../../../store/setting/action";
 import { updateConfig } from "../../../utils/command";
 import DropdownMenu from "../../../components/DropdownMenu";
+import { useEffect } from "react";
 export default function Setting() {
   const optionData = useSelector((state) => state.optionData);
   const settingData = useSelector((state) => state.settingData);
@@ -19,6 +21,8 @@ export default function Setting() {
   const [oldSearchEngine, setOldSearchEngine] = useState(
     settingData.search_engine
   );
+  const [windowSize, setWindowSize] = useState(settingData.window_size);
+  const [oldWindowSize, setOldWindowSize] = useState(settingData.window_size);
   const dispatch = useDispatch();
 
   const onKeyDown = (event) => {
@@ -52,13 +56,11 @@ export default function Setting() {
     }
   };
 
-  let onBlur = () => {
-    updateConfig(optionData, settingData).then(async (res) => {
-      if (res) {
-        console.log(res);
-      }
+  useEffect(() => {
+    updateConfig(optionData, settingData).then((res) => {
+      console.log(res);
     });
-  };
+  }, [settingData]);
 
   return (
     <div className="setting-box">
@@ -70,20 +72,17 @@ export default function Setting() {
             width={185}
             onKeyDown={onKeyDown}
             value={shortcut}
-            onBlur={() => {
+            onSelect={async (value) => {
               if (
-                shortcut != oldShortcut &&
-                shortcut != "alt+ctrl+" &&
-                shortcut != "alt+" &&
-                shortcut != "ctrl+"
+                value != oldShortcut &&
+                value != "alt+ctrl+" &&
+                value != "alt+" &&
+                value != "ctrl+"
               ) {
-                onBlur();
-                setOldShortcut(shortcut);
+                setShortcut(value);
+                dispatch(setShortcutCmd(value));
+                setOldShortcut(value);
               }
-            }}
-            onSelect={(value) => {
-              setShortcut(value);
-              dispatch(setShortcutCmd(value));
             }}
             options={["alt+space", "ctrl+space", "alt+ctrl+space"]}
             readOnly
@@ -95,13 +94,10 @@ export default function Setting() {
         <div className="setting-option-value shortcut-input-box">
           <input
             onChange={(e) => {
-              setSearchText(e.target.value);
-              dispatch(setSearchTxt(e.target.value));
-            }}
-            onBlur={() => {
-              if (searchText != oldSearchText) {
-                onBlur();
-                setOldSearchText(searchText);
+              if (e.target.value != oldSearchText) {
+                setSearchText(e.target.value);
+                dispatch(setSearchTxt(e.target.value));
+                setOldSearchText(e.target.value);
               }
             }}
             value={searchText}
@@ -112,19 +108,34 @@ export default function Setting() {
         <div className="setting-option-key">默认搜索引擎</div>
         <div className="setting-option-value shortcut-input-box">
           <DropdownMenu
-            onSelect={(value) => {
-              setSearchEngine(value);
-              dispatch(setSearchEngineTxt(value));
-            }}
-            onBlur={() => {
-              if (searchEngine != oldSearchEngine) {
-                onBlur();
-                setOldSearchEngine(searchEngine);
+            onSelect={async (value) => {
+              if (value != oldSearchEngine) {
+                setSearchEngine(value);
+                dispatch(setSearchEngineTxt(value));
+                setOldSearchEngine(value);
               }
             }}
             value={searchEngine}
             width={185}
             options={["baidu", "biying", "csdn"]}
+            readOnly
+          />
+        </div>
+      </div>
+      <div className="setting-option">
+        <div className="setting-option-key">窗口宽高</div>
+        <div className="setting-option-value shortcut-input-box">
+          <DropdownMenu
+            onSelect={(value) => {
+              if (value != oldWindowSize) {
+                setWindowSize(value);
+                dispatch(setWindowSizeContent(value));
+                setOldWindowSize(value);
+              }
+            }}
+            value={windowSize}
+            width={185}
+            options={["600x410", "700x500"]}
             readOnly
           />
         </div>
