@@ -135,7 +135,7 @@ export default function Setting() {
             }}
             value={windowSize}
             width={185}
-            options={["600x410", "700x500"]}
+            options={["600x410", "700x510"]}
             readOnly
           />
         </div>

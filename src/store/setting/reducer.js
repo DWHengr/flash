@@ -26,8 +26,8 @@ const getWidthHeight = (windowSize) => {
   let height = 410;
   let width = 600;
   switch (windowSize) {
-    case "700x500":
-      height = 500;
+    case "700x510":
+      height = 510;
       width = 700;
       break;
   }
