@@ -1,17 +1,47 @@
 import "./index.css";
 import { useSelector, useDispatch } from "react-redux";
-import { openAppByIndex } from "../../store/option/action";
+import { useEffect, useState } from "react";
+import { setCurrentListLenghtStore } from "../../store/search/action";
+import { openApp } from "../../utils/command";
 
 export default function Option() {
   const optionData = useSelector((state) => state.optionData);
+  const searchData = useSelector((state) => state.searchData);
+  const [currentDataList, setCurrentDataList] = useState([]);
   const dispatch = useDispatch();
   const onOptionClick = (index) => {
-    dispatch(openAppByIndex(index));
+    openApp(currentDataList[index]);
   };
+  useEffect(() => {
+    if (!searchData.content) return;
+    let kv = searchData.kv;
+    let currentOption = [];
+    if (kv[0] == "opt") {
+      currentOption = optionData.allDataList;
+    } else {
+      currentOption = optionData.allDataList.filter(
+        (item) => item.option_type?.indexOf(kv[0]) != -1
+      );
+    }
+    currentOption = currentOption.filter(
+      (item) =>
+        (kv?.length == 2 && !kv[1]) ||
+        item.name?.indexOf(kv[1] ? kv[1] : kv[0]) != -1
+    );
+    dispatch(setCurrentListLenghtStore(currentOption.length));
+    setCurrentDataList(currentOption);
+  }, [searchData.content]);
+
+  useEffect(() => {
+    console.log(searchData.trigger);
+    if (!searchData.trigger) return;
+    openApp(currentDataList[searchData.currentIndex]);
+  }, [searchData.trigger]);
+
   return (
     <div>
-      {optionData?.currentDataList?.map((item, index) => {
-        let kv = optionData.content?.split(/:|：/);
+      {currentDataList?.map((item, index) => {
+        let kv = searchData.content?.split(/:|：/);
         let vlaue = kv[1] ? kv[1] : kv[0];
         return (
           <div
@@ -20,7 +50,7 @@ export default function Option() {
             onClick={() => onOptionClick(index)}
             style={{
               backgroundColor:
-                index == optionData.optionIndex ? "rgb(78, 78, 78)" : "",
+                index == searchData.currentIndex ? "rgb(78, 78, 78)" : "",
             }}
           >
             <img src={item.icon} className="seek-option-icon" />
