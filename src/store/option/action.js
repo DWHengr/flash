@@ -3,8 +3,6 @@ export const initOptionData = (optionList) => {
   return {
     type: type.Init_Option,
     allDataList: optionList,
-    currentDataList: optionList,
-    optionIndex: 0,
     content: "",
   };
 };
