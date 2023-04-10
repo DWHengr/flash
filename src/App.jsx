@@ -191,7 +191,7 @@ function App() {
             autoFocus
             ref={seekInput}
             inputStyle={{
-              fontSize: "30px",
+              fontSize: "28px",
               marginLeft: "2px",
               border: "1px solid transparent",
               maxWidth: settingData.windowWidth - 75,

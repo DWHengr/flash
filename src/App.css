@@ -8,6 +8,10 @@
   backdrop-filter: blur(15px);
 }
 
+body {
+  font-family: sans-serif;
+}
+
 .logo {
   position: absolute;
   right: 3px;
