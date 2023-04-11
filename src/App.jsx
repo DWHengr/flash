@@ -24,6 +24,7 @@ import {
 } from "./store/search/action";
 import Engine from "./pages/engine";
 import Default from "./pages/Default";
+import VariableName from "./pages/VariableName";
 
 function App() {
   const [content, setContent] = useState("");
@@ -113,6 +114,9 @@ function App() {
           case "csdn":
             openPage("/engine");
             break;
+          case "var":
+            openPage("/variablename");
+            break;
           default:
             openPage("/default");
         }
@@ -181,7 +185,20 @@ function App() {
     { path: "/engine", component: <Engine /> },
     { path: "/default", component: <Default /> },
     { path: "/option", component: <Option /> },
+    { path: "/variablename", component: <VariableName /> },
   ];
+
+  const Routes = ({ location }) => (
+    <div
+      className="option-contain"
+      style={{ height: settingData.windowHeight - searchBoxHeight }}
+      ref={seekOptionContain}
+    >
+      {optionRoutes.map(
+        (route) => location.pathname === route.path && route.component
+      )}
+    </div>
+  );
 
   return (
     <div className="mian-container" onContextMenu={(e) => e.preventDefault()}>
@@ -243,7 +260,9 @@ function App() {
                 >
                   {optionRoutes.map(
                     (route) =>
-                      location.pathname === route.path && route.component
+                      location.pathname === route.path && (
+                        <div key={route.path}> {route.component}</div>
+                      )
                   )}
                 </div>
               )}
