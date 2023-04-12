@@ -33,8 +33,7 @@ export default function Option() {
   }, [searchData.content]);
 
   useEffect(() => {
-    console.log(searchData.trigger);
-    if (!searchData.trigger) return;
+    if (!searchData.trigger.enter) return;
     openApp(currentDataList[searchData.currentIndex]);
   }, [searchData.trigger]);
 

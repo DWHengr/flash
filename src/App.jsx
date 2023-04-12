@@ -96,7 +96,7 @@ function App() {
   useEffect(() => {
     dispatch(setCurrentIndexStore(0));
     setIsPersonalSetting(false);
-    dispatch(SetTrigger(false));
+    dispatch(SetTrigger({enter:false}));
     dispatch(setCurrentListLenghtStore(0));
     if (content && content != "") {
       const kv = content?.split(":");
@@ -150,7 +150,7 @@ function App() {
       e.preventDefault();
     }
     if (e.keyCode === 13 && content) {
-      dispatch(SetTrigger(true));
+      dispatch(SetTrigger({enter:true}));
     }
     if (e.keyCode === 27) {
       appWindow.hide();
@@ -187,18 +187,6 @@ function App() {
     { path: "/option", component: <Option /> },
     { path: "/variablename", component: <VariableName /> },
   ];
-
-  const Routes = ({ location }) => (
-    <div
-      className="option-contain"
-      style={{ height: settingData.windowHeight - searchBoxHeight }}
-      ref={seekOptionContain}
-    >
-      {optionRoutes.map(
-        (route) => location.pathname === route.path && route.component
-      )}
-    </div>
-  );
 
   return (
     <div className="mian-container" onContextMenu={(e) => e.preventDefault()}>

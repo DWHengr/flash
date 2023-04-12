@@ -29,7 +29,7 @@ export default function Default() {
   }, [searchData.content]);
 
   useEffect(() => {
-    if (!searchData.trigger) return;
+    if (!searchData.trigger.enter) return;
     openSearchEngine(
       currentEngine[searchData.currentIndex].name,
       searchData.content

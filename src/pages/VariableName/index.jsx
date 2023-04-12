@@ -11,8 +11,7 @@ export default function VariableName() {
   const onOptionClick = (index) => {};
 
   useEffect(() => {
-    console.log(searchData.trigger);
-    if (!searchData.trigger) return;
+    if (!searchData.trigger.enter) return;
     if (!searchData.content) return;
     translate
       .variableNames({ variableName: searchData.searchValue })

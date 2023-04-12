@@ -5,7 +5,7 @@ let defaultState = {
   currentListLenght: 0,
   searchKey: "",
   searchValue: "",
-  trigger: false,
+  trigger: {},
   kv: "",
 };
 
