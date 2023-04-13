@@ -117,6 +117,12 @@ function App() {
           case "var":
             openPage("/variablename");
             break;
+          case "set":
+            openPage("/personal/setting");
+            break;
+          case "pre":
+              openPage("/personal");
+              break;
           default:
             openPage("/default");
         }
