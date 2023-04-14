@@ -6,6 +6,7 @@ let defaultState = {
   search_text: "",
   search_engine: "",
   window_size: "600x410",
+  searchBoxHeight: 60,
   windowHeight: 410,
   windowWidth: 600,
 };

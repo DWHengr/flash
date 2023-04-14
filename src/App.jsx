@@ -25,6 +25,7 @@ import {
 import Engine from "./pages/engine";
 import Default from "./pages/Default";
 import VariableName from "./pages/VariableName";
+import Translate from "./pages/Translate";
 
 function App() {
   const [content, setContent] = useState("");
@@ -36,7 +37,7 @@ function App() {
   const searchData = useSelector((state) => state.searchData);
   const dispatch = useDispatch();
   const h = useHistory();
-  const searchBoxHeight = 60;
+  const searchBoxHeight = settingData.searchBoxHeight;
 
   useEffect(() => {
     seekInput.current.focus();
@@ -96,7 +97,7 @@ function App() {
   useEffect(() => {
     dispatch(setCurrentIndexStore(0));
     setIsPersonalSetting(false);
-    dispatch(SetTrigger({enter:false}));
+    dispatch(SetTrigger({ enter: false }));
     dispatch(setCurrentListLenghtStore(0));
     if (content && content != "") {
       const kv = content?.split(":");
@@ -121,8 +122,11 @@ function App() {
             openPage("/personal/setting");
             break;
           case "pre":
-              openPage("/personal");
-              break;
+            openPage("/personal");
+            break;
+          case "trs":
+            openPage("/translate");
+            break;
           default:
             openPage("/default");
         }
@@ -156,7 +160,7 @@ function App() {
       e.preventDefault();
     }
     if (e.keyCode === 13 && content) {
-      dispatch(SetTrigger({enter:true}));
+      dispatch(SetTrigger({ enter: true }));
     }
     if (e.keyCode === 27) {
       appWindow.hide();
@@ -192,6 +196,7 @@ function App() {
     { path: "/default", component: <Default /> },
     { path: "/option", component: <Option /> },
     { path: "/variablename", component: <VariableName /> },
+    { path: "/translate", component: <Translate /> },
   ];
 
   return (
