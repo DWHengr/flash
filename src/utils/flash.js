@@ -62,3 +62,8 @@ export function validateSpecialCharacters(str) {
   const pattern = /[^A-Za-z0-9]/;
   return pattern.test(str);
 }
+
+export function isChinese(str) {
+  const pattern = /[\u4e00-\u9fa5]/;
+  return pattern.test(str);
+}

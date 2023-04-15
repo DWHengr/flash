@@ -20,10 +20,20 @@
 } */
 
 .translate-bar {
-  margin: 0px;
+  width: 95%;
+}
+
+.translate-from-to {
+  position: absolute;
+  right: 1px;
+  display: inline-block;
+  color: rgb(155, 155, 155);
+  user-select: none;
 }
 
 .translate-button {
+  user-select: none;
+  display: inline-block;
   color: rgb(155, 155, 155);
 }
 
@@ -34,24 +44,29 @@
 }
 
 .translate-from-box {
-  padding: 5px;
+  padding: 5px 0px 5px 5px;
   font-size: 20px;
   font-weight: 600;
   text-align: start;
   margin-bottom: 5px;
   border-radius: 10px;
-  align-items: start;
   width: 95%;
   height: 40%;
-  background: rgb(209, 209, 209);
+  font-family: sans-serif;
+  resize: none;
+  background: rgb(235, 235, 235);
 }
 
 .translate-to-box {
   margin-top: 5px;
   padding: 5px;
   font-size: 20px;
+  font-weight: 600;
+  font-size: 20px;
+  text-align: start;
   border-radius: 10px;
   width: 95%;
   height: 40%;
-  background: rgb(112, 112, 112);
+  color: rgb(225, 225, 225);
+  background: rgb(122, 122, 122);
 }
