@@ -11,6 +11,10 @@ export default function VariableName() {
   const onOptionClick = (index) => {};
 
   useEffect(() => {
+    dispatch(setCurrentListLenghtStore(currentDataList.length));
+  }, [searchData.content]);
+
+  useEffect(() => {
     if (!searchData.trigger.enter) return;
     if (!searchData.content) return;
     translate
@@ -18,7 +22,6 @@ export default function VariableName() {
       .then((res) => {
         if (res.code == 0) {
           let currentOption = res.data;
-          console.log(currentOption);
           dispatch(setCurrentListLenghtStore(currentOption.length));
           setCurrentDataList(currentOption);
         }
