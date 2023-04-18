@@ -26,6 +26,7 @@ import Engine from "./pages/engine";
 import Default from "./pages/Default";
 import VariableName from "./pages/VariableName";
 import Translate from "./pages/Translate";
+import Json from "./pages/Json";
 
 function App() {
   const [content, setContent] = useState("");
@@ -127,6 +128,9 @@ function App() {
           case "trs":
             openPage("/translate");
             break;
+          case "json":
+            openPage("/json");
+            break;
           default:
             openPage("/default");
         }
@@ -197,6 +201,7 @@ function App() {
     { path: "/option", component: <Option /> },
     { path: "/variablename", component: <VariableName /> },
     { path: "/translate", component: <Translate /> },
+    { path: "/json", component: <Json /> },
   ];
 
   return (
