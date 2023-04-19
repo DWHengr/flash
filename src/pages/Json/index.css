@@ -1,0 +1,49 @@
+.json-box{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: start;
+}
+
+.json-operate-box{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  width: 65px;
+  height: 95%;
+}
+
+.json-from-box {
+  border-radius: 10px;
+  font-family: sans-serif;
+  resize: none;
+  height: 95%;
+  width: 42%;
+  resize: none;
+  background: rgb(235, 235, 235);
+}
+
+.json-to-box {
+  border-radius: 10px;
+  font-family: sans-serif;
+  resize: none;
+  height: 95%;
+  width: 42%;
+  color: rgb(225, 225, 225);
+  background: rgb(122, 122, 122);
+}
+
+
+.json-button {
+  margin: 5px;
+  user-select: none;
+  display: inline-block;
+  color: rgb(155, 155, 155);
+}
+
+.json-button:hover {
+  color: #fff;
+  text-decoration: underline;
+  cursor: pointer;
+}
