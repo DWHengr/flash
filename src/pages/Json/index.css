@@ -21,6 +21,10 @@
   height: 95%;
   width: 42%;
   resize: none;
+  font-size: 14px;
+  font-weight: 600;
+  font-family: sans-serif;
+  color: rgb(0, 43, 54);
   background: rgb(235, 235, 235);
 }
 
@@ -30,8 +34,11 @@
   resize: none;
   height: 95%;
   width: 42%;
-  color: rgb(225, 225, 225);
-  background: rgb(122, 122, 122);
+  font-size: 14px;
+  font-weight: 600;
+  font-family: sans-serif;
+  color: rgb(0, 43, 54);
+  background: rgb(235, 235, 235);
 }
 
 
