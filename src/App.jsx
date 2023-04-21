@@ -27,6 +27,7 @@ import Default from "./pages/Default";
 import VariableName from "./pages/VariableName";
 import Translate from "./pages/Translate";
 import Json from "./pages/Json";
+import Crypt from "./pages/Crypt";
 
 function App() {
   const [content, setContent] = useState("");
@@ -131,6 +132,9 @@ function App() {
           case "json":
             openPage("/json");
             break;
+          case "cry":
+            openPage("/crypt");
+            break;
           default:
             openPage("/default");
         }
@@ -202,6 +206,7 @@ function App() {
     { path: "/variablename", component: <VariableName /> },
     { path: "/translate", component: <Translate /> },
     { path: "/json", component: <Json /> },
+    { path: "/crypt", component: <Crypt /> },
   ];
 
   return (
