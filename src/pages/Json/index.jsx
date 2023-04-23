@@ -1,9 +1,10 @@
 import "./index.css";
 import { useSelector } from "react-redux";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import ReactJson from "react-json-view";
 export default function Json() {
   const settingData = useSelector((state) => state.settingData);
+  const searchData = useSelector((state) => state.searchData);
 
   let [model, setModel] = useState("");
   let [jsonFromData, setJsonFromData] = useState("");
@@ -20,6 +21,12 @@ export default function Json() {
     data = JSON.stringify(data);
     setJsonToData(data);
   };
+
+  useEffect(() => {
+    if (!searchData.trigger.enter) return;
+    if (!searchData.content) return;
+    setJsonFromData(searchData.searchValue);
+  }, [searchData.trigger]);
 
   let jsonTheme = {
     base00: "",
