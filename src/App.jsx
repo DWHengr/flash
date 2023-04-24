@@ -28,6 +28,7 @@ import VariableName from "./pages/VariableName";
 import Translate from "./pages/Translate";
 import Json from "./pages/Json";
 import Crypt from "./pages/Crypt";
+import Base64 from "./pages/Base64";
 
 function App() {
   const [content, setContent] = useState("");
@@ -134,6 +135,8 @@ function App() {
             break;
           case "cry":
             openPage("/crypt");
+          case "base":
+            openPage("/base64");
             break;
           default:
             openPage("/default");
@@ -207,6 +210,7 @@ function App() {
     { path: "/translate", component: <Translate /> },
     { path: "/json", component: <Json /> },
     { path: "/crypt", component: <Crypt /> },
+    { path: "/base64", component: <Base64 /> },
   ];
 
   return (
