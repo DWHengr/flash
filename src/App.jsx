@@ -43,6 +43,24 @@ function App() {
   const h = useHistory();
   const searchBoxHeight = settingData.searchBoxHeight;
 
+  const optionRoutes = [
+    { path: "/default", component: <Default /> },
+    { path: "/personal/setting", cmds: ["set"] },
+    { path: "/personal", cmds: ["pre"] },
+    { path: "/option", component: <Option />, cmds: ["", "opt", "link"] },
+    {
+      path: "/engine",
+      component: <Engine />,
+      cmds: ["eng", "baidu", "biying", "csdn"],
+    },
+    { path: "/variablename", component: <VariableName />, cmds: ["var"] },
+    { path: "/translate", component: <Translate />, cmds: ["trs"] },
+    { path: "/json", component: <Json />, cmds: ["json"] },
+    { path: "/crypt", component: <Crypt />, cmds: ["cry"] },
+    { path: "/base64", component: <Base64 />, cmds: ["base"] },
+    { path: "/md5", component: <Md5 />, cmds: ["md5"] },
+  ];
+
   useEffect(() => {
     seekInput.current.focus();
     invoke("load_config").then(async (res) => {
@@ -107,44 +125,17 @@ function App() {
       const kv = content?.split(":");
       let key = kv[0] ? kv[0] : "";
       if (kv.length > 1) {
-        switch (key) {
-          case "":
-          case "opt":
-          case "link":
-            openPage("/option");
+        let idDefault = true;
+        for (let index = 0; index < optionRoutes.length; index++) {
+          let route = optionRoutes[index];
+          if (route.cmds?.includes(key)) {
+            openPage(route.path);
+            idDefault = false;
             break;
-          case "eng":
-          case "baidu":
-          case "biying":
-          case "csdn":
-            openPage("/engine");
-            break;
-          case "var":
-            openPage("/variablename");
-            break;
-          case "set":
-            openPage("/personal/setting");
-            break;
-          case "pre":
-            openPage("/personal");
-            break;
-          case "trs":
-            openPage("/translate");
-            break;
-          case "json":
-            openPage("/json");
-            break;
-          case "cry":
-            openPage("/crypt");
-            break;
-          case "base":
-            openPage("/base64");
-            break;
-          case "md5":
-            openPage("/md5");
-            break;
-          default:
-            openPage("/default");
+          }
+        }
+        if (idDefault) {
+          openPage("/default");
         }
       } else {
         openPage("/default");
@@ -207,18 +198,6 @@ function App() {
     dispatch(setCurrentIndexStore(optionIndex));
   };
 
-  const optionRoutes = [
-    { path: "/engine", component: <Engine /> },
-    { path: "/default", component: <Default /> },
-    { path: "/option", component: <Option /> },
-    { path: "/variablename", component: <VariableName /> },
-    { path: "/translate", component: <Translate /> },
-    { path: "/json", component: <Json /> },
-    { path: "/crypt", component: <Crypt /> },
-    { path: "/base64", component: <Base64 /> },
-    { path: "/md5", component: <Md5 /> },
-  ];
-
   return (
     <div className="mian-container" onContextMenu={(e) => e.preventDefault()}>
       <div className="row">
@@ -279,6 +258,7 @@ function App() {
                 >
                   {optionRoutes.map(
                     (route) =>
+                      route.component &&
                       location.pathname === route.path && (
                         <div key={route.path}> {route.component}</div>
                       )
