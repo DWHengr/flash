@@ -29,6 +29,7 @@ import Translate from "./pages/Translate";
 import Json from "./pages/Json";
 import Crypt from "./pages/Crypt";
 import Base64 from "./pages/Base64";
+import Md5 from "./pages/Md5";
 
 function App() {
   const [content, setContent] = useState("");
@@ -135,8 +136,12 @@ function App() {
             break;
           case "cry":
             openPage("/crypt");
+            break;
           case "base":
             openPage("/base64");
+            break;
+          case "md5":
+            openPage("/md5");
             break;
           default:
             openPage("/default");
@@ -211,6 +216,7 @@ function App() {
     { path: "/json", component: <Json /> },
     { path: "/crypt", component: <Crypt /> },
     { path: "/base64", component: <Base64 /> },
+    { path: "/md5", component: <Md5 /> },
   ];
 
   return (
