@@ -30,6 +30,7 @@ import Json from "./pages/Json";
 import Crypt from "./pages/Crypt";
 import Base64 from "./pages/Base64";
 import Md5 from "./pages/Md5";
+import Aes from "./pages/Aes";
 
 function App() {
   const [content, setContent] = useState("");
@@ -59,6 +60,7 @@ function App() {
     { path: "/crypt", component: <Crypt />, cmds: ["cry"] },
     { path: "/base64", component: <Base64 />, cmds: ["base"] },
     { path: "/md5", component: <Md5 />, cmds: ["md5"] },
+    { path: "/aes", component: <Aes />, cmds: ["aes"] },
   ];
 
   useEffect(() => {
