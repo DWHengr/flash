@@ -58,7 +58,13 @@ export default function Md5() {
           <div className="md5-from-to"></div>
         </div>
       </div>
-      <div className="md5-to-box">{resultContent}</div>
+      <textarea
+        className="md5-to-box"
+        value={resultContent}
+        onChange={(e) => {
+          setResultContent(e.target.value);
+        }}
+      ></textarea>
     </div>
   );
 }

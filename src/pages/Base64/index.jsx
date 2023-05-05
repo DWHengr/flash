@@ -49,7 +49,13 @@ export default function Base64() {
           <div className="base64-from-to"></div>
         </div>
       </div>
-      <div className="base64-to-box">{resultContent}</div>
+      <textarea
+        className="base64-to-box"
+        value={resultContent}
+        onChange={(e) => {
+          setResultContent(e.target.value);
+        }}
+      ></textarea>
     </div>
   );
 }
