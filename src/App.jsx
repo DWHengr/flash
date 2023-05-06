@@ -61,6 +61,7 @@ function App() {
     { path: "/base64", component: <Base64 />, cmds: ["base"] },
     { path: "/md5", component: <Md5 />, cmds: ["md5"] },
     { path: "/aes", component: <Aes />, cmds: ["aes"] },
+    { path: "/des", component: <Aes />, cmds: ["des"] },
   ];
 
   useEffect(() => {
