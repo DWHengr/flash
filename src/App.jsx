@@ -119,8 +119,16 @@ function App() {
     } else {
       contractWindow();
     }
-    dispatch(setContentStore(content));
+    if (content != searchData.content) {
+      dispatch(setContentStore(content));
+    }
   }, [content]);
+
+  useEffect(() => {
+    if (content != searchData.content) {
+      setContent(searchData.content);
+    }
+  }, [searchData.content]);
 
   const onDoubleClick = (e) => {
     setIsPersonalSetting(!isPersonalSetting);
