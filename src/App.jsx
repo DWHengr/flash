@@ -12,7 +12,6 @@ import { initOptionData } from "./store/option/action";
 import { initUser } from "./store/user/action";
 import { initSettingData } from "./store/setting/action";
 import PersonalSetting from "./pages/PersonalSetting";
-import Option from "./pages/Option";
 import { useSelector, useDispatch } from "react-redux";
 import { Route, Switch, useHistory } from "react-router-dom";
 import { setOptionIcon } from "./utils/flash";
@@ -22,15 +21,7 @@ import {
   setCurrentIndexStore,
   setCurrentListLenghtStore,
 } from "./store/search/action";
-import Engine from "./pages/engine";
-import Default from "./pages/Default";
-import VariableName from "./pages/VariableName";
-import Translate from "./pages/Translate";
-import Json from "./pages/Json";
-import Crypt from "./pages/Crypt";
-import Base64 from "./pages/Base64";
-import Md5 from "./pages/Md5";
-import Aes from "./pages/Aes";
+import { optionPageRoutes } from "./pages/pageRoutes";
 
 function App() {
   const [content, setContent] = useState("");
@@ -44,25 +35,7 @@ function App() {
   const h = useHistory();
   const searchBoxHeight = settingData.searchBoxHeight;
 
-  const optionRoutes = [
-    { path: "/default", component: <Default /> },
-    { path: "/personal/setting", cmds: ["set"] },
-    { path: "/personal", cmds: ["pre"] },
-    { path: "/option", component: <Option />, cmds: ["", "opt", "link"] },
-    {
-      path: "/engine",
-      component: <Engine />,
-      cmds: ["eng", "baidu", "biying", "csdn"],
-    },
-    { path: "/variablename", component: <VariableName />, cmds: ["var"] },
-    { path: "/translate", component: <Translate />, cmds: ["trs"] },
-    { path: "/json", component: <Json />, cmds: ["json"] },
-    { path: "/crypt", component: <Crypt />, cmds: ["cry"] },
-    { path: "/base64", component: <Base64 />, cmds: ["base"] },
-    { path: "/md5", component: <Md5 />, cmds: ["md5"] },
-    { path: "/aes", component: <Aes />, cmds: ["aes"] },
-    { path: "/des", component: <Aes />, cmds: ["des"] },
-  ];
+  const optionRoutes = optionPageRoutes;
 
   useEffect(() => {
     seekInput.current.focus();
