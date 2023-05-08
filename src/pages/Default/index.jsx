@@ -34,7 +34,6 @@ export default function Default() {
 
     optionRoutes.map((item) => {
       item.cmds?.map((cmd) => {
-        console.log(cmd.indexOf(searchData.content));
         if (cmd.indexOf(searchData.content) != -1) {
           currentData.push({
             name: cmd,
@@ -52,6 +51,12 @@ export default function Default() {
   useEffect(() => {
     if (!searchData.trigger.enter) return;
     openOption(currentDataList[searchData.currentIndex], searchData.content);
+  }, [searchData.trigger]);
+
+  useEffect(() => {
+    if (!searchData.trigger.tab) return;
+    if (currentDataList?.length > 1)
+      dispatch(setContentStore(`${currentDataList[1].name}:`));
   }, [searchData.trigger]);
 
   const onOptionClick = (index) => {

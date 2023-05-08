@@ -95,7 +95,7 @@ function App() {
   useEffect(() => {
     dispatch(setCurrentIndexStore(0));
     setIsPersonalSetting(false);
-    dispatch(SetTrigger({ enter: false }));
+    dispatch(SetTrigger({ enter: false, tab: false }));
     dispatch(setCurrentListLenghtStore(0));
     if (content && content != "") {
       const kv = content?.split(":");
@@ -153,21 +153,25 @@ function App() {
     if (e.keyCode === 13 && content) {
       dispatch(SetTrigger({ enter: true }));
     }
+    if (e.keyCode === 9 && content) {
+      dispatch(SetTrigger({ tab: true }));
+    }
     if (e.keyCode === 27) {
       appWindow.hide();
     }
     let optionIndex = searchData.currentIndex;
     let optionLength = searchData.currentListLenght;
     let currentHeight = settingData.windowHeight - searchBoxHeight;
-    if (e.keyCode === 40 || e.keyCode === 9)
+    if (e.keyCode === 40) {
       if (optionIndex < optionLength - 1) {
-        if (optionIndex >= currentHeight / 50)
+        if (optionIndex >= currentHeight / 50 - 1)
           seekOptionContain.current.scrollTop += 50;
         optionIndex++;
       } else {
         seekOptionContain.current.scrollTop = 0;
         optionIndex = 0;
       }
+    }
     if (e.keyCode === 38) {
       if (optionIndex > 0) {
         if (optionIndex <= optionLength - currentHeight / 50 + 1)
