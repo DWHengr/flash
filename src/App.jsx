@@ -157,7 +157,7 @@ function App() {
       if (content) {
         dispatch(SetTrigger({ tab: true }));
       } else {
-        dispatch(setContentStore(":"));
+        dispatch(setContentStore(settingData.tab_value));
       }
     }
     if (e.keyCode === 27) {

@@ -8,3 +8,5 @@ export const Set_Shortcut = "set_shortcut";
 export const Set_Search_Engine = "set_search_engine";
 // 设置窗口尺寸
 export const Set_Window_Size = "set_window_size";
+// 设置tab填充值
+export const Set_Tab_Value = "set_tab_value";

@@ -8,6 +8,7 @@ export function updateConfig(optionData, settingData) {
         search_text: settingData.search_text,
         search_engine: settingData.search_engine,
         window_size: settingData.window_size,
+        tab_value: settingData.tab_value,
       },
       option: optionData.allDataList ? optionData.allDataList : optionData,
     },

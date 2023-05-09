@@ -6,6 +6,7 @@ let defaultState = {
   search_text: "",
   search_engine: "",
   window_size: "600x410",
+  tab_value: ":",
   searchBoxHeight: 60,
   windowHeight: 410,
   windowWidth: 600,
@@ -55,6 +56,8 @@ export const settingData = (state = defaultState, action) => {
       return { ...state, ...{ search_text: action.search_text } };
     case type.Set_Search_Engine:
       return { ...state, ...{ search_engine: action.search_engine } };
+    case type.Set_Tab_Value:
+      return { ...state, ...{ tab_value: action.tab_value } };
     case type.Set_Shortcut:
       unregisterAll();
       registerShortCut(action.shortcut);

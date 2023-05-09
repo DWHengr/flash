@@ -6,6 +6,7 @@ import {
   setShortcutCmd,
   setSearchEngineTxt,
   setWindowSizeContent,
+  setTabValueStore,
 } from "../../../store/setting/action";
 import { updateConfig } from "../../../utils/command";
 import DropdownMenu from "../../../components/DropdownMenu";
@@ -15,8 +16,10 @@ export default function Setting() {
   const settingData = useSelector((state) => state.settingData);
   const [shortcut, setShortcut] = useState(settingData.shortcut);
   const [searchText, setSearchText] = useState(settingData.search_text);
+  const [tabValue, setTabValue] = useState(settingData.tab_value);
   const [oldShortcut, setOldShortcut] = useState(settingData.shortcut);
-  const [oldSearchText, setOldSearchText] = useState(settingData.shortcut);
+  const [oldSearchText, setOldSearchText] = useState(settingData.search_text);
+  const [oldTabValue, setOldTabValue] = useState(settingData.tab_value);
   const [searchEngine, setSearchEngine] = useState(settingData.search_engine);
   const [oldSearchEngine, setOldSearchEngine] = useState(
     settingData.search_engine
@@ -137,6 +140,21 @@ export default function Setting() {
             width={185}
             options={["600x410", "700x510"]}
             readOnly
+          />
+        </div>
+      </div>
+      <div className="setting-option">
+        <div className="setting-option-key">tab默认填充值</div>
+        <div className="setting-option-value shortcut-input-box">
+          <input
+            onChange={(e) => {
+              if (e.target.value != oldTabValue) {
+                setTabValue(e.target.value);
+                dispatch(setTabValueStore(e.target.value));
+                setOldTabValue(e.target.value);
+              }
+            }}
+            value={tabValue}
           />
         </div>
       </div>

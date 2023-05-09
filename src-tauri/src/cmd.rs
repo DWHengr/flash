@@ -19,6 +19,7 @@ pub struct Setiing {
     search_text: String,
     search_engine: String,
     window_size: String,
+    tab_value: String,
 }
 
 #[derive(Debug, Serialize, Deserialize)]
@@ -129,6 +130,7 @@ pub fn load_config(handle: tauri::AppHandle) -> FlashConfig {
                 search_text: "".to_string(),
                 search_engine: "".to_string(),
                 window_size: "".to_string(),
+                tab_value: "".to_string(),
             },
             option: vec![],
         };
