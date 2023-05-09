@@ -153,8 +153,12 @@ function App() {
     if (e.keyCode === 13 && content) {
       dispatch(SetTrigger({ enter: true }));
     }
-    if (e.keyCode === 9 && content) {
-      dispatch(SetTrigger({ tab: true }));
+    if (e.keyCode === 9) {
+      if (content) {
+        dispatch(SetTrigger({ tab: true }));
+      } else {
+        dispatch(setContentStore(":"));
+      }
     }
     if (e.keyCode === 27) {
       appWindow.hide();
