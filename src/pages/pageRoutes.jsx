@@ -8,6 +8,7 @@ import Crypt from "./Crypt";
 import Base64 from "./Base64";
 import Md5 from "./Md5";
 import Aes from "./Aes";
+import Cmd from "./Cmd";
 
 export const optionPageRoutes = [
   { path: "/default", component: <Default /> },
@@ -24,6 +25,13 @@ export const optionPageRoutes = [
     cmds: ["", "opt", "link"],
     icon: "/opt.png",
     describe: "选项设置",
+  },
+  {
+    path: "/cmd",
+    component: <Cmd />,
+    cmds: ["cmd"],
+    icon: "/cmd.png",
+    describe: "命令列表",
   },
   {
     path: "/engine",
@@ -53,13 +61,13 @@ export const optionPageRoutes = [
     icon: "/json.png",
     describe: "json数据格式化",
   },
-  {
-    path: "/crypt",
-    component: <Crypt />,
-    cmds: ["cry"],
-    icon: "",
-    describe: "加密工具",
-  },
+  // {
+  //   path: "/crypt",
+  //   component: <Crypt />,
+  //   cmds: ["cry"],
+  //   icon: "",
+  //   describe: "加密工具",
+  // },
   {
     path: "/base64",
     component: <Base64 />,
