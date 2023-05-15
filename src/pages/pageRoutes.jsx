@@ -9,6 +9,7 @@ import Base64 from "./Base64";
 import Md5 from "./Md5";
 import Aes from "./Aes";
 import Cmd from "./Cmd";
+import Color from "./Color";
 
 export const optionPageRoutes = [
   { path: "/default", component: <Default /> },
@@ -95,5 +96,12 @@ export const optionPageRoutes = [
     cmds: ["des"],
     icon: "/des.png",
     describe: "des加密/解密",
+  },
+  {
+    path: "/cor",
+    component: <Color />,
+    cmds: ["cor"],
+    icon: "/cor.png",
+    describe: "色卡",
   },
 ];
