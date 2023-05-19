@@ -1,0 +1,50 @@
+.cor-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: start;
+}
+
+.cor-from-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  border-radius: 10px;
+  font-family: sans-serif;
+  resize: none;
+  height: 95%;
+  width: 50%;
+  resize: none;
+  font-size: 14px;
+  font-weight: 600;
+  font-family: sans-serif;
+}
+
+.cor-to-box {
+  border-radius: 10px;
+  font-family: sans-serif;
+  resize: none;
+  height: 95%;
+  width: 50%;
+  font-size: 14px;
+  font-weight: 600;
+  font-family: sans-serif;
+}
+
+.cor-label{
+  color: rgb(155, 155, 155);
+}
+
+.cor-lump-group{
+  margin-top: 15px;
+  display: flex;
+  text-align: start;
+  width: 200px;
+}
+
+.cor-lump{
+  width: 40px;
+  height: 40px;
+  border-radius: 4px;
+}
