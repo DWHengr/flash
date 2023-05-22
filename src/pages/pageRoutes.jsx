@@ -10,6 +10,7 @@ import Md5 from "./Md5";
 import Aes from "./Aes";
 import Cmd from "./Cmd";
 import Color from "./Color";
+import Schedule from "./Schedule";
 
 export const optionPageRoutes = [
   { path: "/default", component: <Default /> },
@@ -103,5 +104,12 @@ export const optionPageRoutes = [
     cmds: ["cor"],
     icon: "/cor.png",
     describe: "色卡",
+  },
+  {
+    path: "/sce",
+    component: <Schedule />,
+    cmds: ["sce"],
+    icon: "/sce.png",
+    describe: "日程",
   },
 ];
