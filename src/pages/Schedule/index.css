@@ -1,0 +1,38 @@
+.schedule-box {
+  padding-top: 20px;
+}
+
+.schedule-table {
+  margin: 0 auto;
+  table-layout: fixed;
+  width: 80%;
+  color: rgb(155, 155, 155);
+  border-collapse: collapse;
+}
+
+.schedule-table th,
+.schedule-table td {
+  text-align: left;
+  border: none;
+  vertical-align: middle;
+}
+
+.schedule-time-column {
+  width: 20%;
+}
+
+.schedule-content-column {
+  width: 80%;
+}
+
+.schedule-table th {
+  background-color: rgba(243, 243, 243, 0.2);
+}
+
+.schedule-content-box {
+  margin-top: 10px;
+  min-height: 50px;
+  padding: 2px 0;
+  background-color: rgba(122, 122, 122, 0.2);
+  border-radius: 8px;
+}
