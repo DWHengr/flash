@@ -92,9 +92,9 @@ body {
   background-color: rgba(27, 27, 27, 1);
 }
 
-.option-contain {
+/* .option-contain {
   overflow-y: scroll;
-}
+} */
 
 .seek-option {
   height: 50px;

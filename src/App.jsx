@@ -243,16 +243,21 @@ function App() {
             <Route path="/personal" component={PersonalSetting}></Route>
             <Route
               render={({ location }) => (
-                <div
-                  className="option-contain"
-                  style={{ height: settingData.windowHeight - searchBoxHeight }}
-                  ref={seekOptionContain}
-                >
+                <div>
                   {optionRoutes.map(
                     (route) =>
                       route.component &&
                       location.pathname === route.path && (
-                        <div key={route.path}> {route.component}</div>
+                        <div
+                          className="option-contain"
+                          style={{
+                            height: settingData.windowHeight - searchBoxHeight,
+                            overflowY: route.overflow ? "scroll" : "unset",
+                          }}
+                          ref={seekOptionContain}
+                        >
+                          <div key={route.path}>{route.component}</div>
+                        </div>
                       )
                   )}
                 </div>

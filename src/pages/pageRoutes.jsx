@@ -13,7 +13,7 @@ import Color from "./Color";
 import Schedule from "./Schedule";
 
 export const optionPageRoutes = [
-  { path: "/default", component: <Default /> },
+  { path: "/default", component: <Default />, overflow: true },
   {
     path: "/personal/setting",
     cmds: ["set"],
@@ -27,6 +27,7 @@ export const optionPageRoutes = [
     cmds: ["", "opt", "link"],
     icon: "/opt.png",
     describe: "选项设置",
+    overflow: true,
   },
   {
     path: "/cmd",
@@ -34,6 +35,7 @@ export const optionPageRoutes = [
     cmds: ["cmd"],
     icon: "/cmd.png",
     describe: "命令列表",
+    overflow: true,
   },
   {
     path: "/engine",
@@ -41,6 +43,7 @@ export const optionPageRoutes = [
     cmds: ["eng", "baidu", "biying", "csdn"],
     icon: "/eng.png",
     describe: "搜索引擎",
+    overflow: true,
   },
   {
     path: "/variablename",
@@ -48,6 +51,7 @@ export const optionPageRoutes = [
     cmds: ["var"],
     icon: "/var.png",
     describe: "变量命名",
+    overflow: true,
   },
   {
     path: "/translate",
