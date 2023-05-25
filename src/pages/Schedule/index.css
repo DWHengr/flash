@@ -1,12 +1,19 @@
 .schedule-box {
+  position: relative;
+  display: flex;
+  justify-content: center;
   padding-top: 20px;
+  color: rgb(155, 155, 155);
+}
+
+.schedule-table-box {
+  overflow-y: scroll;
 }
 
 .schedule-table {
   margin: 0 auto;
   table-layout: fixed;
   width: 80%;
-  color: rgb(155, 155, 155);
   border-collapse: collapse;
 }
 
@@ -34,5 +41,28 @@
   min-height: 50px;
   padding: 2px 0;
   background-color: rgba(122, 122, 122, 0.2);
+  border-radius: 8px;
+}
+
+.schedule-add {
+  position: absolute;
+  right: 0px;
+  top: 0px;
+  z-index: 1;
+  width: 240px;
+  background-color: rgba(122, 122, 122, 0.8);
+  height: 100%;
+}
+
+.schedule-add-btn {
+  user-select: none;
+  cursor: pointer;
+  width: 100px;
+  height: 40px;
+  line-height: 40px;
+  position: absolute;
+  bottom: 10px;
+  z-index: 2;
+  background-color: rgba(122, 122, 122, 0.4);
   border-radius: 8px;
 }
