@@ -44,14 +44,18 @@
   border-radius: 8px;
 }
 
-.schedule-add {
+.schedule-add-box {
   position: absolute;
   right: 0px;
   top: 0px;
   z-index: 1;
-  width: 240px;
-  background-color: rgba(122, 122, 122, 0.8);
+  width: 210px;
+  background-color: rgba(53, 53, 53, 1);
   height: 100%;
+  box-shadow: -5px 0 10px rgba(0, 0, 0, 0.5);
+  text-align: left;
+  border-radius: 10px 0 0 0;
+  padding: 10px;
 }
 
 .schedule-add-btn {
@@ -65,4 +69,21 @@
   z-index: 2;
   background-color: rgba(122, 122, 122, 0.4);
   border-radius: 8px;
+}
+
+.text-input {
+  margin-top: 5px;
+  outline: none;
+  border: none;
+  font-family: sans-serif;
+  width: 90%;
+  color: rgb(155, 155, 155);
+  background: #474747;
+  padding: 10px;
+  border-radius: 3px;
+  box-shadow: inset 2px 2px 4px rgba(35, 35, 35, 0.9), inset -2px -2px 4px rgba(122, 122, 122, 0.5);
+}
+
+.text-input:focus{
+  border: none;
 }
