@@ -4,6 +4,7 @@
   justify-content: center;
   padding-top: 20px;
   color: rgb(155, 155, 155);
+  user-select: none;
 }
 
 .schedule-table-box {
@@ -39,7 +40,7 @@
 .schedule-content-box {
   margin-top: 10px;
   min-height: 50px;
-  padding: 2px 0;
+  padding: 3px;
   background-color: rgba(122, 122, 122, 0.2);
   border-radius: 8px;
 }

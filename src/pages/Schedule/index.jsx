@@ -5,6 +5,26 @@ import { useState } from "react";
 export default function Schedule() {
   const settingData = useSelector((state) => state.settingData);
   const [isAdd, setIsAdd] = useState(false);
+  const [startTime, setStartTime] = useState("");
+  const [endTime, setEndTime] = useState("");
+  const [sceContent, setSceContent] = useState("");
+  const [optionMsg, setOptionMsg] = useState("");
+
+  const onAddSce = () => {
+    setOptionMsg("");
+    if (!startTime) {
+      setOptionMsg("开始时间不能为空");
+      return;
+    }
+    if (!endTime) {
+      setOptionMsg("结束时间不能为空");
+      return;
+    }
+    if (!sceContent) {
+      setOptionMsg("日程内容不能为空");
+      return;
+    }
+  };
 
   return (
     <div
@@ -37,7 +57,18 @@ export default function Schedule() {
                 <div style={{ height: "100%" }}>08:00</div>
               </td>
               <td className="schedule-content-column">
-                <div className="schedule-content-box">日程内容</div>
+                <div className="schedule-content-box">
+                  <div>
+                    日程内容日程内容日 日程内容
+                    日程内容程内容日程内容日程内容日程内容 日程内容 日程内容
+                    日程内容 日程内容 日程内容 日程内容 日程内容 日程内容
+                    日程内容 日程内容 日程内容 日程内容 日程内容 日程内容
+                    日程内容 日程内容 日程
+                  </div>
+                  <div style={{ float: "left", width: "100%" }}>
+                    <div style={{ float: "right" }}>2022-02-03</div>
+                  </div>
+                </div>
               </td>
             </tr>
             <tr>
@@ -100,11 +131,21 @@ export default function Schedule() {
         <div className="schedule-add-box ">
           <div>
             <div>开始时间:</div>
-            <input type="datetime-local" class="text-input "></input>
+            <input
+              type="datetime-local"
+              class="text-input"
+              value={startTime}
+              onChange={(e) => setStartTime(e.target.value)}
+            ></input>
           </div>
           <div>
             <div>结束时间:</div>
-            <input type="datetime-local" class="text-input "></input>
+            <input
+              type="datetime-local"
+              class="text-input"
+              value={endTime}
+              onChange={(e) => setEndTime(e.target.value)}
+            ></input>
           </div>
           <div>
             <div>结束时间:</div>
@@ -112,8 +153,20 @@ export default function Schedule() {
               style={{ resize: "none", height: 120 }}
               type="text"
               class="text-input "
+              value={sceContent}
+              onChange={(e) => setSceContent(e.target.value)}
               placeholder="请输入日程内容"
             ></textarea>
+          </div>
+          <div style={{ marginTop: 2 }}>
+            <div style={{ color: "#FCDA01", display: "inline-block" }}>
+              {optionMsg}
+            </div>
+            <i
+              style={{ fontSize: 20, float: "right" }}
+              onClick={onAddSce}
+              className="option-add-bar-button-icon iconfont icon-chuli"
+            />
           </div>
         </div>
       )}
