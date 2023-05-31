@@ -1,6 +1,7 @@
 import { useSelector } from "react-redux";
 import "./index.css";
 import { useState } from "react";
+import { formatDate, getHourAndMinute } from "../../utils/date";
 
 export default function Schedule() {
   const settingData = useSelector((state) => state.settingData);
@@ -9,6 +10,7 @@ export default function Schedule() {
   const [endTime, setEndTime] = useState("");
   const [sceContent, setSceContent] = useState("");
   const [optionMsg, setOptionMsg] = useState("");
+  const [sceDatas, setSceDatas] = useState([]);
 
   const onAddSce = () => {
     setOptionMsg("");
@@ -24,6 +26,15 @@ export default function Schedule() {
       setOptionMsg("日程内容不能为空");
       return;
     }
+    setStartTime("");
+    setEndTime("");
+    setSceContent("");
+    sceDatas.push({
+      startTime: formatDate(startTime),
+      endTime: formatDate(endTime),
+      sceContent,
+    });
+    setSceDatas(sceDatas);
   };
 
   return (
@@ -42,80 +53,34 @@ export default function Schedule() {
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td className="schedule-time-column">
-                <div style={{ height: "100%" }}>08:00</div>
-                <div style={{ height: "100%" }}>08:00</div>
-              </td>
-              <td className="schedule-content-column">
-                <div className="schedule-content-box">日程内容</div>
-              </td>
-            </tr>
-            <tr>
-              <td className="schedule-time-column">
-                <div style={{ height: "100%" }}>08:00</div>
-                <div style={{ height: "100%" }}>08:00</div>
-              </td>
-              <td className="schedule-content-column">
-                <div className="schedule-content-box">
-                  <div>
-                    日程内容日程内容日 日程内容
-                    日程内容程内容日程内容日程内容日程内容 日程内容 日程内容
-                    日程内容 日程内容 日程内容 日程内容 日程内容 日程内容
-                    日程内容 日程内容 日程内容 日程内容 日程内容 日程内容
-                    日程内容 日程内容 日程
-                  </div>
-                  <div style={{ float: "left", width: "100%" }}>
-                    <div style={{ float: "right" }}>2022-02-03</div>
-                  </div>
-                </div>
-              </td>
-            </tr>
-            <tr>
-              <td className="schedule-time-column">
-                <div style={{ height: "100%" }}>08:00</div>
-                <div style={{ height: "100%" }}>08:00</div>
-              </td>
-              <td className="schedule-content-column">
-                <div className="schedule-content-box">日程内容</div>
-              </td>
-            </tr>
-            <tr>
-              <td className="schedule-time-column">
-                <div style={{ height: "100%" }}>08:00</div>
-                <div style={{ height: "100%" }}>08:00</div>
-              </td>
-              <td className="schedule-content-column">
-                <div className="schedule-content-box">日程内容</div>
-              </td>
-            </tr>
-            <tr>
-              <td className="schedule-time-column">
-                <div style={{ height: "100%" }}>08:00</div>
-                <div style={{ height: "100%" }}>08:00</div>
-              </td>
-              <td className="schedule-content-column">
-                <div className="schedule-content-box">日程内容</div>
-              </td>
-            </tr>
-            <tr>
-              <td className="schedule-time-column">
-                <div style={{ height: "100%" }}>08:00</div>
-                <div style={{ height: "100%" }}>08:00</div>
-              </td>
-              <td className="schedule-content-column">
-                <div className="schedule-content-box">日程内容</div>
-              </td>
-            </tr>
-            <tr>
-              <td className="schedule-time-column">
-                <div style={{ height: "100%" }}>08:00</div>
-                <div style={{ height: "100%" }}>08:00</div>
-              </td>
-              <td className="schedule-content-column">
-                <div className="schedule-content-box">日程内容</div>
-              </td>
-            </tr>
+            {sceDatas.map((sce, index) => {
+              return (
+                <tr key={index}>
+                  <td className="schedule-time-column">
+                    <div style={{ height: "100%" }}>
+                      {getHourAndMinute(sce.startTime)}
+                    </div>
+                    <div
+                      style={{
+                        height: "100%",
+                        fontSize: 12,
+                        color: "rgb(115, 115, 115)",
+                      }}
+                    >
+                      {getHourAndMinute(sce.endTime)}
+                    </div>
+                  </td>
+                  <td className="schedule-content-column">
+                    <div className="schedule-content-box">
+                      <div>{sce.sceContent}</div>
+                    </div>
+                    <div style={{ float: "right", fontSize: 10 }}>
+                      {sce.startTime} - {sce.endTime}
+                    </div>
+                  </td>
+                </tr>
+              );
+            })}
           </tbody>
         </table>
       </div>
