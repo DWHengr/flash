@@ -11,6 +11,7 @@ import Aes from "./Aes";
 import Cmd from "./Cmd";
 import Color from "./Color";
 import Schedule from "./Schedule";
+import { Timestamp } from "./Timestamp";
 
 export const optionPageRoutes = [
   { path: "/default", component: <Default />, overflow: true },
@@ -115,5 +116,12 @@ export const optionPageRoutes = [
     cmds: ["sce"],
     icon: "/sce.png",
     describe: "日程",
+  },
+  {
+    path: "/tip",
+    component: <Timestamp />,
+    cmds: ["tip"],
+    icon: "/tip.png",
+    describe: "时间戳",
   },
 ];
