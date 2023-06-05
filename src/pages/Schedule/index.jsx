@@ -1,7 +1,8 @@
 import { useSelector } from "react-redux";
 import "./index.css";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { formatDate, getHourAndMinute } from "../../utils/date";
+import Dexie from "dexie";
 
 export default function Schedule() {
   const settingData = useSelector((state) => state.settingData);
@@ -11,6 +12,17 @@ export default function Schedule() {
   const [sceContent, setSceContent] = useState("");
   const [optionMsg, setOptionMsg] = useState("");
   const [sceDatas, setSceDatas] = useState([]);
+
+  const db = new Dexie("flashDB");
+  db.version(1).stores({
+    schedules: "++id,startTime,endTime,sceContent",
+  });
+
+  useEffect(() => {
+    db.schedules.toArray().then((data) => {
+      setSceDatas(data);
+    });
+  }, []);
 
   const onAddSce = () => {
     setOptionMsg("");
@@ -29,11 +41,13 @@ export default function Schedule() {
     setStartTime("");
     setEndTime("");
     setSceContent("");
-    sceDatas.push({
+    const sceData = {
       startTime: formatDate(startTime),
       endTime: formatDate(endTime),
       sceContent,
-    });
+    };
+    sceDatas.push(sceData);
+    db.schedules.add(sceData);
     setSceDatas(sceDatas);
   };
 
@@ -98,7 +112,7 @@ export default function Schedule() {
             <div>开始时间:</div>
             <input
               type="datetime-local"
-              class="text-input"
+              className="text-input"
               value={startTime}
               onChange={(e) => setStartTime(e.target.value)}
             ></input>
@@ -107,7 +121,7 @@ export default function Schedule() {
             <div>结束时间:</div>
             <input
               type="datetime-local"
-              class="text-input"
+              className="text-input"
               value={endTime}
               onChange={(e) => setEndTime(e.target.value)}
             ></input>
@@ -117,7 +131,7 @@ export default function Schedule() {
             <textarea
               style={{ resize: "none", height: 120 }}
               type="text"
-              class="text-input "
+              className="text-input "
               value={sceContent}
               onChange={(e) => setSceContent(e.target.value)}
               placeholder="请输入日程内容"
