@@ -1,0 +1,35 @@
+.tip-box{
+  color: rgba(155, 155, 155, 1);
+  padding: 20px;
+}
+
+.tip-text-input {
+  margin-left: 5px;
+  outline: none;
+  border: none;
+  font-family: sans-serif;
+  width: 140px;
+  height: 10px;
+  color: rgb(155, 155, 155);
+  background: #474747;
+  padding: 10px;
+  border-radius: 3px;
+  box-shadow: inset 2px 2px 4px rgba(35, 35, 35, 0.9), inset -2px -2px 4px rgba(122, 122, 122, 0.5);
+}
+
+.tip-text-input:focus{
+  border: none;
+}
+
+.tip-option {
+  display: flex;
+  margin-left: 5px;
+  z-index: 1;
+  justify-content: flex-end;
+}
+
+.tip-option-label:hover{
+  color: #fff;
+  text-decoration:underline;
+  cursor: pointer;
+}
