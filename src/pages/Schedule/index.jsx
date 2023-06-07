@@ -2,7 +2,7 @@ import { useSelector } from "react-redux";
 import "./index.css";
 import { useState, useEffect } from "react";
 import { formatDate, getHourAndMinute } from "../../utils/date";
-import Dexie from "dexie";
+import db from "../../utils/db";
 
 export default function Schedule() {
   const settingData = useSelector((state) => state.settingData);
@@ -12,11 +12,6 @@ export default function Schedule() {
   const [sceContent, setSceContent] = useState("");
   const [optionMsg, setOptionMsg] = useState("");
   const [sceDatas, setSceDatas] = useState([]);
-
-  const db = new Dexie("flashDB");
-  db.version(1).stores({
-    schedules: "++id,startTime,endTime,sceContent",
-  });
 
   useEffect(() => {
     db.schedules.toArray().then((data) => {
