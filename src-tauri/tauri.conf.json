@@ -16,6 +16,9 @@
       "iconAsTemplate": true
     },
     "allowlist": {
+      "notification": {
+        "all": true
+      },
       "http": {
         "all": true,
         "scope": ["https://**","http://**"]
