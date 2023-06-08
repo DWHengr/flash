@@ -1,4 +1,10 @@
 import { getClient } from "@tauri-apps/api/http";
+import {
+  isPermissionGranted,
+  requestPermission,
+  sendNotification,
+} from "@tauri-apps/api/notification";
+
 export async function setOptionIcon(o) {
   o.icon = "/icon.svg";
   const client = await getClient();
@@ -66,4 +72,18 @@ export function validateSpecialCharacters(str) {
 export function isChinese(str) {
   const pattern = /[\u4e00-\u9fa5]/;
   return pattern.test(str);
+}
+
+export async function sendFlashNotification(title, content) {
+  let permissionGranted = await isPermissionGranted();
+  if (permissionGranted) {
+    const permission = await requestPermission();
+    permissionGranted = permission === "granted";
+  }
+  if (permissionGranted) {
+    sendNotification({
+      title: title,
+      body: content,
+    });
+  }
 }
