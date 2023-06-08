@@ -14,7 +14,7 @@ import { initSettingData } from "./store/setting/action";
 import PersonalSetting from "./pages/PersonalSetting";
 import { useSelector, useDispatch } from "react-redux";
 import { Route, Switch, useHistory } from "react-router-dom";
-import { setOptionIcon } from "./utils/flash";
+import { sendFlashNotification, setOptionIcon } from "./utils/flash";
 import {
   SetTrigger,
   setContentStore,
@@ -22,6 +22,7 @@ import {
   setCurrentListLenghtStore,
 } from "./store/search/action";
 import { optionPageRoutes } from "./pages/pageRoutes";
+import db from "./utils/db";
 
 function App() {
   const [content, setContent] = useState("");
@@ -38,6 +39,37 @@ function App() {
   const optionRoutes = optionPageRoutes;
 
   useEffect(() => {
+    const { availHeight, availWidth } = window.screen;
+    appWindow.setPosition(
+      new PhysicalPosition(availWidth / 2 - 300, availHeight / 4)
+    );
+  }, []);
+
+  useEffect(() => {
+    const timerId = setInterval(() => {
+      db.schedules.toArray().then((data) => {
+        if (data) {
+          let currentTime = new Date();
+          for (let i = 0; i < data.length; i++) {
+            let sce = data[i];
+            if (!sce.isNotification) {
+              let startTime = new Date(sce.startTime);
+              if (startTime > currentTime) {
+                db.schedules.update(sce.id, { isNotification: true });
+                sendFlashNotification("日程通知", sce.sceContent);
+              }
+            }
+          }
+        }
+      });
+    }, 2000);
+
+    return () => {
+      clearInterval(timerId);
+    };
+  }, []);
+
+  useEffect(() => {
     seekInput.current.focus();
     invoke("load_config").then(async (res) => {
       if (res) {
@@ -47,13 +79,6 @@ function App() {
       }
     });
     dispatch(initUser());
-  }, []);
-
-  useEffect(() => {
-    const { availHeight, availWidth } = window.screen;
-    appWindow.setPosition(
-      new PhysicalPosition(availWidth / 2 - 300, availHeight / 4)
-    );
   }, []);
 
   useEffect(() => {
