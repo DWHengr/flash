@@ -3,6 +3,7 @@ import "./index.css";
 import { useState, useEffect } from "react";
 import { formatDate, getHourAndMinute } from "../../utils/date";
 import db from "../../utils/db";
+import Dialog from "../../components/Dialog";
 
 export default function Schedule() {
   const settingData = useSelector((state) => state.settingData);
@@ -12,6 +13,8 @@ export default function Schedule() {
   const [sceContent, setSceContent] = useState("");
   const [optionMsg, setOptionMsg] = useState("");
   const [sceDatas, setSceDatas] = useState([]);
+  const [visible, setVisible] = useState(false);
+  const [deleteData, setDeleteData] = useState({});
 
   useEffect(() => {
     db.schedules.toArray().then((data) => {
@@ -44,6 +47,7 @@ export default function Schedule() {
     sceDatas.push(sceData);
     db.schedules.add(sceData);
     setSceDatas(sceDatas);
+    setIsAdd(false);
   };
 
   return (
@@ -53,6 +57,17 @@ export default function Schedule() {
         height: settingData.windowHeight - settingData.searchBoxHeight - 20,
       }}
     >
+      <Dialog
+        tip="确认删除?"
+        visible={visible}
+        onVisible={(visible) => setVisible(visible)}
+        onOk={() => {
+          db.schedules.where("id").equals(deleteData.id).delete();
+          db.schedules.toArray().then((data) => {
+            setSceDatas(data);
+          });
+        }}
+      />
       <div className="schedule-table-box">
         <table className="schedule-table">
           <thead>
@@ -85,6 +100,14 @@ export default function Schedule() {
                     </div>
                     <div style={{ float: "right", fontSize: 10 }}>
                       {sce.startTime} - {sce.endTime}
+                      <i
+                        onClick={() => {
+                          setDeleteData({ id: sce.id });
+                          setVisible(true);
+                        }}
+                        style={{ fontSize: 14, marginLeft: 8 }}
+                        className="option-add-bar-button-icon iconfont icon-shanchu"
+                      />
                     </div>
                   </td>
                 </tr>
@@ -99,7 +122,7 @@ export default function Schedule() {
           setIsAdd(!isAdd);
         }}
       >
-        添加日程
+        {isAdd ? "取消添加" : "添加日程"}
       </div>
       {isAdd && (
         <div className="schedule-add-box ">
