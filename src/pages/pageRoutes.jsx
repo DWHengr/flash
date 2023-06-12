@@ -12,6 +12,7 @@ import Cmd from "./Cmd";
 import Color from "./Color";
 import Schedule from "./Schedule";
 import { Timestamp } from "./Timestamp";
+import Url from "./Url";
 
 export const optionPageRoutes = [
   { path: "/default", component: <Default />, overflow: true },
@@ -81,6 +82,13 @@ export const optionPageRoutes = [
     cmds: ["base"],
     icon: "/base.png",
     describe: "base64编码",
+  },
+  {
+    path: "/url",
+    component: <Url />,
+    cmds: ["url"],
+    icon: "/url.png",
+    describe: "url编码/解码",
   },
   {
     path: "/md5",
