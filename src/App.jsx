@@ -270,11 +270,12 @@ function App() {
               render={({ location }) => (
                 <div>
                   {optionRoutes.map(
-                    (route) =>
+                    (route, index) =>
                       route.component &&
                       location.pathname === route.path && (
                         <div
                           className="option-contain"
+                          key={index}
                           style={{
                             height: settingData.windowHeight - searchBoxHeight,
                             overflowY: route.overflow ? "scroll" : "unset",
