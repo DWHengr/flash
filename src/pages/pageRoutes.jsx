@@ -13,6 +13,7 @@ import Color from "./Color";
 import Schedule from "./Schedule";
 import { Timestamp } from "./Timestamp";
 import Url from "./Url";
+import Utf from "./Utf";
 
 export const optionPageRoutes = [
   { path: "/default", component: <Default />, overflow: true },
@@ -89,6 +90,13 @@ export const optionPageRoutes = [
     cmds: ["url"],
     icon: "/url.png",
     describe: "url编码/解码",
+  },
+  {
+    path: "/utf",
+    component: <Utf />,
+    cmds: ["utf"],
+    icon: "/utf.png",
+    describe: "utf编码/解码",
   },
   {
     path: "/md5",
