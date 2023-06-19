@@ -14,6 +14,7 @@ import Schedule from "./Schedule";
 import { Timestamp } from "./Timestamp";
 import Url from "./Url";
 import Utf from "./Utf";
+import Cae from "./Cae";
 
 export const optionPageRoutes = [
   { path: "/default", component: <Default />, overflow: true },
@@ -118,6 +119,13 @@ export const optionPageRoutes = [
     cmds: ["des"],
     icon: "/des.png",
     describe: "des加密/解密",
+  },
+  {
+    path: "/cae",
+    component: <Cae />,
+    cmds: ["cae"],
+    icon: "/cae.png",
+    describe: "大小写转换",
   },
   {
     path: "/cor",
