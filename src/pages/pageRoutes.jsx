@@ -15,6 +15,7 @@ import { Timestamp } from "./Timestamp";
 import Url from "./Url";
 import Utf from "./Utf";
 import Cae from "./Cae";
+import ReplaceText from "./ReplaceText";
 
 export const optionPageRoutes = [
   { path: "/default", component: <Default />, overflow: true },
@@ -147,5 +148,12 @@ export const optionPageRoutes = [
     cmds: ["tip"],
     icon: "/tip.png",
     describe: "时间戳",
+  },
+  {
+    path: "/rtx",
+    component: <ReplaceText />,
+    cmds: ["rtx"],
+    icon: "/rtx.png",
+    describe: "替换文本内容",
   },
 ];
