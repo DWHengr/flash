@@ -16,6 +16,7 @@ import Url from "./Url";
 import Utf from "./Utf";
 import Cae from "./Cae";
 import ReplaceText from "./ReplaceText";
+import Sat from "./Sat";
 
 export const optionPageRoutes = [
   { path: "/default", component: <Default />, overflow: true },
@@ -127,6 +128,13 @@ export const optionPageRoutes = [
     cmds: ["cae"],
     icon: "/cae.png",
     describe: "大小写转换",
+  },
+  {
+    path: "/sat",
+    component: <Sat />,
+    cmds: ["sat"],
+    icon: "/sat.png",
+    describe: "简体/繁体转换",
   },
   {
     path: "/cor",
