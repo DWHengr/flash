@@ -17,6 +17,7 @@ import Utf from "./Utf";
 import Cae from "./Cae";
 import ReplaceText from "./ReplaceText";
 import Sat from "./Sat";
+import TextCompress from "./TextCompress";
 
 export const optionPageRoutes = [
   { path: "/default", component: <Default />, overflow: true },
@@ -135,6 +136,13 @@ export const optionPageRoutes = [
     cmds: ["sat"],
     icon: "/sat.png",
     describe: "简体/繁体转换",
+  },
+  {
+    path: "/tco",
+    component: <TextCompress />,
+    cmds: ["tco"],
+    icon: "/tco.png",
+    describe: "文本压缩",
   },
   {
     path: "/cor",
