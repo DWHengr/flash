@@ -1,0 +1,61 @@
+.tco-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.tco-bar {
+  width: 95%;
+}
+
+.tco-from-to {
+  position: absolute;
+  right: 1px;
+  display: inline-block;
+  color: rgb(155, 155, 155);
+  user-select: none;
+}
+
+.tco-button {
+  margin-left: 10px;
+  margin-right: 10px;
+  user-select: none;
+  display: inline-block;
+  color: rgb(155, 155, 155);
+}
+
+.tco-button:hover {
+  color: #fff;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.tco-from-box {
+  padding: 5px 0px 5px 5px;
+  font-size: 20px;
+  font-weight: 600;
+  text-align: start;
+  margin-bottom: 5px;
+  border-radius: 10px;
+  width: 95%;
+  height: 40%;
+  font-family: sans-serif;
+  resize: none;
+  background: rgb(235, 235, 235);
+}
+
+.tco-to-box {
+  margin-top: 5px;
+  padding: 5px;
+  font-size: 20px;
+  font-weight: 600;
+  font-size: 20px;
+  text-align: start;
+  border-radius: 10px;
+  width: 95%;
+  height: 40%;
+  color: rgb(225, 225, 225);
+  background: rgb(122, 122, 122);
+  cursor: default;
+}
