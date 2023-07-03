@@ -18,6 +18,7 @@ import Cae from "./Cae";
 import ReplaceText from "./ReplaceText";
 import Sat from "./Sat";
 import TextCompress from "./TextCompress";
+import QRcode from "./QRcode";
 
 export const optionPageRoutes = [
   { path: "/default", component: <Default />, overflow: true },
@@ -143,6 +144,13 @@ export const optionPageRoutes = [
     cmds: ["tco"],
     icon: "/tco.png",
     describe: "文本压缩",
+  },
+  {
+    path: "/qr",
+    component: <QRcode />,
+    cmds: ["qr"],
+    icon: "/qr.png",
+    describe: "二维码生成",
   },
   {
     path: "/cor",
