@@ -19,6 +19,7 @@ import ReplaceText from "./ReplaceText";
 import Sat from "./Sat";
 import TextCompress from "./TextCompress";
 import QRcode from "./QRcode";
+import Uuid from "./Uuid";
 
 export const optionPageRoutes = [
   { path: "/default", component: <Default />, overflow: true },
@@ -151,6 +152,13 @@ export const optionPageRoutes = [
     cmds: ["qr"],
     icon: "/qr.png",
     describe: "二维码生成",
+  },
+  {
+    path: "/uuid",
+    component: <Uuid />,
+    cmds: ["uuid"],
+    icon: "/uuid.png",
+    describe: "uuid生成",
   },
   {
     path: "/cor",
