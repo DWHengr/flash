@@ -20,6 +20,7 @@ import Sat from "./Sat";
 import TextCompress from "./TextCompress";
 import QRcode from "./QRcode";
 import Uuid from "./Uuid";
+import Random from "./Random";
 
 export const optionPageRoutes = [
   { path: "/default", component: <Default />, overflow: true },
@@ -159,6 +160,13 @@ export const optionPageRoutes = [
     cmds: ["uuid"],
     icon: "/uuid.png",
     describe: "uuid生成",
+  },
+  {
+    path: "/ram",
+    component: <Random />,
+    cmds: ["ram"],
+    icon: "/ram.png",
+    describe: "随机数生成",
   },
   {
     path: "/cor",
