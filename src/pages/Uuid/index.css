@@ -1,0 +1,59 @@
+.uuid-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: rgb(155, 155, 155);
+}
+
+.uuid-box input {
+  --tw-ring-color: none;
+  width: 120px;
+  outline: none;
+  border: none;
+  color: rgb(155, 155, 155);
+  font-size: 16px;
+  font-family: sans-serif;
+  border-bottom: 1px solid #fff;
+  background-color: transparent;
+}
+
+.uuid-bar {
+  width: 95%;
+}
+
+.uuid-from-to {
+  position: absolute;
+  right: 1px;
+  display: inline-block;
+  user-select: none;
+}
+
+.uuid-button {
+  margin-left: 10px;
+  margin-right: 10px;
+  user-select: none;
+  display: inline-block;
+}
+
+.uuid-button:hover {
+  color: #fff;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.uuid-to-box {
+  margin-top: 5px;
+  padding: 5px;
+  font-size: 20px;
+  font-weight: 600;
+  font-size: 20px;
+  text-align: start;
+  border-radius: 10px;
+  width: 95%;
+  height: 80%;
+  color: rgb(225, 225, 225);
+  background: rgb(122, 122, 122);
+  resize: none;
+  cursor: default;
+}
