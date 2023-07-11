@@ -21,6 +21,7 @@ import TextCompress from "./TextCompress";
 import QRcode from "./QRcode";
 import Uuid from "./Uuid";
 import Random from "./Random";
+import Www from "./Www";
 
 export const optionPageRoutes = [
   { path: "/default", component: <Default />, overflow: true },
@@ -53,6 +54,14 @@ export const optionPageRoutes = [
     cmds: ["eng"],
     icon: "/eng.png",
     describe: "搜索引擎",
+    overflow: true,
+  },
+  {
+    path: "/www",
+    component: <Www />,
+    cmds: ["www"],
+    icon: "/www.png",
+    describe: "www打开网址",
     overflow: true,
   },
   {
