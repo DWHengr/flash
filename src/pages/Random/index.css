@@ -1,0 +1,76 @@
+.ram-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: start;
+  color: rgb(155, 155, 155);
+}
+
+.ram-box input {
+  --tw-ring-color: none;
+  width: 50px;
+  outline: none;
+  border: none;
+  color: rgb(155, 155, 155);
+  font-size: 16px;
+  font-family: sans-serif;
+  border-bottom: 1px solid #fff;
+  background-color: transparent;
+}
+
+.ram-operate-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  width: 65px;
+  height: 95%;
+}
+
+.ram-from-box {
+  border-radius: 10px;
+  font-family: sans-serif;
+  resize: none;
+  height: 95%;
+  width: 42%;
+  font-size: 14px;
+  font-weight: 600;
+  /* color: rgb(0, 43, 54);
+  background: rgb(235, 235, 235); */
+}
+
+.ram-to-box {
+  border-radius: 10px;
+  font-family: sans-serif;
+  resize: none;
+  height: 95%;
+  width: 42%;
+  font-size: 14px;
+  font-weight: 600;
+  font-family: sans-serif;
+  color: rgb(0, 43, 54);
+  background: rgb(235, 235, 235);
+}
+
+
+.ram-button {
+  margin: 5px;
+  user-select: none;
+  display: inline-block;
+  color: rgb(155, 155, 155);
+}
+
+.ram-button:hover {
+  color: #fff;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.ram-charset {
+  border-radius: 10px;
+  height: 200px;
+  width: 98%;
+  resize: none;
+  font-size: 14px;
+  background: rgb(235, 235, 235);
+}
