@@ -22,6 +22,7 @@ import QRcode from "./QRcode";
 import Uuid from "./Uuid";
 import Random from "./Random";
 import Www from "./Www";
+import Shields from "./Shields";
 
 export const optionPageRoutes = [
   { path: "/default", component: <Default />, overflow: true },
@@ -200,6 +201,13 @@ export const optionPageRoutes = [
     cmds: ["ram"],
     icon: "/ram.png",
     describe: "随机数生成",
+  },
+  {
+    path: "/shd",
+    component: <Shields />,
+    cmds: ["shd"],
+    icon: "/shd.png",
+    describe: "shields徽章生成",
   },
   {
     path: "/cor",
