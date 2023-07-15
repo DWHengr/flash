@@ -21,10 +21,19 @@
       },
       "http": {
         "all": true,
-        "scope": ["https://**","http://**"]
+        "scope": [
+          "https://**",
+          "http://**"
+        ]
       },
       "fs": {
-        "scope": ["$RESOURCE/config/*"]
+        "all": true,
+        "scope": [
+          "$RESOURCE/config/*"
+        ]
+      },
+      "dialog": {
+        "all": true
       },
       "all": true
     },
