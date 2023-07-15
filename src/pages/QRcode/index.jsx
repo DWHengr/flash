@@ -1,6 +1,8 @@
 import "./index.css";
 import { useSelector } from "react-redux";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
+import { save } from "@tauri-apps/api/dialog";
+import { writeBinaryFile } from "@tauri-apps/api/fs";
 import QRCode from "qrcode.react";
 
 export default function QRcode() {
@@ -9,6 +11,24 @@ export default function QRcode() {
 
   let [textData, setTextData] = useState("");
   let [qrData, setQrData] = useState("");
+  const qrCodeRef = useRef(null);
+
+  let onDownloadQr = async () => {
+    const filePath = await save({
+      defaultPath: "qrcode",
+      filters: [
+        {
+          name: "Image",
+          extensions: ["png", "jpeg"],
+        },
+      ],
+    });
+    const qrCodeDataURL = qrCodeRef.current.querySelector("canvas").toDataURL();
+    const response = await fetch(qrCodeDataURL);
+    const blob = await response.blob();
+    const data = await blob.arrayBuffer();
+    await writeBinaryFile(filePath, data);
+  };
 
   useEffect(() => {
     if (!searchData.trigger.enter) return;
@@ -35,12 +55,15 @@ export default function QRcode() {
         </div>
       </div>
       <div className="qr-to-box">
-        <div>
+        <div ref={qrCodeRef}>
           <QRCode
             value={qrData}
             imageSettings={{ src: "icon.png", height: 30, width: 30 }}
             size={200}
           />
+        </div>
+        <div className="qr-button" onClick={onDownloadQr}>
+          下载
         </div>
       </div>
     </div>
