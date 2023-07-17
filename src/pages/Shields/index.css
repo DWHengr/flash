@@ -1,0 +1,31 @@
+.shd-box {
+  display: flex;
+  flex-direction: column;
+  text-align: start;
+  color: rgb(155, 155, 155);
+  padding: 20px;
+}
+
+.shd-box input {
+  --tw-ring-color: none;
+  width: 100px;
+  outline: none;
+  border: none;
+  color: rgb(155, 155, 155);
+  font-size: 16px;
+  font-family: sans-serif;
+  border-bottom: 1px solid #fff;
+  background-color: transparent;
+}
+
+.shd-button {
+  user-select: none;
+  display: inline-block;
+  color: rgb(155, 155, 155);
+}
+
+.shd-button:hover {
+  color: #fff;
+  text-decoration: underline;
+  cursor: pointer;
+}
