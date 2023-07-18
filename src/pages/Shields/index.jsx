@@ -1,12 +1,17 @@
 import shields from "../../api/shields";
 import "./index.css";
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { PopoverPicker } from "../../components/PopoverPicker";
+import { save } from "@tauri-apps/api/dialog";
+import { writeBinaryFile, writeTextFile } from "@tauri-apps/api/fs";
+
 export default function Shields() {
   let [imgSrc, setImgSrc] = useState("");
   let [label, setLabel] = useState("label");
   let [message, setMessage] = useState("message");
   let [color, setColor] = useState("#4C1");
+  const shieldsRef = useRef(null);
+
   let onCreateShield = async () => {
     shields
       .create(
@@ -20,6 +25,23 @@ export default function Shields() {
         setImgSrc(res);
       });
   };
+
+  let onDownload = async () => {
+    const filePath = await save({
+      defaultPath: "shields",
+      filters: [
+        {
+          name: "Image",
+          extensions: ["svg"],
+        },
+      ],
+    });
+    await writeTextFile(filePath, imgSrc);
+  };
+
+  useEffect(() => {
+    onCreateShield();
+  }, []);
 
   return (
     <div className="shd-box">
@@ -54,7 +76,7 @@ export default function Shields() {
         />
       </div>
       <div
-        style={{ margin: 5 }}
+        style={{ margin: 5, marginBottom: 25 }}
         className="shd-button"
         onClick={onCreateShield}
       >
@@ -62,7 +84,10 @@ export default function Shields() {
       </div>
       <div style={{ margin: 5 }}>
         预览：
-        <div dangerouslySetInnerHTML={{ __html: imgSrc }} />
+        <div ref={shieldsRef} dangerouslySetInnerHTML={{ __html: imgSrc }} />
+      </div>
+      <div style={{ margin: 5 }} className="shd-button" onClick={onDownload}>
+        下载
       </div>
     </div>
   );
