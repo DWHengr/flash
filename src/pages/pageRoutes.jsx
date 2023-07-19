@@ -23,6 +23,7 @@ import Uuid from "./Uuid";
 import Random from "./Random";
 import Www from "./Www";
 import Shields from "./Shields";
+import Yml from "./Yml";
 
 export const optionPageRoutes = [
   { path: "/default", component: <Default />, overflow: true },
@@ -166,6 +167,13 @@ export const optionPageRoutes = [
     cmds: ["cae"],
     icon: "/cae.png",
     describe: "大小写转换",
+  },
+  {
+    path: "/yml",
+    component: <Yml />,
+    cmds: ["yml"],
+    icon: "/yml.png",
+    describe: "yml-json互转",
   },
   {
     path: "/sat",
