@@ -1,0 +1,56 @@
+.yml-box{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: start;
+}
+
+.yml-operate-box{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  width: 65px;
+  height: 95%;
+}
+
+.yml-from-box {
+  border-radius: 10px;
+  font-family: sans-serif;
+  resize: none;
+  height: 95%;
+  width: 42%;
+  resize: none;
+  font-size: 14px;
+  font-weight: 600;
+  font-family: sans-serif;
+  color: rgb(0, 43, 54);
+  background: rgb(235, 235, 235);
+}
+
+.yml-to-box {
+  border-radius: 10px;
+  font-family: sans-serif;
+  resize: none;
+  height: 95%;
+  width: 42%;
+  font-size: 14px;
+  font-weight: 600;
+  font-family: sans-serif;
+  color: rgb(0, 43, 54);
+  background: rgb(235, 235, 235);
+}
+
+
+.yml-button {
+  margin: 5px;
+  user-select: none;
+  display: inline-block;
+  color: rgb(155, 155, 155);
+}
+
+.yml-button:hover {
+  color: #fff;
+  text-decoration: underline;
+  cursor: pointer;
+}
