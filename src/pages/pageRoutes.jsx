@@ -24,6 +24,7 @@ import Random from "./Random";
 import Www from "./Www";
 import Shields from "./Shields";
 import Yml from "./Yml";
+import Html from "./Html";
 
 export const optionPageRoutes = [
   { path: "/default", component: <Default />, overflow: true },
@@ -167,6 +168,13 @@ export const optionPageRoutes = [
     cmds: ["cae"],
     icon: "/cae.png",
     describe: "大小写转换",
+  },
+  {
+    path: "/html",
+    component: <Html />,
+    cmds: ["html"],
+    icon: "/html.png",
+    describe: "html相关操作",
   },
   {
     path: "/yml",
