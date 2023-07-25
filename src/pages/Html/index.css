@@ -1,0 +1,56 @@
+.html-box{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: start;
+}
+
+.html-operate-box{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  width: 65px;
+  height: 95%;
+}
+
+.html-from-box {
+  border-radius: 10px;
+  font-family: sans-serif;
+  resize: none;
+  height: 95%;
+  width: 42%;
+  resize: none;
+  font-size: 14px;
+  font-weight: 600;
+  font-family: sans-serif;
+  color: rgb(0, 43, 54);
+  background: rgb(235, 235, 235);
+}
+
+.html-to-box {
+  border-radius: 10px;
+  font-family: sans-serif;
+  resize: none;
+  height: 95%;
+  width: 42%;
+  font-size: 14px;
+  font-weight: 600;
+  font-family: sans-serif;
+  color: rgb(0, 43, 54);
+  background: rgb(235, 235, 235);
+}
+
+
+.html-button {
+  margin: 5px;
+  user-select: none;
+  display: inline-block;
+  color: rgb(155, 155, 155);
+}
+
+.html-button:hover {
+  color: #fff;
+  text-decoration: underline;
+  cursor: pointer;
+}
