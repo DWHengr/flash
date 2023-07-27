@@ -25,6 +25,7 @@ import Www from "./Www";
 import Shields from "./Shields";
 import Yml from "./Yml";
 import Html from "./Html";
+import Mock from "./Mock";
 
 export const optionPageRoutes = [
   { path: "/default", component: <Default />, overflow: true },
@@ -196,6 +197,13 @@ export const optionPageRoutes = [
     cmds: ["tco"],
     icon: "/tco.png",
     describe: "文本压缩",
+  },
+  {
+    path: "/mock",
+    component: <Mock />,
+    cmds: ["mock"],
+    icon: "/mock.png",
+    describe: "生成Mock数据",
   },
   {
     path: "/qr",
